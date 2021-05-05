@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Tabiyat</string>
+    <string name="skip">Пропустить</string>
+    <string name="welcome">Добро пожаловать!</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="authorization">Пoжалуйста авторизуйтесь</string>
+    <string name="forget_password">Забыли пароль?</string>
+    <string name="login">Войти</string>
+    <string name="facebook">Facebook</string>
+    <string name="g_mail">Gmail</string>
+    <string name="registration">У вас еще не аккаунта? Регистрация</string>
+    <string name="password">Пароль</string>
+    <string name="register_data">Введите свои данные</string>
+    <string name="name">Имя</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="choose_language">Выбор языка</string>
+    <string name="kg">Kg</string>
+    <string name="ru">Ru</string>
+    <string name="next">Далее</string>
+    <string name="get_in_acc">У вас уже есть аккаунт? Войти</string>
+    <string name="tabiyat">Табият</string>
+    <string name="what_is_near">Что рядом</string>
+    <string name="liked">Избранное</string>
+    <string name="profile">Профиль</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="animals">Животные</string>
+    <string name="actragal_example">Астрагал Шагина</string>
+    <string name="department">Отдел</string>
+    <string name="summary">Краткое содержание</string>
+    <string name="class_dep">Класс</string>
+    <string name="family">Семейство</string>
+    <string name="genus">Род</string>
+    <string name="abundance">Обилие</string>
+    <string name="totalObservation">Всего наблюдений</string>
+    <string name="plants">Растения</string>
+    <string name="see_or_find">Увидели или нашли где живет?</string>
+    <string name="add_observation">Добавить наблюдение</string>
+    <string name="vnesite_vklad">Внесите свой вклад в развитие мониторинга за растениями в Кыргызстане.</string>
+    <string name="your_rating">Ваш рейтинг (5) </string>
+    <string name="rating">Рейтинг</string>
+    <string name="settings">Настройки</string>
+    <string name="notifications">Уведомления</string>
+    <string name="account">Аккаунт</string>
+    <string name="exit">Выход</string>
+    <string name="language">Язык</string>
+    <string name="about_project">О проекте</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="address">Address</string>
+    <string name="info_project"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel <br/>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim pr <br/>
+
+aesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit <br/>
+
+ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non en <br/>
+
+im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</string>
+    <string name="observations">Наблюдения</string>
+    <string name="order">Порядок</string>
+    <string name="date">21 марта/2021год /23:00</string>
+    <string name="descriprion_txt">description description description description description.
+
+        Description description description description description description.
+
+        description description description description description .Description description
+
+
+        description description description description.</string>
+    <string name="author_observation">Автор данного наблюдения</string>
+    <string name="card_observation">Карточка наблюдения</string>
+    <string name="rating_users">Рейтинг пользователей</string>
+    <string name="time">Время</string>
+    <string name="coordinates">Координаты</string>
+    <string name="update_map">Обновить местоположение на карте</string>
+    <string name="comments">Комментарии</string>
+    <string name="useful_info">Полезная информация</string>
+    <string name="edit">Редактировать</string>
+    <string name="lang_names">(лат. Astragalus schanginianus, русс. Astragalus schanginianus кырг. Astragalus schanginianus)</string>
+    <string name="description">Description Description Description Description Description Description</string>
+    <string name="redbook">Красная книга</string>
+    <string name="category">Категория</string>
+    <string name="biotop">Биотоп</string>
+
+</resources>

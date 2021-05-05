@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
+    app:expansion_openOnlyOne="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/addObsrv_search"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Expansions Header & Layouts -->
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/find_back"
+        android:padding="5dp"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_headerIndicatorRotationExpanded="@integer/config_navAnimTime"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/abundance_view">
+
+        <!-- HEADER -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/avenir_regular"
+                android:text="@string/biotop"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- HEADER INDICATOR -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/ic_expanded_indicator" />
+
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expansion_expanded="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_biotop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            tools:listitem="@layout/ex_addobsrv_list" />
+
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+</com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layoutDirection="ltr"
+    android:backgroundTint="@color/white"
+    android:orientation="horizontal"
+    android:background="@drawable/find_back">
+
+    <TextView
+        android:id="@+id/map_ex_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:text="Title"
+        android:layout_marginEnd="5dp"
+        style="@style/SecondaryTextStyle"/>
+
+</LinearLayout>

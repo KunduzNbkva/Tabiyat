@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout
+    android:id="@+id/redBook_expanse"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0.5dp"
+    android:orientation="vertical"
+    app:expansion_openOnlyOne="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Expansions Header & Layouts -->
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_headerIndicatorRotationExpanded="@integer/config_navAnimTime"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/abundance_view">
+
+        <!-- HEADER -->
+
+        <LinearLayout
+            android:id="@+id/redbook_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/find_back"
+                android:gravity="center"
+                android:src="@drawable/ic_red_book" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/avenir_regular"
+                android:text="@string/redbook"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/redBook_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="140dp"
+                android:fontFamily="@font/avenir_regular"
+                android:text="(5)"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- HEADER INDICATOR -->
+        <ImageView
+            android:id="@+id/redBookIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/ic_arrow_right" />
+
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- CONTENT -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/redBook_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/ex_sub_list"
+            />
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+</com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout>

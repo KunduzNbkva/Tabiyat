@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/find_back"
+    android:backgroundTint="#F8F8FD">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MainTextStyle"
+        android:textSize="20sp"
+        android:text="@string/see_or_find"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_10"/>
+
+    <Button
+        android:id="@+id/add_observation_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_btn_background"
+        android:fontFamily="@font/avenir_book"
+        android:textColor="@color/white"
+        android:text="@string/add_observation"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vnesite_vklad"
+        android:textSize="15sp"
+        android:fontFamily="@font/avenir_book"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/margin_10"/>
+
+
+</LinearLayout>

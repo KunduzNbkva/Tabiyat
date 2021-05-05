@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.main.profile.SettingsFragment">
+
+    <TextView
+        android:id="@+id/settings_account"
+        android:layout_width="match_parent"
+        android:text="@string/account"
+        android:layout_height="50dp"
+        android:gravity="center|start"
+        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/avenir_regular"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
+
+    <TextView
+        android:id="@+id/settings_project"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/about_project"
+        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/avenir_regular"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:gravity="center|start"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:id="@+id/settings_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notifications"
+            android:textSize="17sp"
+            android:fontFamily="@font/avenir_regular"
+            android:textColor="@color/black"
+            android:gravity="center|start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:thumb="@drawable/circle_thumb_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:track="@drawable/circle_track_selector"
+            android:layout_marginEnd="10dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:id="@+id/settings_language"
+            style="@style/SecondaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/language"
+            android:textSize="17sp"
+            android:fontFamily="@font/avenir_regular"
+            android:textColor="@color/black"
+            android:gravity="center|start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/settings_lang_switch"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/track"
+            android:checkedButton="@+id/ru_lang"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/settings_ru"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@drawable/switch_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/ru"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/settings_kg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@drawable/switch_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/kg"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
+
+    <TextView
+        android:id="@+id/settings_exit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="@font/avenir_regular"
+        android:gravity="center|start"
+        android:padding="5dp"
+        android:text="@string/exit"
+        android:textColor="@color/red_color"
+        android:textSize="17sp"
+        android:layout_marginStart="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/middle_gray" />
+
+</LinearLayout>
