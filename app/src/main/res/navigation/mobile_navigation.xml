@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_navigation_liked_to_cardDetailFragment"
             app:destination="@id/plantsDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -29,10 +29,13 @@
         <action
             android:id="@+id/action_navigation_map_to_notificationsFragment"
             app:destination="@id/menuNotifications"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_map_to_cardObservationFragment"
+            app:destination="@id/cardObservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_tabiyat"
@@ -42,7 +45,7 @@
         <action
             android:id="@+id/action_navigation_tabiyat_to_plantsFragment"
             app:destination="@id/plantsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -58,21 +61,21 @@
         <action
             android:id="@+id/action_navigation_profile_to_settingsFragment"
             app:destination="@id/menuSettings"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_profile_to_ratingFragment"
             app:destination="@id/ratingFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_profile_to_observationsFragment"
             app:destination="@id/observationsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -85,14 +88,14 @@
         <action
             android:id="@+id/action_plantsFragment_to_cardDetailFragment"
             app:destination="@id/plantsDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_plantsFragment_to_notificationsFragment"
             app:destination="@id/menuNotifications"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -104,14 +107,14 @@
         <action
             android:id="@+id/action_plantsDetailFragment_to_observationsFragment"
             app:destination="@id/observationsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_plantsDetailFragment_to_addObservationFragment"
             app:destination="@id/addObservationFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -124,14 +127,14 @@
         <action
             android:id="@+id/action_menuSettings_to_accountFragment"
             app:destination="@id/accountFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_menuSettings_to_projectInfoFragment"
             app:destination="@id/projectInfoFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -159,7 +162,7 @@
         <action
             android:id="@+id/action_observationsFragment_to_cardObservationFragment"
             app:destination="@id/cardObservationFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>

@@ -43,6 +43,7 @@
             android:layout_gravity="center">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/map_user_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -104,6 +105,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/map_plant_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

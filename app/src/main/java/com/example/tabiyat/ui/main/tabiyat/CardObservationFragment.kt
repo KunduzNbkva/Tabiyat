@@ -1,33 +1,26 @@
 package com.example.tabiyat.ui.main.tabiyat
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.tabiyat.R
+import com.example.tabiyat.databinding.CardDetailFragmentBinding
+import com.example.tabiyat.databinding.CardObservationFragmentBinding
 import com.example.tabiyat.ui.main.tabiyat.viewModels.CardObservationViewModel
+import org.koin.android.ext.android.inject
 
 class CardObservationFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = CardObservationFragment()
-    }
-
-    private lateinit var viewModel: CardObservationViewModel
+    private lateinit var binding:CardObservationFragmentBinding
+    private val viewModel by inject<CardObservationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.card_observation_fragment, container, false)
+    ): View{
+        binding = CardObservationFragmentBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CardObservationViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
