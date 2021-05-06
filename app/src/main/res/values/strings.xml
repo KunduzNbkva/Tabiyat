@@ -92,5 +92,6 @@ im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur 
     <string name="redbook">Красная книга</string>
     <string name="category">Категория</string>
     <string name="biotop">Биотоп</string>
+    <string name="fenofaze">Фенофаза</string>
 
 </resources>
