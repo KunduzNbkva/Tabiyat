@@ -19,7 +19,11 @@
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_liked_to_notificationsFragment"
-            app:destination="@id/menuNotifications" />
+            app:destination="@id/menuNotifications"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
@@ -35,7 +39,11 @@
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_map_to_cardObservationFragment"
-            app:destination="@id/cardObservationFragment" />
+            app:destination="@id/cardObservationFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_tabiyat"
@@ -51,7 +59,25 @@
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_tabiyat_to_notificationsFragment"
-            app:destination="@id/menuNotifications" />
+            app:destination="@id/menuNotifications"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_tabiyat_to_animalsFragment"
+            app:destination="@id/animalsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_tabiyat_to_infoFragment"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -79,10 +105,17 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/plantsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.PlantsFragment"
+        android:name="com.example.tabiyat.ui.main.tabiyat.plants.PlantsFragment"
         android:label="@string/plants"
         tools:layout="@layout/plants_fragment">
         <action
@@ -183,4 +216,12 @@
         android:name="com.example.tabiyat.ui.main.addObservatrion.AddObservationFragment"
         android:label="Наблюдения растения"
         tools:layout="@layout/add_observation_fragment" />
+    <fragment
+        android:id="@+id/animalsFragment"
+        android:name="com.example.tabiyat.ui.main.tabiyat.animals.AnimalsFragment"
+        android:label="Животные" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.tabiyat.ui.main.tabiyat.info.InfoFragment"
+        android:label="Полезная информаци" />
 </navigation>

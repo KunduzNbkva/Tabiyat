@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tabiyat.R
+import com.example.tabiyat.base.OnCardClickListener
 import com.example.tabiyat.databinding.ObservationsFragmentBinding
 import com.example.tabiyat.ui.main.tabiyat.adapters.ObservationAdapter
 import com.example.tabiyat.ui.main.tabiyat.viewModels.ObservationsViewModel

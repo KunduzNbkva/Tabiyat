@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:orientation="vertical"
     app:expansion_openOnlyOne="true"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/addObsrv_search"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:layout_constraintTop_toBottomOf="@id/addObsrv_search">
 
     <!-- Expansions Header & Layouts -->
 
@@ -20,13 +20,12 @@
         android:layout_marginTop="0.5dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/find_back"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="5dp"
         app:expansion_headerIndicator="@id/headerIndicator"
         app:expansion_headerIndicatorRotationExpanded="@integer/config_navAnimTime"
         app:expansion_layout="@id/expansionLayout"
-        app:expansion_toggleOnClick="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/abundance_view">
+        app:expansion_toggleOnClick="true">
 
         <!-- HEADER -->
 

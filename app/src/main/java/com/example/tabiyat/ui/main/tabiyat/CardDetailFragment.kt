@@ -47,7 +47,7 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
 
     private fun setList(){
         val redBookList= ArrayList<String>()
-        redBookList.add("Не входит / Входит")
+        redBookList.add("Входит")
         redBookList.add("Extinct")
 
         val fenofazeList= ArrayList<String>()

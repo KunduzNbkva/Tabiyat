@@ -8,7 +8,8 @@
     android:elevation="4dp"
     android:background="@color/white"
     app:cardCornerRadius="10dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -16,7 +17,6 @@
             android:id="@+id/profile_list_img_layout"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/margin_10"
             android:background="@drawable/find_back"
             android:backgroundTint="@color/gray"
             app:layout_constraintStart_toStartOf="parent"

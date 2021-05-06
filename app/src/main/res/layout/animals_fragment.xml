@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="@dimen/margin_10"
-    tools:context=".ui.main.tabiyat.plants.PlantsFragment">
+    android:padding="@dimen/margin_10">
 
     <include
         android:id="@+id/search_layout"
@@ -204,7 +203,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/plant_recycler"
+        android:id="@+id/animals_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_10"

@@ -10,19 +10,30 @@ import androidx.navigation.Navigation
 import com.example.tabiyat.R
 import com.example.tabiyat.databinding.FragmentMapsBinding
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapsFragment : Fragment(), View.OnClickListener {
+class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickListener {
     private lateinit var binding: FragmentMapsBinding
     private var clickCounter: Int = 0
 
     private val callback = OnMapReadyCallback { googleMap ->
         val bishkek = LatLng(42.8746, 74.5698)
-        googleMap.addMarker(MarkerOptions().position(bishkek).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek, 10f))
+        val kgtu = LatLng(42.843649, 74.586088)
+        val oshBzr = LatLng(42.877608482058825, 74.59048567851843)
+        googleMap.addMarker(MarkerOptions().position(bishkek))
+        googleMap.addMarker(MarkerOptions().position(kgtu))
+        googleMap.addMarker(MarkerOptions().position(oshBzr))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek,15f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kgtu,15f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oshBzr,15f))
+
+        googleMap.setOnMarkerClickListener(this)
+
     }
 
     override fun onCreateView(
@@ -37,8 +48,7 @@ class MapsFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMap()
-        onPlantClick()
-        onUserClick()
+        onDataClick()
         binding.mapButtonSort.setOnClickListener(this)
 
     }
@@ -47,17 +57,12 @@ class MapsFragment : Fragment(), View.OnClickListener {
     private fun setMap() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
         Log.e("Map", "callback$callback")
     }
 
-    private fun onUserClick(){
-        binding.mapUserLayout.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_navigation_map_to_cardObservationFragment)
-        }
-    }
-
-    private fun onPlantClick(){
-        binding.mapPlantLayout.setOnClickListener {
+    private fun onDataClick(){
+        binding.mapCardView.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_navigation_map_to_cardObservationFragment)
         }
     }
@@ -72,5 +77,10 @@ class MapsFragment : Fragment(), View.OnClickListener {
             binding.mapCardView.visibility = View.GONE
             binding.mapSortView.sortMap.visibility = View.VISIBLE
         }
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        binding.mapCardView.visibility = View.VISIBLE
+        return false
     }
 }

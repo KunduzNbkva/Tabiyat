@@ -6,24 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".ui.main.liked.LikedFragment">
-
-    <include
-        android:id="@+id/liked_search"
-        style="@style/SearchViewStyle"
-        layout="@layout/search_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".ui.main.liked.LikedFragment"
+    style="@style/MaterialTheme">
 
     <LinearLayout
         android:id="@+id/liked_btn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
@@ -32,13 +23,16 @@
             android:id="@+id/liked_plants_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
             style="@style/LikedSortStyle"
+            android:clickable="true"
             android:text="@string/plants" />
 
         <Button
             android:id="@+id/liked_animals_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
             style="@style/LikedSortStyle"
             android:text="@string/animals" />
 
@@ -46,6 +40,7 @@
             android:id="@+id/liked_info_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
             style="@style/LikedSortStyle"
             android:text="@string/useful_info" />
     </LinearLayout>

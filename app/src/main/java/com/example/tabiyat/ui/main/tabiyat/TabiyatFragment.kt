@@ -8,14 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tabiyat.R
+import com.example.tabiyat.base.ListModel
+import com.example.tabiyat.base.OnMainCardClickListener
 import com.example.tabiyat.databinding.TabiyatFragmentBinding
 import com.example.tabiyat.ui.main.tabiyat.adapters.MainListAdapter
 import com.example.tabiyat.ui.main.tabiyat.viewModels.TabiyatViewModel
-import com.example.tabiyat.base.uiModels.ListModel
 import org.koin.android.ext.android.inject
 
 
-class TabiyatFragment : Fragment(), OnItemClickListener {
+class TabiyatFragment : Fragment(), OnMainCardClickListener{
     private lateinit var binding: TabiyatFragmentBinding
     private lateinit var adapter: MainListAdapter
     private val viewModel by inject<TabiyatViewModel>()
@@ -31,20 +32,40 @@ class TabiyatFragment : Fragment(), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = arrayListOf<ListModel>(
-            ListModel(R.drawable.plants,"Растения",""),
-            ListModel(R.drawable.animals,"Животные",""),
-            ListModel(R.drawable.info_notes,"Полезная информация",""))
+        val list = arrayListOf(
+            ListModel(R.drawable.plants, "Растения", ""),
+            ListModel(R.drawable.animals, "Животные", ""),
+            ListModel(R.drawable.info_notes, "Полезная информация", "")
+        )
         adapter = MainListAdapter(list, this)
         binding.mainList.layoutManager = LinearLayoutManager(requireContext())
         binding.mainList.adapter = adapter
     }
 
-    override fun onItemClicked(model: ListModel) {
-        view?.let {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_navigation_tabiyat_to_plantsFragment)
+    override fun onItemClicked(model: ListModel,adapterPosition:Int) {
+        when(adapterPosition){
+            0->{
+                view?.let {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_navigation_tabiyat_to_plantsFragment)
+                }
+            }
+            1->{
+                view?.let {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_navigation_tabiyat_to_animalsFragment)
+                }
+            }
+            2->{
+                view?.let {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_navigation_tabiyat_to_infoFragment)
+                }
+            }
         }
+
     }
+
+
 
 }

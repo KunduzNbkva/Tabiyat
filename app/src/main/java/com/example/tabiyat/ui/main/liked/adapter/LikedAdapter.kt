@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabiyat.databinding.PlantsListBinding
-import com.example.tabiyat.ui.main.tabiyat.OnCardClickListener
+import com.example.tabiyat.base.OnCardClickListener
 
 class LikedAdapter(
     private var list: List<String>,

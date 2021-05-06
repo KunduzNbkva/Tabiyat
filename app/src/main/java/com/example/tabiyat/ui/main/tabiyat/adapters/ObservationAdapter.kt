@@ -2,11 +2,9 @@ package com.example.tabiyat.ui.main.tabiyat.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tabiyat.databinding.ExpansionCategoryBinding
 import com.example.tabiyat.databinding.ListObservationBinding
-import com.example.tabiyat.ui.main.tabiyat.OnCardClickListener
+import com.example.tabiyat.base.OnCardClickListener
 
 
 class ObservationAdapter(

@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tabiyat.R
 import com.example.tabiyat.databinding.LikedFragmentBinding
 import com.example.tabiyat.ui.main.liked.adapter.LikedAdapter
-import com.example.tabiyat.ui.main.tabiyat.OnCardClickListener
+import com.example.tabiyat.base.OnCardClickListener
+import org.koin.android.ext.android.inject
 
 class LikedFragment : Fragment(), OnCardClickListener {
     private lateinit var binding: LikedFragmentBinding
     private lateinit var adapter: LikedAdapter
-    private lateinit var viewModel: LikedViewModel
+    private val viewModel by inject<LikedViewModel>()
     private var listOfLiked: ArrayList<String>? = null
 
 
@@ -29,10 +30,6 @@ class LikedFragment : Fragment(), OnCardClickListener {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LikedViewModel::class.java)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +49,7 @@ class LikedFragment : Fragment(), OnCardClickListener {
         }
     }
     private fun setRecycler() {
-        val list = listOf<String>(
+        val list = listOf(
             "Астрагал Шангина",
             "Астрагал Шангина",
             "Астрагал Шангина",
@@ -65,22 +62,24 @@ class LikedFragment : Fragment(), OnCardClickListener {
 
     private fun setOnBtnTouch(button:Button){
         button.setOnClickListener {
+            button.setBackgroundResource(R.drawable.btn_enable)
+            Toast.makeText(requireContext(),"Clicked",Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun checkForLiked(){
-        if(listOfLiked!=null){
-            binding.likedBtnLayout.visibility = View.VISIBLE
-            binding.likedList.visibility = View.VISIBLE
-            binding.likedSearch.searchLayout.visibility = View.VISIBLE
-            binding.noLikedLayout.visibility = View.GONE
-        } else {
-            binding.likedBtnLayout.visibility = View.GONE
-            binding.likedList.visibility = View.GONE
-            binding.likedSearch.searchLayout.visibility = View.GONE
-            binding.noLikedLayout.visibility = View.VISIBLE
-        }
-    }
+//    private fun checkForLiked(){
+//        if(listOfLiked!=null){
+//            binding.likedBtnLayout.visibility = View.VISIBLE
+//            binding.likedList.visibility = View.VISIBLE
+//            binding.likedSearch.searchLayout.visibility = View.VISIBLE
+//            binding.noLikedLayout.visibility = View.GONE
+//        } else {
+//            binding.likedBtnLayout.visibility = View.GONE
+//            binding.likedList.visibility = View.GONE
+//            binding.likedSearch.searchLayout.visibility = View.GONE
+//            binding.noLikedLayout.visibility = View.VISIBLE
+//        }
+//    }
 
 
 }

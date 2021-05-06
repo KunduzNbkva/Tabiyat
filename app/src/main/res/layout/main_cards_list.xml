@@ -12,7 +12,8 @@
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
     app:contentPadding="10dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,8 +30,9 @@
             <TextView
                 android:id="@+id/main_list_title"
                 style="@style/SecondaryTextStyle"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:layout_alignStart="@+id/main_list_img"
                 android:layout_alignBottom="@+id/main_list_img"
                 android:layout_margin="15dp"

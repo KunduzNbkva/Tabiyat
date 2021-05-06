@@ -21,6 +21,7 @@ import com.example.tabiyat.ui.setTitle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.properties.Delegates
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -97,7 +98,8 @@ class MainActivity : AppCompatActivity() {
             R.id.settings_account,
             R.id.observationsFragment,
             R.id.menuNotifications,
-            R.id.addObservationFragment
+            R.id.addObservationFragment,
+            R.id.cardObservationFragment
         )
 
         navController.addOnDestinationChangedListener { _, destination, arguments ->
@@ -172,12 +174,9 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             it.let {
                 Navigation.findNavController(it).navigate(R.id.addObservationFragment)
-
             }
         }
     }
-
-
 
 }
 
