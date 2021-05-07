@@ -28,9 +28,9 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
         googleMap.addMarker(MarkerOptions().position(bishkek))
         googleMap.addMarker(MarkerOptions().position(kgtu))
         googleMap.addMarker(MarkerOptions().position(oshBzr))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek,15f))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kgtu,15f))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oshBzr,15f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek,7f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kgtu,7f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oshBzr,7f))
 
         googleMap.setOnMarkerClickListener(this)
 
@@ -80,7 +80,12 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        binding.mapCardView.visibility = View.VISIBLE
+        clickCounter++
+        if (clickCounter % 2 == 0) {
+        binding.mapCardView.visibility = View.VISIBLE}
+        else {
+            binding.mapCardView.visibility = View.GONE
+        }
         return false
     }
 }

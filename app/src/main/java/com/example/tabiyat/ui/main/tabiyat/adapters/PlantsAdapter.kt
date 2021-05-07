@@ -43,10 +43,10 @@ class PlantsAdapter(
 class ViewHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(binding.root) {
     private val plantsTitle = binding.plantTitle
     private var plantDep = binding.plantDepartment
-    private val plantImg = binding.plantImg
+ //   private val plantImg = binding.plantImg
     fun onBind(plant: Plant, itemClickListener: OnPlantsClickListener) {
         plantsTitle.text = plant.title
-        plantImg.setImageResource(plant.img)
+      //  plantImg.setImageResource(plant.img)
 //        Glide.with(itemView)
 //            .load(plant.urlPick)
 //            .centerCrop()

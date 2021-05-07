@@ -132,6 +132,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_plantsFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/plantsDetailFragment"
@@ -219,9 +222,25 @@
     <fragment
         android:id="@+id/animalsFragment"
         android:name="com.example.tabiyat.ui.main.tabiyat.animals.AnimalsFragment"
-        android:label="Животные" />
+        android:label="Животные" >
+        <action
+            android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.tabiyat.ui.main.tabiyat.info.InfoFragment"
-        android:label="Полезная информаци" />
+        android:label="Полезная информаци" >
+        <action
+            android:id="@+id/action_infoFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 </navigation>

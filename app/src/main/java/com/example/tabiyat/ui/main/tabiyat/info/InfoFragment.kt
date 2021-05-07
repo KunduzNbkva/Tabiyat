@@ -34,7 +34,7 @@ class InfoFragment : Fragment(), OnItemClickListener,View.OnClickListener  {
 
 
     private fun setRecycler() {
-        val list = arrayListOf<ListModel>(
+        val list = arrayListOf(
             ListModel(R.drawable.plants_1, "Астрагал Шангина", "Отдел"),
             ListModel(R.drawable.plants_2, "Астрагал Шангина", "Отдел"),
             ListModel(R.drawable.plants_3, "Астрагал Шангина", "Отдел"),
@@ -57,7 +57,7 @@ class InfoFragment : Fragment(), OnItemClickListener,View.OnClickListener  {
     override fun onItemClicked(model: ListModel) {
         view?.let {
             Navigation.findNavController(it)
-                .navigate(R.id.action_plantsFragment_to_cardDetailFragment)
+                .navigate(R.id.action_infoFragment_to_plantsDetailFragment)
         }
     }
 

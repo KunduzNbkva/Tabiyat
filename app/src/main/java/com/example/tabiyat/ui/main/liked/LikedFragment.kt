@@ -1,11 +1,13 @@
 package com.example.tabiyat.ui.main.liked
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +22,9 @@ class LikedFragment : Fragment(), OnCardClickListener {
     private lateinit var adapter: LikedAdapter
     private val viewModel by inject<LikedViewModel>()
     private var listOfLiked: ArrayList<String>? = null
+    private lateinit var btnAnimals:Button
+    private lateinit var btnInfo:Button
+    private lateinit var btnPlants:Button
 
 
     override fun onCreateView(
@@ -34,10 +39,14 @@ class LikedFragment : Fragment(), OnCardClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // checkForLiked()
+         btnAnimals = binding.likedAnimalsBtn
+         btnInfo = binding.likedInfoBtn
+         btnPlants = binding.likedPlantsBtn
+
         setRecycler()
-        setOnBtnTouch(binding.likedAnimalsBtn)
-        setOnBtnTouch(binding.likedInfoBtn)
-        setOnBtnTouch(binding.likedPlantsBtn)
+        setOnBtnTouch(btnAnimals)
+        setOnBtnTouch(btnInfo)
+        setOnBtnTouch(btnPlants)
 
     }
 
@@ -62,8 +71,8 @@ class LikedFragment : Fragment(), OnCardClickListener {
 
     private fun setOnBtnTouch(button:Button){
         button.setOnClickListener {
-            button.setBackgroundResource(R.drawable.btn_enable)
-            Toast.makeText(requireContext(),"Clicked",Toast.LENGTH_SHORT).show()
+        button.isSelected = !button.isSelected
+        }
         }
     }
 
@@ -82,4 +91,3 @@ class LikedFragment : Fragment(), OnCardClickListener {
 //    }
 
 
-}

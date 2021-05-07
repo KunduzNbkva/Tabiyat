@@ -54,7 +54,7 @@ class AnimalsFragment : Fragment(), OnItemClickListener,View.OnClickListener {
     override fun onItemClicked(model: ListModel) {
         view?.let {
             Navigation.findNavController(it)
-                .navigate(R.id.action_plantsFragment_to_cardDetailFragment)
+                .navigate(R.id.action_animalsFragment_to_plantsDetailFragment)
         }
     }
 

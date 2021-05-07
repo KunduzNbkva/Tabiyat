@@ -2,7 +2,9 @@ package com.example.tabiyat.ui.main.tabiyat
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -16,7 +18,7 @@ import com.example.tabiyat.ui.main.tabiyat.adapters.AddObservationAdapter
 import com.example.tabiyat.ui.main.tabiyat.viewModels.CardDetailViewModel
 import org.koin.android.ext.android.inject
 
-class CardDetailFragment : Fragment(), View.OnClickListener {
+class CardDetailFragment : Fragment(), View.OnClickListener, View.OnTouchListener {
     private lateinit var binding: CardDetailFragmentBinding
     private val viewModel by inject<CardDetailViewModel>()
     private var buttonAddObservation:Button? = null
@@ -34,7 +36,7 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
     }
 
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         redBookRecycler = view.findViewById(R.id.redBook_list)
@@ -43,6 +45,8 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         buttonAddObservation!!.setOnClickListener(this)
         openObservations()
         setList()
+
+        binding.detailSaveCard.setOnTouchListener(this)
     }
 
     private fun setList(){
@@ -72,5 +76,21 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         Navigation.findNavController(v!!).navigate(R.id.action_plantsDetailFragment_to_addObservationFragment)    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+       when(event!!.action){
+           MotionEvent.ACTION_DOWN-> {
+               binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
+               Log.e("Click","action down")
+           }
+           MotionEvent.ACTION_CANCEL->{
+               binding.detailSaveCard.setImageResource(R.drawable.ic_save)
+               Log.e("Click","action cancel")
+           }
+       }
+        return true
+    }
+
 
 }
