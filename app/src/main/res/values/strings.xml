@@ -58,18 +58,18 @@
     <string name="about_project">О проекте</string>
     <string name="mobile_number">Mobile number</string>
     <string name="address">Address</string>
-    <string name="info_project"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel <br/>
+    <string name="info_project"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel <br />
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim pr <br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim pr <br />
 
-aesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit <br/>
+aesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit <br />
 
-ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non en <br/>
+ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non en <br />
 
 im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</string>
     <string name="observations">Наблюдения</string>
     <string name="order">Порядок</string>
-    <string name="date">21 марта/2021год /23:00</string>
+    <string name="date">21 марта 2021год</string>
     <string name="descriprion_txt">description description description description description.
 
         Description description description description description description.
@@ -92,5 +92,6 @@ im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur 
     <string name="redbook">Красная книга</string>
     <string name="category">Категория</string>
     <string name="biotop">Биотоп</string>
+    <string name="fenofaze">Фенофаза</string>
 
 </resources>

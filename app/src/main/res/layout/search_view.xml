@@ -16,6 +16,7 @@
         android:queryBackground="@android:color/transparent"
         android:iconifiedByDefault="false"
         android:queryHint="Поиск"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +28,7 @@
         android:background="@drawable/find_back"
         android:contentDescription="TODO"
         android:src="@drawable/ic_sort"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/search_view"
         app:layout_constraintTop_toTopOf="parent" />

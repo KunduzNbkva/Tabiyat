@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabiyat.R
-import com.example.tabiyat.base.uiModels.ListModel
+import com.example.tabiyat.base.ListModel
 import com.example.tabiyat.databinding.ProfileListviewBinding
-import com.example.tabiyat.ui.main.tabiyat.OnItemClickListener
+import com.example.tabiyat.base.OnItemClickListener
 
 class ProfileAdapter(
     private val list: ArrayList<ListModel>,

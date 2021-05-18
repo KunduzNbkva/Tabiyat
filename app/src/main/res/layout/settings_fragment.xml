@@ -7,16 +7,20 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.main.profile.SettingsFragment">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/middle_gray" />
 
     <TextView
         android:id="@+id/settings_account"
         android:layout_width="match_parent"
-        android:text="@string/account"
-        android:layout_height="50dp"
-        android:gravity="center|start"
-        android:padding="5dp"
-        android:layout_marginStart="10dp"
+        android:layout_height="70dp"
         android:fontFamily="@font/avenir_regular"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center|start"
+        android:padding="15dp"
+        android:text="@string/account"
         android:textColor="@color/black"
         android:textSize="17sp" />
 
@@ -28,14 +32,14 @@
     <TextView
         android:id="@+id/settings_project"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/about_project"
-        android:padding="5dp"
-        android:layout_marginStart="10dp"
+        android:layout_height="70dp"
         android:fontFamily="@font/avenir_regular"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center|start"
+        android:padding="15dp"
+        android:text="@string/about_project"
         android:textColor="@color/black"
-        android:textSize="17sp"
-        android:gravity="center|start"/>
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -44,19 +48,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="5dp"
-        android:layout_marginStart="10dp">
+        android:layout_height="70dp"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/settings_notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/notifications"
-            android:textSize="17sp"
             android:fontFamily="@font/avenir_regular"
-            android:textColor="@color/black"
             android:gravity="center|start"
+            android:text="@string/notifications"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,13 +68,13 @@
             android:id="@+id/switch_notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:checked="true"
             android:thumb="@drawable/circle_thumb_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:track="@drawable/circle_track_selector"
-            android:layout_marginEnd="10dp"/>
+            app:track="@drawable/circle_track_selector" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -81,20 +84,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="5dp"
-        android:layout_marginStart="10dp">
+        android:layout_height="70dp"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/settings_language"
             style="@style/SecondaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/language"
-            android:textSize="17sp"
             android:fontFamily="@font/avenir_regular"
-            android:textColor="@color/black"
             android:gravity="center|start"
+            android:text="@string/language"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -149,14 +151,14 @@
     <TextView
         android:id="@+id/settings_exit"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:fontFamily="@font/avenir_regular"
+        android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center|start"
-        android:padding="5dp"
+        android:padding="15dp"
         android:text="@string/exit"
         android:textColor="@color/red_color"
-        android:textSize="17sp"
-        android:layout_marginStart="10dp"/>
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -166,7 +168,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:background="@color/middle_gray" />
 
 </LinearLayout>

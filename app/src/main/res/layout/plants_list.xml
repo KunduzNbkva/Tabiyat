@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
     android:elevation="4dp"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp"
-    app:contentPadding="10dp">
+    app:contentPadding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/plant_img"
+            android:id="@+id/plant_img_list"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="centerCrop"
@@ -24,29 +24,30 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/plant_title"
-            android:textSize="17sp"
-            android:fontFamily="@font/avenir_regular"
-            android:textColor="@color/black"
+            android:id="@+id/plant_title_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenir_regular"
+            android:gravity="center"
             android:text="@string/actragal_example"
-            app:layout_constraintBottom_toTopOf="@+id/plant_department"
-            app:layout_constraintStart_toEndOf="@+id/plant_img"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/plant_department_list"
+            app:layout_constraintStart_toEndOf="@+id/plant_img_list"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/plant_department"
-            style="@style/CardDepTextStyle"
+            android:id="@+id/plant_department_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            style="@style/CardDepTextStyle"
             android:text="@string/department"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/plant_img"
-            app:layout_constraintTop_toBottomOf="@+id/plant_title" />
+            app:layout_constraintStart_toEndOf="@+id/plant_img_list"
+            app:layout_constraintTop_toBottomOf="@+id/plant_title_list" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

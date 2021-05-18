@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tabiyat.databinding.RatingFragmentBinding
 import com.example.tabiyat.ui.main.profile.adapter.RatingAdapter
+import com.example.tabiyat.ui.main.profile.viewModels.RatingViewModel
 import org.koin.android.ext.android.inject
 
 class RatingFragment : Fragment() {

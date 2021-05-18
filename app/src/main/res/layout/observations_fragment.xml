@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="6dp"
-    tools:context=".ui.main.tabiyat.ObservationsFragment">
+    tools:context=".ui.main.observations.ObservationsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/observation_list"

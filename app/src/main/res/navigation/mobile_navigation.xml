@@ -7,19 +7,23 @@
 
     <fragment
         android:id="@+id/navigation_liked"
-        android:name="com.example.tabiyat.ui.main.liked.LikedFragment"
+        android:name="com.example.tabiyat.ui.main.favorite.FavoriteFragment"
         android:label="@string/liked"
-        tools:layout="@layout/liked_fragment">
+        tools:layout="@layout/favorite_fragment">
         <action
             android:id="@+id/action_navigation_liked_to_cardDetailFragment"
             app:destination="@id/plantsDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_liked_to_notificationsFragment"
-            app:destination="@id/menuNotifications" />
+            app:destination="@id/menuNotifications"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
@@ -29,7 +33,14 @@
         <action
             android:id="@+id/action_navigation_map_to_notificationsFragment"
             app:destination="@id/menuNotifications"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_map_to_cardObservationFragment"
+            app:destination="@id/cardObservationFragment"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -42,13 +53,31 @@
         <action
             android:id="@+id/action_navigation_tabiyat_to_plantsFragment"
             app:destination="@id/plantsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_tabiyat_to_notificationsFragment"
-            app:destination="@id/menuNotifications" />
+            app:destination="@id/menuNotifications"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_tabiyat_to_animalsFragment"
+            app:destination="@id/animalsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_tabiyat_to_infoFragment"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -58,60 +87,70 @@
         <action
             android:id="@+id/action_navigation_profile_to_settingsFragment"
             app:destination="@id/menuSettings"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_profile_to_ratingFragment"
             app:destination="@id/ratingFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_profile_to_observationsFragment"
             app:destination="@id/observationsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/plantsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.PlantsFragment"
+        android:name="com.example.tabiyat.ui.main.plants.PlantsFragment"
         android:label="@string/plants"
         tools:layout="@layout/plants_fragment">
         <action
             android:id="@+id/action_plantsFragment_to_cardDetailFragment"
             app:destination="@id/plantsDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_plantsFragment_to_notificationsFragment"
             app:destination="@id/menuNotifications"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_plantsFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/plantsDetailFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.CardDetailFragment"
+        android:name="com.example.tabiyat.ui.main.cardDetail.CardDetailFragment"
         android:label="Карточка вида" >
         <action
             android:id="@+id/action_plantsDetailFragment_to_observationsFragment"
             app:destination="@id/observationsFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_plantsDetailFragment_to_addObservationFragment"
             app:destination="@id/addObservationFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -124,14 +163,14 @@
         <action
             android:id="@+id/action_menuSettings_to_accountFragment"
             app:destination="@id/accountFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_menuSettings_to_projectInfoFragment"
             app:destination="@id/projectInfoFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
@@ -153,20 +192,20 @@
         tools:layout="@layout/project_info_fragment" />
     <fragment
         android:id="@+id/observationsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.ObservationsFragment"
+        android:name="com.example.tabiyat.ui.main.observations.ObservationsFragment"
         android:label="@string/observations"
         tools:layout="@layout/observations_fragment" >
         <action
             android:id="@+id/action_observationsFragment_to_cardObservationFragment"
             app:destination="@id/cardObservationFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/cardObservationFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.CardObservationFragment"
+        android:name="com.example.tabiyat.ui.main.observations.CardObservationFragment"
         android:label="@string/card_observation"
         tools:layout="@layout/card_observation_fragment" >
     </fragment>
@@ -180,4 +219,28 @@
         android:name="com.example.tabiyat.ui.main.addObservatrion.AddObservationFragment"
         android:label="Наблюдения растения"
         tools:layout="@layout/add_observation_fragment" />
+    <fragment
+        android:id="@+id/animalsFragment"
+        android:name="com.example.tabiyat.ui.main.animals.AnimalsFragment"
+        android:label="Животные" >
+        <action
+            android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.tabiyat.ui.main.info.InfoFragment"
+        android:label="Полезная информаци" >
+        <action
+            android:id="@+id/action_infoFragment_to_plantsDetailFragment"
+            app:destination="@id/plantsDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 </navigation>

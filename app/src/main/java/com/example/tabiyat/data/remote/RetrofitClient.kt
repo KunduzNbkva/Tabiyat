@@ -12,6 +12,7 @@ object RetrofitClient {
     private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
+
     private val okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
         .connectTimeout(40, TimeUnit.SECONDS)
         .readTimeout(40, TimeUnit.SECONDS)
@@ -28,5 +29,4 @@ object RetrofitClient {
     fun provideApi(): TabiyatApi {
         return retrofit.create(TabiyatApi::class.java)
     }
-
 }

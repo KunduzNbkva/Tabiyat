@@ -1,4 +1,4 @@
-package com.example.tabiyat.base.uiModels
+package com.example.tabiyat.base
 
 data class ListModel(
     val srcImage: Int,
@@ -6,7 +6,12 @@ data class ListModel(
     val count: String
 )
 
-data class PlantsModel(
+data class InfoModel(
+    val srcImage: Int,
+    val nameTxt: String,
+)
+
+data class Plant(
     var img: Int,
     var title: String,
     var department:String,

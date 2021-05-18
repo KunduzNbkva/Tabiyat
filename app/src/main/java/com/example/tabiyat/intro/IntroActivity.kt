@@ -40,6 +40,8 @@ class IntroActivity : FragmentActivity() {
 
         btnSkip.setOnClickListener { onSkipButton() }
         btnNext.setOnClickListener { onNextButton() }
+
+        saveIsIntroShown()
     }
 
     private fun setViewPager() {

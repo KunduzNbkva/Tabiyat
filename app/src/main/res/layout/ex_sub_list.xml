@@ -6,16 +6,15 @@
     android:layoutDirection="ltr"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp">
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginStart="30dp"
         android:src="@drawable/ic_ellipse_28" />
 
     <TextView
@@ -24,11 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="10dp"
         android:text="Title"
         android:layout_marginEnd="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         style="@style/SecondaryTextStyle"/>
 
 </LinearLayout>
