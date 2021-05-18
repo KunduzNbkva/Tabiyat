@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_liked"
-        android:name="com.example.tabiyat.ui.main.liked.LikedFragment"
+        android:name="com.example.tabiyat.ui.main.favorite.FavoriteFragment"
         android:label="@string/liked"
-        tools:layout="@layout/liked_fragment">
+        tools:layout="@layout/favorite_fragment">
         <action
             android:id="@+id/action_navigation_liked_to_cardDetailFragment"
             app:destination="@id/plantsDetailFragment"
@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/plantsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.plants.PlantsFragment"
+        android:name="com.example.tabiyat.ui.main.plants.PlantsFragment"
         android:label="@string/plants"
         tools:layout="@layout/plants_fragment">
         <action
@@ -138,7 +138,7 @@
     </fragment>
     <fragment
         android:id="@+id/plantsDetailFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.CardDetailFragment"
+        android:name="com.example.tabiyat.ui.main.cardDetail.CardDetailFragment"
         android:label="Карточка вида" >
         <action
             android:id="@+id/action_plantsDetailFragment_to_observationsFragment"
@@ -192,7 +192,7 @@
         tools:layout="@layout/project_info_fragment" />
     <fragment
         android:id="@+id/observationsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.ObservationsFragment"
+        android:name="com.example.tabiyat.ui.main.observations.ObservationsFragment"
         android:label="@string/observations"
         tools:layout="@layout/observations_fragment" >
         <action
@@ -205,7 +205,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardObservationFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.CardObservationFragment"
+        android:name="com.example.tabiyat.ui.main.observations.CardObservationFragment"
         android:label="@string/card_observation"
         tools:layout="@layout/card_observation_fragment" >
     </fragment>
@@ -221,7 +221,7 @@
         tools:layout="@layout/add_observation_fragment" />
     <fragment
         android:id="@+id/animalsFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.animals.AnimalsFragment"
+        android:name="com.example.tabiyat.ui.main.animals.AnimalsFragment"
         android:label="Животные" >
         <action
             android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
@@ -233,7 +233,7 @@
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.example.tabiyat.ui.main.tabiyat.info.InfoFragment"
+        android:name="com.example.tabiyat.ui.main.info.InfoFragment"
         android:label="Полезная информаци" >
         <action
             android:id="@+id/action_infoFragment_to_plantsDetailFragment"

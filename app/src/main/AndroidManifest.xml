@@ -46,13 +46,16 @@
             android:theme="@style/MaterialTheme" />
         <activity
             android:name=".auth.LoginActivity"
-            android:theme="@style/MaterialTheme" />
+            android:theme="@style/MaterialTheme">
+
+        </activity>
         <activity android:name=".intro.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".intro.IntroActivity" />
     </application>

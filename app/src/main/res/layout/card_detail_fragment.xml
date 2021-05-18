@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.main.tabiyat.CardDetailFragment">
+    tools:context=".ui.main.cardDetail.CardDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,32 +47,50 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_card_img" />
 
-        <TextView
+        <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/detail_card_lang_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:fontFamily="@font/avenir_regular"
-            android:text="@string/lang_names"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="13sp"
+            app:flChildSpacing="15dp"
+            app:flChildSpacingForLastRow="align"
+            app:flRowSpacing="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_card_title" />
+            app:layout_constraintTop_toBottomOf="@id/detail_card_title">
 
-        <TextView
+            <TextView
+                android:id="@+id/detail_card_lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/avenir_regular"
+                android:text="@string/lang_names"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </com.nex3z.flowlayout.FlowLayout>
+
+        <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/detail_card_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="15dp"
-            android:text="@string/description"
-            android:textColor="@color/dark_gray"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/detail_card_lang_name" />
+            app:flChildSpacing="15dp"
+            app:flChildSpacingForLastRow="align"
+            app:flRowSpacing="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detail_card_lang_name">
+
+            <TextView
+                android:id="@+id/detail_card_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/description"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp" />
+        </com.nex3z.flowlayout.FlowLayout>
 
         <LinearLayout
             android:id="@+id/layout_palatability"
@@ -86,66 +104,83 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_card_desc">
 
-            <LinearLayout
+            <com.nex3z.flowlayout.FlowLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="0.3"
-                android:background="@drawable/find_back"
-                android:backgroundTint="@color/ivory_color"
-                android:orientation="vertical"
-                android:padding="10dp">
+                app:flChildSpacing="15dp"
+                app:flChildSpacingForLastRow="align"
+                app:flRowSpacing="8dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:fontFamily="@font/avenir_book"
-                    android:text="Поедаемость"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.4"
+                    android:background="@drawable/find_back"
+                    android:backgroundTint="@color/ivory_color"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/avenir_book"
-                    android:text="Поедаемость"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="@font/avenir_book"
+                        android:text="Поедаемость"
+                        android:textColor="@color/text_gray"
+                        android:textSize="16sp" />
 
-            <LinearLayout
+                    <TextView
+                        android:id="@+id/detail_card_palatability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/avenir_book"
+                        android:text="Поедаемость"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </com.nex3z.flowlayout.FlowLayout>
+
+            <com.nex3z.flowlayout.FlowLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/find_back"
-                android:backgroundTint="@color/ivory_color"
-                android:orientation="vertical"
-                android:padding="10dp">
+                app:flChildSpacing="15dp"
+                app:flChildSpacingForLastRow="align"
+                app:flRowSpacing="8dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:fontFamily="@font/avenir_book"
-                    android:text="Ареол распространения"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/detail_card_areol"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/avenir_book"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    android:layout_weight="0.6"
+                    android:background="@drawable/find_back"
+                    android:backgroundTint="@color/ivory_color"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="@font/avenir_book"
+                        android:text="Ареол распространения"
+                        android:textColor="@color/text_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/detail_card_areol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/avenir_book"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </com.nex3z.flowlayout.FlowLayout>
         </LinearLayout>
 
         <TextView
@@ -196,14 +231,23 @@
                     android:textColor="@color/text_gray"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.nex3z.flowlayout.FlowLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    app:flChildSpacing="15dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+                    <TextView
+                        android:id="@+id/detail_card_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </com.nex3z.flowlayout.FlowLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -225,14 +269,24 @@
                     android:textColor="@color/text_gray"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.nex3z.flowlayout.FlowLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    app:flChildSpacing="15dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+                    <TextView
+                        android:id="@+id/detail_card_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </com.nex3z.flowlayout.FlowLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -253,16 +307,23 @@
                     android:textColor="@color/text_gray"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.nex3z.flowlayout.FlowLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    app:flChildSpacing="15dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </com.nex3z.flowlayout.FlowLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -296,14 +357,24 @@
                     android:textColor="@color/text_gray"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.nex3z.flowlayout.FlowLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    app:flChildSpacing="15dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+                    <TextView
+                        android:id="@+id/detail_card_family"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </com.nex3z.flowlayout.FlowLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -325,14 +396,24 @@
                     android:textColor="@color/text_gray"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.nex3z.flowlayout.FlowLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    app:flChildSpacing="15dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+                    <TextView
+                        android:id="@+id/detail_card_genus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </com.nex3z.flowlayout.FlowLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -417,6 +498,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/observation_layout" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
@@ -424,6 +506,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/expansion_red" />
+
         <include
             android:id="@+id/expansion_fenofaza"
             layout="@layout/expansion_detail_fenofaze"

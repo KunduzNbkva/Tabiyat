@@ -135,12 +135,12 @@
                     android:text="@string/actragal_example"
                     android:textColor="@color/black"
                     android:textSize="17sp"
-                    app:layout_constraintBottom_toTopOf="@+id/plant_department"
+                    app:layout_constraintBottom_toTopOf="@+id/plant_department_list"
                     app:layout_constraintStart_toEndOf="@+id/map_plant_img"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/plant_department"
+                    android:id="@+id/plant_department_list"
                     style="@style/CardDepTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

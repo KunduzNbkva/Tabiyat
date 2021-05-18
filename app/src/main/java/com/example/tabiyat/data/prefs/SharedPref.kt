@@ -3,7 +3,8 @@ package com.example.tabiyat.data.prefs
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPref (context: Context){
+const val USER_TOKEN = "user_token"
+class SharedPref (val context: Context){
 
     private val sharedPref: SharedPreferences =context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
@@ -15,8 +16,12 @@ class SharedPref (context: Context){
         return sharedPref.getBoolean("isIntroShown", false)
     }
 
-    fun saveToken( userToken: String){
-        sharedPref.edit().putString("userToken",userToken).apply()
+    fun saveAuthToken(userToken: String){
+        sharedPref.edit().putString(USER_TOKEN,userToken).apply()
+    }
+
+    fun getAuthToken():String?{
+        return sharedPref.getString(USER_TOKEN,null)
     }
 
 

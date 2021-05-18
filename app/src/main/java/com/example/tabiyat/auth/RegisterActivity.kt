@@ -8,13 +8,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.set
 import androidx.core.text.toSpannable
+import androidx.lifecycle.Observer
 import com.example.tabiyat.R
+import com.example.tabiyat.base.showToastShort
 import com.example.tabiyat.data.model.SignUpModel
+import com.example.tabiyat.data.model.Status
 import com.example.tabiyat.databinding.ActivityRegisterBinding
 import com.example.tabiyat.ui.main.MainActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -35,6 +39,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         observeData()
+        observeProcess()
+        checkForNull()
         changePage()
         signUpButton()
     }
@@ -72,22 +78,16 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun signUpButton() {
         binding.signupBtn.setOnClickListener {
-            checkForNull()
-            validateEmail()
-            name = binding.signupUsername.text.toString()
-            email = binding.signupEmail.text.toString()
-            phoneNumber = binding.signupNumber.text.toString()
-            password =binding.signupPassword.text.toString()
-            openNewPage(MainActivity())
             languageSwitch()
-            val signUpModel = SignUpModel("email",email,password)
-            viewModel.createUser(signUpModel)
+            validateEmail()
+            signUp()
         }
     }
 
     private fun observeData(){
         viewModel.signupResponse.observe(this, {
             it.fullName = name
+            Log.e("Name","name is ${it.fullName} ")
         })
     }
 
@@ -133,6 +133,29 @@ class RegisterActivity : AppCompatActivity() {
         }
         return lang
     }
+
+    private fun signUp(){
+        name = binding.signupUsername.text.toString()
+        email = binding.signupEmail.text.toString()
+        phoneNumber = binding.signupNumber.text.toString()
+        password =binding.signupPassword.text.toString()
+        val signUpModel = SignUpModel("email",email,password)
+        viewModel.createUser(signUpModel)
+
+    }
+    private fun observeProcess(){
+        viewModel.status.observe(this,  {
+          when(it){
+              Status.SUCCESS ->  {
+                  this.showToastShort("Вы успешно зарегестрированы!")
+                  openNewPage(MainActivity())
+              }
+                  Status.LOADING -> binding.registerProgress.visibility = View.VISIBLE
+              else->     this.showToastShort("Произошла ошибка!")
+          }
+        })
+    }
+
 }
 
 

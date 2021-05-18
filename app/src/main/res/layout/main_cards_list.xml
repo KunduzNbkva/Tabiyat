@@ -23,22 +23,32 @@
                 android:id="@+id/main_list_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:riv_corner_radius="20dp"
+                app:riv_corner_radius="10dp"
                 android:scaleType="centerCrop"
                 android:backgroundTint="@color/ivory_color"
                 android:src="@color/gray" />
+            <com.nex3z.flowlayout.FlowLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flChildSpacing="auto"
+                app:flChildSpacingForLastRow="align"
+                app:flRowSpacing="8dp"
+                android:layout_alignStart="@+id/main_list_img"
+                android:layout_alignBottom="@+id/main_list_img"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
             <TextView
                 android:id="@+id/main_list_title"
                 style="@style/SecondaryTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_alignStart="@+id/main_list_img"
-                android:layout_alignBottom="@+id/main_list_img"
-                android:layout_margin="15dp"
                 android:background="@drawable/find_back"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
+                android:padding="10dp"
                 android:text="@string/animals" />
+
+            </com.nex3z.flowlayout.FlowLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

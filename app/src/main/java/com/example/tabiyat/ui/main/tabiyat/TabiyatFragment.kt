@@ -12,7 +12,6 @@ import com.example.tabiyat.base.ListModel
 import com.example.tabiyat.base.OnMainCardClickListener
 import com.example.tabiyat.databinding.TabiyatFragmentBinding
 import com.example.tabiyat.ui.main.tabiyat.adapters.MainListAdapter
-import com.example.tabiyat.ui.main.tabiyat.viewModels.TabiyatViewModel
 import org.koin.android.ext.android.inject
 
 
@@ -42,7 +41,7 @@ class TabiyatFragment : Fragment(), OnMainCardClickListener{
         binding.mainList.adapter = adapter
     }
 
-    override fun onItemClicked(model: ListModel,adapterPosition:Int) {
+    override fun onItemClicked(model: ListModel, adapterPosition: Int) {
         when(adapterPosition){
             0->{
                 view?.let {
@@ -63,9 +62,7 @@ class TabiyatFragment : Fragment(), OnMainCardClickListener{
                 }
             }
         }
-
     }
-
 
 
 }

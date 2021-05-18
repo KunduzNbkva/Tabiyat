@@ -2,6 +2,7 @@ package com.example.tabiyat
 
 import android.app.Application
 import com.example.tabiyat.data.prefs.SharedPref
+import com.example.tabiyat.di.appModule
 import com.example.tabiyat.di.networkModule
 import com.example.tabiyat.di.repositoryModule
 import com.example.tabiyat.di.viewModelModule
@@ -23,7 +24,7 @@ class App: Application(){
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(viewModelModule, repositoryModule, networkModule))
+            modules(listOf(viewModelModule, repositoryModule, networkModule, appModule))
         }
     }
 
