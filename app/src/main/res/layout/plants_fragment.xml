@@ -210,4 +210,13 @@
         android:layout_marginTop="@dimen/margin_10"
         tools:listitem="@layout/plants_list" />
 
+    <ProgressBar
+        android:id="@+id/plants_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </LinearLayout>

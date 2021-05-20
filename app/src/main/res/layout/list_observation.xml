@@ -15,10 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/observation_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:riv_corner_radius="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/card_img"
             app:layout_constraintBottom_toBottomOf="parent"

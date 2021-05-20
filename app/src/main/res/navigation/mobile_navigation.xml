@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_liked"
-        android:name="com.example.tabiyat.ui.main.favorite.FavoriteFragment"
+        android:name="kg.tabiyat.ui.main.favorite.FavoriteFragment"
         android:label="@string/liked"
         tools:layout="@layout/favorite_fragment">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.example.tabiyat.ui.main.map.MapsFragment"
+        android:name="kg.tabiyat.ui.main.map.MapsFragment"
         android:label="@string/what_is_near"
         tools:layout="@layout/fragment_maps">
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_tabiyat"
-        android:name="com.example.tabiyat.ui.main.tabiyat.TabiyatFragment"
+        android:name="kg.tabiyat.ui.main.tabiyat.TabiyatFragment"
         android:label="@string/tabiyat"
         tools:layout="@layout/tabiyat_fragment">
         <action
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.tabiyat.ui.main.profile.ProfileFragment"
+        android:name="kg.tabiyat.ui.main.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/profile_fragment">
         <action
@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/plantsFragment"
-        android:name="com.example.tabiyat.ui.main.plants.PlantsFragment"
+        android:name="kg.tabiyat.ui.main.plants.PlantsFragment"
         android:label="@string/plants"
         tools:layout="@layout/plants_fragment">
         <action
@@ -138,7 +138,7 @@
     </fragment>
     <fragment
         android:id="@+id/plantsDetailFragment"
-        android:name="com.example.tabiyat.ui.main.cardDetail.CardDetailFragment"
+        android:name="kg.tabiyat.ui.main.cardDetail.CardDetailFragment"
         android:label="Карточка вида" >
         <action
             android:id="@+id/action_plantsDetailFragment_to_observationsFragment"
@@ -157,7 +157,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuSettings"
-        android:name="com.example.tabiyat.ui.main.profile.SettingsFragment"
+        android:name="kg.tabiyat.ui.main.profile.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/settings_fragment" >
         <action
@@ -177,22 +177,22 @@
     </fragment>
     <fragment
         android:id="@+id/menuNotifications"
-        android:name="com.example.tabiyat.ui.main.notifications.NotificationsFragment"
+        android:name="kg.tabiyat.ui.main.notifications.NotificationsFragment"
         android:label="@string/notifications"
         tools:layout="@layout/notifications_fragment" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.tabiyat.ui.main.profile.AccountFragment"
+        android:name="kg.tabiyat.ui.main.profile.AccountFragment"
         android:label="@string/account"
         tools:layout="@layout/account_fragment" />
     <fragment
         android:id="@+id/projectInfoFragment"
-        android:name="com.example.tabiyat.ui.main.profile.ProjectInfoFragment"
+        android:name="kg.tabiyat.ui.main.profile.ProjectInfoFragment"
         android:label="@string/about_project"
         tools:layout="@layout/project_info_fragment" />
     <fragment
         android:id="@+id/observationsFragment"
-        android:name="com.example.tabiyat.ui.main.observations.ObservationsFragment"
+        android:name="kg.tabiyat.ui.main.observations.ObservationsFragment"
         android:label="@string/observations"
         tools:layout="@layout/observations_fragment" >
         <action
@@ -205,23 +205,41 @@
     </fragment>
     <fragment
         android:id="@+id/cardObservationFragment"
-        android:name="com.example.tabiyat.ui.main.observations.CardObservationFragment"
+        android:name="kg.tabiyat.ui.main.observations.CardObservationFragment"
         android:label="@string/card_observation"
         tools:layout="@layout/card_observation_fragment" >
     </fragment>
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.example.tabiyat.ui.main.profile.RatingFragment"
+        android:name="kg.tabiyat.ui.main.profile.RatingFragment"
         android:label="@string/rating_users"
         tools:layout="@layout/rating_fragment" />
     <fragment
         android:id="@+id/addObservationFragment"
-        android:name="com.example.tabiyat.ui.main.addObservatrion.AddObservationFragment"
+        android:name="kg.tabiyat.ui.main.addObservatrion.AddObservationFragment"
         android:label="Наблюдения растения"
-        tools:layout="@layout/add_observation_fragment" />
+        tools:layout="@layout/add_observation_fragment" >
+        <action
+            android:id="@+id/action_addObservationFragment_to_choosePlantFragment"
+            app:destination="@id/choosePlantFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_addObservationFragment_to_mapsActivityCurrentPlace"
+            app:destination="@id/locationMapFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_addObservationFragment_to_locationMapFragment"
+            app:destination="@id/locationMapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/animalsFragment"
-        android:name="com.example.tabiyat.ui.main.animals.AnimalsFragment"
+        android:name="kg.tabiyat.ui.main.animals.AnimalsFragment"
         android:label="Животные" >
         <action
             android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
@@ -233,7 +251,7 @@
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.example.tabiyat.ui.main.info.InfoFragment"
+        android:name="kg.tabiyat.ui.main.info.InfoFragment"
         android:label="Полезная информаци" >
         <action
             android:id="@+id/action_infoFragment_to_plantsDetailFragment"
@@ -243,4 +261,27 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/choosePlantFragment"
+        android:name="kg.tabiyat.ui.main.addObservatrion.ChoosePlantFragment"
+        android:label="@string/choose_plant"
+        tools:layout="@layout/fragment_choose_plant" >
+        <action
+            android:id="@+id/action_choosePlantFragment_to_addObservationFragment"
+            app:destination="@id/addObservationFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/locationMapFragment"
+        android:name="kg.tabiyat.ui.main.addObservatrion.LocationMapFragment"
+        android:label="Ваше местоположение"
+        tools:layout="@layout/fragment_location_map"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
+
 </navigation>

@@ -1,17 +1,17 @@
-package com.example.tabiyat
+package kg.tabiyat
 
 import android.app.Application
-import com.example.tabiyat.data.prefs.SharedPref
-import com.example.tabiyat.di.appModule
-import com.example.tabiyat.di.networkModule
-import com.example.tabiyat.di.repositoryModule
-import com.example.tabiyat.di.viewModelModule
+import kg.tabiyat.data.prefs.SharedPref
+import kg.tabiyat.di.appModule
+import kg.tabiyat.di.networkModule
+import kg.tabiyat.di.repositoryModule
+import kg.tabiyat.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 
-class App: Application(){
+class App : Application() {
 
     companion object {
         var prefs: SharedPref? = null
@@ -27,7 +27,6 @@ class App: Application(){
             modules(listOf(viewModelModule, repositoryModule, networkModule, appModule))
         }
     }
-
 
 
 }
