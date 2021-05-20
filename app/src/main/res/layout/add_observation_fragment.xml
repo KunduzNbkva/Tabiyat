@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addObsrv_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -14,70 +15,134 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp">
 
-        <include
-            android:id="@+id/addObsrv_search"
-            layout="@layout/search_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <include
-            android:id="@+id/category_ex_list"
-            layout="@layout/expansion_category"
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/addObsrv_plant"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndicator"
+            app:expansion_toggleOnClick="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addObsrv_search" />
+            app:layout_constraintTop_toTopOf="parent">
+            <!-- HEADER -->
+            <TextView
+                android:id="@+id/addObsrv_plant_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/choose_plant"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <!-- HEADER INDICATOR -->
+            <ImageView
+                android:id="@+id/headerIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
+        </com.github.florent37.expansionpanel.ExpansionHeader>
 
-        <include
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/expansion_category"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndicato"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addObsrv_plant">
+            <!-- HEADER -->
+            <TextView
+                android:id="@+id/addObsrv_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/category"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <!-- HEADER INDICATOR -->
+            <ImageView
+                android:id="@+id/headerIndicato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
             android:id="@+id/abundance_ex_list"
-            layout="@layout/expansion_abundance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndicat"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/category_ex_list" />
+            app:layout_constraintTop_toBottomOf="@id/expansion_category">
+            <!-- HEADER -->
+            <TextView
+                android:id="@+id/addObsrv_abundance_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/abundance"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <!-- HEADER INDICATOR -->
+            <ImageView
+                android:id="@+id/headerIndicat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
 
-        <include
-            android:id="@+id/biotop_ex_list"
-            layout="@layout/expansion_biotop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/abundance_ex_list" />
-
-        <include
-            android:id="@+id/fenofaze_ex_list"
-            layout="@layout/expansion_fenofaze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/biotop_ex_list" />
+        </com.github.florent37.expansionpanel.ExpansionHeader>
 
 
         <TextView
             android:id="@+id/time_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/avenir_regular"
             android:text="@string/time"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fenofaze_ex_list" />
+            app:layout_constraintTop_toBottomOf="@id/abundance_ex_list" />
 
-        <EditText
+        <TextView
             android:id="@+id/addObsrv_time"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -88,27 +153,29 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:padding="10dp"
-            android:text="26 январь, 14:00"
+            android:text="@string/_23_00"
+            android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time_txt" />
 
         <TextView
-            android:id="@+id/coordinates_txt"
+            android:id="@+id/date_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/coordinates"
+            android:text="@string/date_time"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/addObsrv_coordinates"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fenofaze_ex_list" />
+            app:layout_constraintBottom_toTopOf="@+id/addObsrv_date"
+            app:layout_constraintStart_toStartOf="@id/addObsrv_date"
+            app:layout_constraintTop_toBottomOf="@id/abundance_ex_list" />
 
-        <EditText
-            android:id="@+id/addObsrv_coordinates"
+        <TextView
+            android:id="@+id/addObsrv_date"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="200dp"
@@ -118,7 +185,8 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:padding="10dp"
-            android:text="123456"
+            android:text="@string/date"
+            android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time_txt" />
@@ -127,8 +195,8 @@
             android:id="@+id/addObsrv_map_update"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="15sp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addObsrv_time">
@@ -142,15 +210,16 @@
                 app:riv_corner_radius="10dp" />
 
             <Button
-                android:layout_width="250dp"
+                android:id="@+id/addObsrv_location"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
-               android:layout_centerInParent="true"
+                android:layout_centerInParent="true"
                 android:background="@drawable/button_map_bg"
                 android:fontFamily="@font/avenir_regular"
                 android:padding="2dp"
                 android:text="@string/update_map"
                 android:textColor="@color/white"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <TextView
@@ -158,7 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:text="@string/comments"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,15 +248,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comments_txt" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/addObsrv_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addObsrv_comments" />
+            app:layout_constraintTop_toBottomOf="@+id/addObsrv_comments"
+            tools:listitem="@layout/list_images" />
 
         <Button
             android:id="@+id/addObsrv_addImg_btn"
@@ -198,14 +269,15 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/button_add_img"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="+ Добавить фото"
+            android:text="@string/add_image_observation"
             android:textColor="@color/green_main"
-            android:textSize="13dp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addObsrv_images" />
 
         <Button
+            android:id="@+id/post_observation"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
@@ -214,12 +286,13 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_btn_background"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Сохранить"
+            android:text="@string/save"
             android:textColor="@color/white"
-            android:textSize="13dp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addObsrv_addImg_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

@@ -4,12 +4,12 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=3E:86:02:99:66:D6:AC:24:F9:A0:8A:28:14:2F:45:82:4E:9E:70:F1%3Bcom.example.tabiyat.ui.main.map
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=3E:86:02:99:66:D6:AC:24:F9:A0:8A:28:14:2F:45:82:4E:9E:70:F1%3Bkg.tabiyat.ui.main.map
 
     You can also add your credentials to an existing key, using these values:
 
     Package name:
-    com.example.tabiyat.ui.main.map
+    kg.tabiyat.ui.main.map
 
     SHA-1 certificate fingerprint:
     3E:86:02:99:66:D6:AC:24:F9:A0:8A:28:14:2F:45:82:4E:9E:70:F1
