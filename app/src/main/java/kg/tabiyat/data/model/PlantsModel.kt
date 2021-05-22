@@ -2,6 +2,7 @@ package kg.tabiyat.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kg.tabiyat.db.entity.PlantsEntity
 import java.io.Serializable
 
 
@@ -134,7 +135,7 @@ class Plants(
 
     @SerializedName("data")
     @Expose
-    var data: List<Datum>? = null,
+    var data: List<PlantsEntity>? = null,
 
     @SerializedName("first_page_url")
     @Expose

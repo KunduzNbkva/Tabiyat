@@ -23,7 +23,7 @@ class InfoViewModel(private var repository: InfoRepository, var plantsRepository
                 when (it.status) {
                     Status.SUCCESS -> {
                         val list = it.data!!.data!!.plants!!.data!!
-                        infoList.postValue(list)
+//                        infoList.postValue(list)
                         page++
                         if (list.size < 20) hasNext = false
                     }

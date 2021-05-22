@@ -35,9 +35,9 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadData()
         observePlants()
         viewModel.resetPage()
-        loadData()
         setRecycler()
         setProgress()
         binding.searchLayout.buttonSort.setOnClickListener(this)
@@ -61,6 +61,7 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
 
     private fun loadData() {
         viewModel.getPlantsList()
+        Toast.makeText(requireContext(), "loadData()", Toast.LENGTH_SHORT).show()
     }
 
     private fun observePlants() {
@@ -68,16 +69,13 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
             Toast.makeText(requireContext(), "size - ${it.size}", Toast.LENGTH_SHORT).show()
             adapter.addItems(it)
         }
-//        viewModel.plantsList.observe(viewLifecycleOwner, {
-//            adapter.addItems(it)
-//        })
     }
 
     override fun onItemClicked(model: PlantsEntity) {
         val bundle = Bundle()
         model.let {
-//            bundle.putSerializable("model", it)
-//            bundle.putString("type", "plants")
+            bundle.putSerializable("model", it)
+            bundle.putString("type", "plants")
         }
         view?.let {
             Navigation.findNavController(it)
