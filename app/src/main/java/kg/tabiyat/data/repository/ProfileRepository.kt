@@ -3,17 +3,17 @@ package kg.tabiyat.data.repository
 import android.util.Log
 import androidx.lifecycle.liveData
 import kg.tabiyat.App
-import kg.tabiyat.data.model.Customer
 import kg.tabiyat.data.model.Resource
 import kg.tabiyat.data.remote.TabiyatApi
 import kotlinx.coroutines.Dispatchers
+import okhttp3.MultipartBody
 
 class ProfileRepository(val api: TabiyatApi) {
 
-    suspend fun updateAvatar(uri: String) = liveData(Dispatchers.IO) {
+    suspend fun updateAvatar(uri: MultipartBody.Part) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.updateAvatar(token, uri)
             emit(Resource.success(data = request))
             App.prefs!!.saveUser(request.data!!.customer, "customer")
@@ -30,7 +30,7 @@ class ProfileRepository(val api: TabiyatApi) {
     suspend fun getUser() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            var token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.getUserData(token)
             emit(Resource.success(data = request))
             App.prefs!!.saveUser(request.data!!.customer, "customer")
@@ -46,7 +46,7 @@ class ProfileRepository(val api: TabiyatApi) {
     fun updateUserName(name: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = App.prefs!!.getUser<Customer>("customer")!!.apiToken.toString()
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.updateName(token, name)
             emit(Resource.success(data = request))
             App.prefs!!.saveUser(request.data!!.customer, "customer")

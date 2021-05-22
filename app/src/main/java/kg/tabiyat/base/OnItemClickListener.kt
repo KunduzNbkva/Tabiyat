@@ -12,10 +12,6 @@ interface OnMainCardClickListener {
     fun onItemClicked(model: ListModel, adapterPosition: Int)
 }
 
-interface OnFavoriteClickListener {
-    fun onItemClicked(model: Favorite)
-}
-
 interface OnDataClickListener {
     fun onItemClicked(model: Datum)
 }

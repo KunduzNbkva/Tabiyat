@@ -5,22 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
-import kg.tabiyat.base.OnFavoriteClickListener
-import kg.tabiyat.data.model.Favorite
+import kg.tabiyat.base.OnDataClickListener
+import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.FavoriteFragmentBinding
 import kg.tabiyat.ui.main.cardDetail.CardDetailFragment
 import kg.tabiyat.ui.main.favorite.adapter.FavoriteAdapter
 import org.koin.android.ext.android.inject
 
 
-class FavoriteFragment : Fragment(), OnFavoriteClickListener {
+class FavoriteFragment : Fragment(), OnDataClickListener {
     private lateinit var binding: FavoriteFragmentBinding
     private lateinit var adapter: FavoriteAdapter
     private val viewModel by inject<FavoriteViewModel>()
@@ -29,6 +27,7 @@ class FavoriteFragment : Fragment(), OnFavoriteClickListener {
     private lateinit var btnPlants: Button
     private lateinit var manager: LinearLayoutManager
     private var isLoading: Boolean = false
+    private var favoritableId: Int = 0
 
 
     override fun onCreateView(
@@ -55,13 +54,15 @@ class FavoriteFragment : Fragment(), OnFavoriteClickListener {
     }
 
 
-    override fun onItemClicked(model: Favorite) {
-        val bundle = Bundle()
-        bundle.putSerializable(CardDetailFragment.FAV_MODEL_KEY, model.favoritable)
-        view?.let {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_navigation_liked_to_cardDetailFragment, bundle)
-        }
+    override fun onItemClicked(model: Datum) {
+            val bundle = Bundle()
+            bundle.putSerializable(CardDetailFragment.FAV_MODEL_KEY, model)
+            bundle.putInt("favoritable_id",favoritableId!!)
+            view?.let {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_navigation_liked_to_favoriteDetailFragment, bundle)
+            }
+
     }
 
 
@@ -79,6 +80,7 @@ class FavoriteFragment : Fragment(), OnFavoriteClickListener {
                 binding.noFavoriteLayout.visibility = View.GONE
             } else
                 adapter.addItems(it)
+                favoritableId = it?.get(0)!!.id!!
         })
     }
 
@@ -100,33 +102,6 @@ class FavoriteFragment : Fragment(), OnFavoriteClickListener {
                 }
             }
         })
-        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
-        itemTouchHelper.attachToRecyclerView(binding.favoriteList)
     }
 
-
-    var simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
-        ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT or ItemTouchHelper.DOWN or ItemTouchHelper.UP
-        ) {
-        override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-        ): Boolean {
-            Toast.makeText(requireContext(), "on Move", Toast.LENGTH_SHORT).show()
-            return false
-        }
-
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-            Toast.makeText(requireContext(), "on Swiped ", Toast.LENGTH_SHORT).show()
-            //Remove swiped item from list and notify the RecyclerView
-            val position = viewHolder.adapterPosition
-            //viewModel.deleteFavorite(position.toString())
-            adapter.list.removeAt(position)
-            adapter.notifyItemRemoved(position)
-        }
-    }
 }
-//todo deleting of favorite item

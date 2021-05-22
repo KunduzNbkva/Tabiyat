@@ -11,8 +11,8 @@
         android:label="@string/liked"
         tools:layout="@layout/favorite_fragment">
         <action
-            android:id="@+id/action_navigation_liked_to_cardDetailFragment"
-            app:destination="@id/plantsDetailFragment"
+            android:id="@+id/action_navigation_liked_to_favoriteDetailFragment"
+            app:destination="@id/cardDetailFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -119,13 +119,6 @@
         android:label="@string/plants"
         tools:layout="@layout/plants_fragment">
         <action
-            android:id="@+id/action_plantsFragment_to_cardDetailFragment"
-            app:destination="@id/plantsDetailFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
             android:id="@+id/action_plantsFragment_to_notificationsFragment"
             app:destination="@id/menuNotifications"
             app:enterAnim="@anim/fade_in"
@@ -134,10 +127,14 @@
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_plantsFragment_to_plantsDetailFragment"
-            app:destination="@id/plantsDetailFragment" />
+            app:destination="@id/cardDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/plantsDetailFragment"
+        android:id="@+id/cardDetailFragment"
         android:name="kg.tabiyat.ui.main.cardDetail.CardDetailFragment"
         android:label="Карточка вида" >
         <action
@@ -196,7 +193,7 @@
         android:label="@string/observations"
         tools:layout="@layout/observations_fragment" >
         <action
-            android:id="@+id/action_observationsFragment_to_cardObservationFragment"
+            android:id="@+id/action_observationsFragment_to_detailObservationFragment"
             app:destination="@id/cardObservationFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
@@ -243,7 +240,7 @@
         android:label="Животные" >
         <action
             android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
-            app:destination="@id/plantsDetailFragment"
+            app:destination="@id/cardDetailFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -255,7 +252,7 @@
         android:label="Полезная информаци" >
         <action
             android:id="@+id/action_infoFragment_to_plantsDetailFragment"
-            app:destination="@id/plantsDetailFragment"
+            app:destination="@id/cardDetailFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -283,5 +280,9 @@
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/favoriteDetailFragment"
+        android:name="kg.tabiyat.ui.main.favoriteDetail.FavoriteDetailFragment"
+        android:label="@string/liked" />
 
 </navigation>

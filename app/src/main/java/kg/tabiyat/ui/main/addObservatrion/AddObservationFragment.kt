@@ -184,7 +184,7 @@ class AddObservationFragment : Fragment() {
                 imagesAdapter.addImage(data.data!!)
             }
         } else {
-            requireContext().showToastShort("You haven't picked Image")
+            requireContext().showToastShort(getString(R.string.you_did_not_choose_pick))
         }
     }
 

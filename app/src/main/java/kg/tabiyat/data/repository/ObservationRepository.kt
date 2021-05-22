@@ -14,7 +14,7 @@ class ObservationRepository(var api: TabiyatApi) {
     suspend fun postObservation(postObserve: PostObserve) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.postObservation("Bearer $token", postObserve)
             emit(Resource.success(data = request))
         } catch (e: Exception) {

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import kg.tabiyat.App
 import kg.tabiyat.R
 import kg.tabiyat.auth.LoginActivity
 import kg.tabiyat.databinding.ActivityIntroBinding
@@ -79,7 +80,7 @@ class IntroActivity : FragmentActivity() {
 
 
     fun onSkipButton() {
-        _root_ide_package_.kg.tabiyat.App.prefs!!.saveIsIntroShown()
+        App.prefs!!.saveIsIntroShown()
         //TODO  saveIsIntroShown()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()

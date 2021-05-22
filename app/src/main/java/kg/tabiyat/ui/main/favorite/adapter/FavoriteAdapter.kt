@@ -3,13 +3,14 @@ package kg.tabiyat.ui.main.favorite.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kg.tabiyat.base.OnFavoriteClickListener
+import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.base.loadImage
+import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Favorite
 import kg.tabiyat.databinding.PlantsListBinding
 
 class FavoriteAdapter(
-    private val itemClickListener: OnFavoriteClickListener
+    private val itemClickListener: OnDataClickListener
 ) : RecyclerView.Adapter<FavoriteViewHolder>() {
 
     var list = arrayListOf<Favorite>()
@@ -26,7 +27,7 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        val plant = list[position]
+        val plant = list[position].favoritable!!
         holder.onBind(plant, itemClickListener)
     }
 
@@ -48,10 +49,10 @@ class FavoriteViewHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(b
     private val favoriteTitle = binding.plantTitleList
     private var favoriteDep = binding.plantDepartmentList
     private val favoriteImg = binding.plantImgList
-    fun onBind(favorite: Favorite, itemClickListener: OnFavoriteClickListener) {
-        favoriteTitle.text = favorite.favoritable!!.name!!.ru
-        favoriteDep.text = favorite.favoritable.genusId.toString()
-        favoriteImg.loadImage(favorite.favoritable.urlPick.toString())
+    fun onBind(favorite: Datum, itemClickListener: OnDataClickListener) {
+        favoriteTitle.text = favorite.name!!.ru
+        favoriteDep.text = favorite.genusId.toString()
+        favoriteImg.loadImage(favorite.urlPick.toString())
         itemView.setOnClickListener { itemClickListener.onItemClicked(favorite) }
     }
 

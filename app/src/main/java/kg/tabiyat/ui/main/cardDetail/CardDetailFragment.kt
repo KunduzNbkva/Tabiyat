@@ -2,6 +2,7 @@ package kg.tabiyat.ui.main.cardDetail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import kg.tabiyat.R
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.base.showToastShort
 import kg.tabiyat.data.model.Datum
+import kg.tabiyat.data.model.Favorite
 import kg.tabiyat.data.model.FavoriteModel
 import kg.tabiyat.databinding.CardDetailFragmentBinding
 import org.koin.android.ext.android.inject
@@ -28,6 +30,9 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
     private lateinit var type: String
     private var clickCounter: Int = 0
     private var message = String()
+    private lateinit var favoriteModel:FavoriteModel
+    private var favoritableId: Int = 0
+
 
     companion object {
         const val FAV_MODEL_KEY = "model"
@@ -50,10 +55,10 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         buttonAddObservation = view.findViewById(R.id.add_observation_btn)
         observe()
         getDataOfModel()
+        checkForFavorite()
+        setViewData()
         openObservations()
         setList()
-        onFavoriteClick()
-        setViewData()
         buttonAddObservation.setOnClickListener(this)
         binding.detailSaveCard.setOnClickListener { onFavoriteClick() }
     }
@@ -61,6 +66,7 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
     private fun getDataOfModel() {
         model = arguments?.getSerializable("model") as Datum
         type = arguments?.getString("type").toString()
+        favoritableId = arguments?.getInt("favoritable_id")!!
     }
 
     private fun setList() {
@@ -105,25 +111,32 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
             .navigate(R.id.action_plantsDetailFragment_to_addObservationFragment)
     }
 
+
+    private fun observe() {
+        viewModel.favoriteResponse.observe(viewLifecycleOwner, {
+            if (it!=null) Log.e("Favorite","favorite is created ${it.id}")
+        })
+    }
+
+    private fun checkForFavorite(){
+        if (viewModel.isFavorite())
+            binding.detailSaveCard.setImageResource(R.drawable.ic_save)
+        else if(!viewModel.isFavorite()) {
+            binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
+        }
+    }
+
     private fun onFavoriteClick() {
         clickCounter++
         if (clickCounter % 2 == 0) {
             binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
-            val favoriteModel = FavoriteModel(type, model.id!!)
+            favoriteModel= FavoriteModel(type, model.id!!)
             viewModel.createFavorite(favoriteModel)
-        } else if (clickCounter % 2 != 0) {
+        }  else if (clickCounter % 2 != 0) {
             binding.detailSaveCard.setImageResource(R.drawable.ic_save)
+            viewModel.deleteFavorite(favoritableId)
+            requireContext().showToastShort(getString(R.string.fav_deleted))
         }
-    }
-
-    private fun observe() {
-        viewModel.favoriteResponse.observe(viewLifecycleOwner, {
-            if (viewModel.isFavorite())
-                binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
-            else (!viewModel.isFavorite())
-            binding.detailSaveCard.setImageResource(R.drawable.ic_save)
-            requireContext().showToastShort("Удалено из избранных")
-        })
     }
 
     @SuppressLint("SetTextI18n")

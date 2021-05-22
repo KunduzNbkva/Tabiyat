@@ -32,7 +32,7 @@ class ProjectInfoFragment : Fragment() {
     private fun observeProjectInfo() {
         viewModel.projectInfo.observe(viewLifecycleOwner, {
             binding.projectInfoImg.loadImage(it.information!!.image.toString())
-            binding.projectInfoTitle.text = it.information!!.description.toString()
+            binding.projectInfoTitle.text = it.information!!.description!!.ru.toString()
         })
     }
 

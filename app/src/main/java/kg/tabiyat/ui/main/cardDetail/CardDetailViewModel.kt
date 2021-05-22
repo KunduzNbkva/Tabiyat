@@ -36,7 +36,7 @@ class CardDetailViewModel(private var repository: FavoriteRepository) : ViewMode
         }
     }
 
-    fun deleteFavorite(id: String) {
+    fun deleteFavorite(id: Int) {
         viewModelScope.launch {
             repository.deleteFavorite(id).observeForever {
                 when (it.status) {

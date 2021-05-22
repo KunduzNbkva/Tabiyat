@@ -12,7 +12,6 @@ class FavoriteViewModel(private var repository: FavoriteRepository) : ViewModel(
     var favoritesList = MutableLiveData<List<Favorite>>()
     private var page = 0
     private var hasNext = true
-    private var isFavorite = false
 
 
     fun getFavoritesList() {
@@ -31,24 +30,6 @@ class FavoriteViewModel(private var repository: FavoriteRepository) : ViewModel(
                 }
             }
         }
-    }
-
-    fun deleteFavorite(id: String) {
-        viewModelScope.launch {
-            repository.deleteFavorite(id).observeForever {
-                when (it.status) {
-                    Status.SUCCESS -> {
-                        setFavorite(false)
-                    }
-                    Status.ERROR -> error(it.data!!.status.toString())
-                    Status.LOADING -> null
-                }
-            }
-        }
-    }
-
-    private fun setFavorite(favorite: Boolean) {
-        isFavorite = favorite
     }
 
     fun resetPage() {

@@ -30,7 +30,6 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        settingsClickListener(binding.settingsAccount, R.id.action_menuSettings_to_accountFragment)
         settingsClickListener(
             binding.settingsProject,
             R.id.action_menuSettings_to_projectInfoFragment

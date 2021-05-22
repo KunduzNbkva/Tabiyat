@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kg.tabiyat.data.model.Status
 import kg.tabiyat.data.repository.ProfileRepository
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 
 class AccountViewModel(var repository: ProfileRepository) : ViewModel() {
     val status: MutableLiveData<Status> = MutableLiveData<Status>()
@@ -29,7 +30,7 @@ class AccountViewModel(var repository: ProfileRepository) : ViewModel() {
         }
     }
 
-    fun updateUserAvatar(avatar: String) {
+    fun updateUserAvatar(avatar: MultipartBody.Part) {
         viewModelScope.launch {
             repository.updateAvatar(avatar).observeForever {
                 when (it.status) {
