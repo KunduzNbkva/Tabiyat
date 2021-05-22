@@ -181,7 +181,15 @@
         android:id="@+id/accountFragment"
         android:name="kg.tabiyat.ui.main.profile.AccountFragment"
         android:label="@string/account"
-        tools:layout="@layout/account_fragment" />
+        tools:layout="@layout/account_fragment" >
+        <action
+            android:id="@+id/action_accountFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/projectInfoFragment"
         android:name="kg.tabiyat.ui.main.profile.ProjectInfoFragment"

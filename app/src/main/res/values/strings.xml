@@ -112,5 +112,7 @@ im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur 
     <string name="success_register">Вы успешно зарегестрированы!</string>
     <string name="you_did_not_choose_pick">Вы не выбрали фотографию.</string>
     <string name="successfully">Successfully</string>
+    <string name="permission_already_granted">Разрешение уже предоставлено</string>
+    <string name="grant_permission">Разрешите доступ к галерее.</string>
 
 </resources>
