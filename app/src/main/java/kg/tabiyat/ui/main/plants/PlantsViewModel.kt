@@ -22,12 +22,14 @@ class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewMode
                 when (it.status) {
                     Status.SUCCESS -> {
                         val list = it.data!!.data!!.plants!!.data!!
-                        plantsList.postValue(list)
-                        plantsRepository.db.mainDao().insertPlantsList(list as List<PlantsEntity>)
+//                        plantsList.postValue(list)
+                        plantsRepository.db.mainDao().insertPlantsList(list)
                         page++
                         if (list.size < 20) hasNext = false
                     }
-                    Status.ERROR -> error(it.message.toString())
+                    Status.ERROR -> {
+                        error(it.message.toString())
+                    }
                     Status.LOADING -> null
                 }
             }

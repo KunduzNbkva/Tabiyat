@@ -20,7 +20,7 @@ class AnimalsViewModel(private val animalsRepository: AnimalsRepository) : ViewM
                 when (it.status) {
                     Status.SUCCESS -> {
                         val list = it.data!!.data!!.plants!!.data!!
-                        animalsList.postValue(list)
+//                        animalsList.postValue(list)
                         page++
                         if (list.size < 20) hasNext = false
                     }
