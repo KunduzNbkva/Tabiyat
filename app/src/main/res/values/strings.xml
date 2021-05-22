@@ -105,5 +105,12 @@ im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur 
     <string name="no_location_detected">" No location detected. Make sure location is enabled on the device."</string>
     <string name="permission_rationale">Location permission is needed for core functionality</string>
     <string name="permission_denied_explanation">Permission was denied, but is needed for core         functionality.</string>
+    <string name="fav_deleted">Удалено из избранных</string>
+    <string name="success_login">Вы успешно вошли!</string>
+    <string name="error_occurred">Произошла ошибка!</string>
+    <string name="no_acc_register">У вас еще нет аккаунта? Регистрация</string>
+    <string name="success_register">Вы успешно зарегестрированы!</string>
+    <string name="you_did_not_choose_pick">Вы не выбрали фотографию.</string>
+    <string name="successfully">Successfully</string>
 
 </resources>

@@ -10,6 +10,7 @@ import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.InfoFragmentBinding
+import org.koin.android.ext.android.inject
 
 class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::inflate),
     OnDataClickListener, View.OnClickListener {

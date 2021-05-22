@@ -1,5 +1,6 @@
 package kg.tabiyat.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.set
 import androidx.core.text.toSpannable
@@ -21,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import kg.tabiyat.R
 import kg.tabiyat.databinding.ActivityLoginBinding
 import org.koin.android.ext.android.inject
 
@@ -46,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun changePage() {
-        val text = ("У вас еще не аккаунта? Регистрация").toSpannable()
+        val text = (getString(R.string.no_acc_register)).toSpannable()
         text[23..34] = object : ClickableSpan() {
             override fun onClick(view: View) {
                 openRegisterPage()
@@ -121,11 +124,11 @@ class LoginActivity : AppCompatActivity() {
         viewModel.status.observe(this, {
             when (it) {
                 Status.SUCCESS -> {
-                    this.showToastShort("Вы успешно вошли!")
+                    this.showToastShort(getString(R.string.success_login))
                     openMainPage()
                 }
                 Status.LOADING -> binding.loadingProgress.visibility = View.VISIBLE
-                else -> this.showToastShort("Произошла ошибка!")
+                else -> this.showToastShort(getString(R.string.error_occurred))
             }
         })
     }
@@ -140,10 +143,31 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private var loginResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = result.data
+            val task =
+                GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            try {
+                val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            } catch (e: ApiException) {
+                // The ApiException status code indicates the detailed failure reason.
+                // Please refer to the GoogleSignInStatusCodes class reference for more information.
+                Log.e("TAG", "signInResult:failed code=" + e.statusCode)
+            }
+        }
+    }
+
     private fun signInBtn() {
         binding.gmail.setOnClickListener {
             val intent = mGoogleSignInClient!!.signInIntent
-            startActivityForResult(intent, RC_SIGN_IN)
+            loginResultLauncher.launch(intent)
         }
     }
 
@@ -171,30 +195,6 @@ class LoginActivity : AppCompatActivity() {
             // val signUpModel = SignUpModel("gmail","")
             viewModel.createGmailUser("gmail", personEmail.toString())
 
-        }
-    }
-
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
-            } catch (e: ApiException) {
-                // The ApiException status code indicates the detailed failure reason.
-                // Please refer to the GoogleSignInStatusCodes class reference for more information.
-                Log.e("TAG", "signInResult:failed code=" + e.statusCode)
-            }
         }
     }
 

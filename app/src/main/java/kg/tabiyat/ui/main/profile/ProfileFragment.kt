@@ -11,7 +11,6 @@ import kg.tabiyat.R
 import kg.tabiyat.base.ListModel
 import kg.tabiyat.base.OnItemClickListener
 import kg.tabiyat.base.loadImage
-import kg.tabiyat.data.model.Customer
 import kg.tabiyat.databinding.ProfileFragmentBinding
 import kg.tabiyat.ui.main.profile.adapter.ProfileAdapter
 import kg.tabiyat.ui.main.profile.viewModels.ProfileViewModel
@@ -20,7 +19,7 @@ import org.koin.android.ext.android.inject
 class ProfileFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: ProfileFragmentBinding
     private val viewModel by inject<ProfileViewModel>()
-    private var customer: Customer = Customer()
+    private lateinit var bundle: Bundle
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +31,7 @@ class ProfileFragment : Fragment(), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bundle = Bundle()
         observeUserData()
         viewModel.getUserData()
         setRecycler()
@@ -40,11 +40,13 @@ class ProfileFragment : Fragment(), OnItemClickListener {
 
     private fun observeUserData() {
         viewModel.user.observe(viewLifecycleOwner, {
-            this.customer = it
+            bundle.putSerializable(AccountFragment.USER_KEY, it)
             binding.profileName.text = it.fullName.toString()
             binding.profileImg.loadImage(it.avatar.toString())
         })
     }
+
+
 
     private fun setRecycler() {
         val list = arrayListOf(
@@ -68,11 +70,9 @@ class ProfileFragment : Fragment(), OnItemClickListener {
     }
 
     private fun editProfileClick() {
-        val bundle = Bundle()
-        bundle.putSerializable(AccountFragment.USER_KEY, customer)
         binding.profileEditBtn.setOnClickListener {
             Navigation.findNavController(it)
-                .navigate(R.id.action_navigation_profile_to_accountFragment, bundle)
+                .navigate(R.id.action_navigation_profile_to_accountFragment,bundle)
         }
     }
 

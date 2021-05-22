@@ -3,7 +3,6 @@ package kg.tabiyat.data.repository
 import android.util.Log
 import androidx.lifecycle.liveData
 import kg.tabiyat.App
-import kg.tabiyat.data.model.Customer
 import kg.tabiyat.data.model.FavoriteModel
 import kg.tabiyat.data.model.Resource
 import kg.tabiyat.data.remote.TabiyatApi
@@ -14,7 +13,7 @@ class FavoriteRepository(var api: TabiyatApi) {
     suspend fun createFavorite(favoriteModel: FavoriteModel) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.createFavorite(token, favoriteModel)
             emit(Resource.success(data = request))
         } catch (e: Exception) {
@@ -27,10 +26,10 @@ class FavoriteRepository(var api: TabiyatApi) {
     }
 
 
-    suspend fun deleteFavorite(id: String) = liveData(Dispatchers.IO) {
+    suspend fun deleteFavorite(id: Int) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.deleteFavorite(token, id)
             emit(Resource.success(data = request))
         } catch (e: Exception) {
@@ -45,7 +44,7 @@ class FavoriteRepository(var api: TabiyatApi) {
     suspend fun getFavoritesList(page: Int) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = "Bearer ${App.prefs!!.getUser<Customer>("customer")!!.apiToken}"
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
             val request = api.getFavoritesList(token, page)
             emit(Resource.success(data = request))
         } catch (e: Exception) {

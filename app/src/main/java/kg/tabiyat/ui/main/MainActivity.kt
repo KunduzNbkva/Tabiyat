@@ -18,6 +18,8 @@ import kg.tabiyat.R
 import kg.tabiyat.databinding.ActivityMainBinding
 import kg.tabiyat.intro.IntroActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kg.tabiyat.App
+import kg.tabiyat.base.setTitle
 import kotlin.properties.Delegates
 
 
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!_root_ide_package_.kg.tabiyat.App.prefs!!.isIntroShown()) {
+        if (!App.prefs!!.isIntroShown()) {
             startActivity(Intent(this, IntroActivity::class.java))
             finish()
         }
@@ -44,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         setToolbar()
         setNavigation()
         onFabClick()
-        //changeToolbarItems()
     }
 
 
@@ -90,13 +91,12 @@ class MainActivity : AppCompatActivity() {
 
         val hideNavDestinations = setOf(
             R.id.plantsFragment,
-            R.id.plantsDetailFragment,
+            R.id.cardDetailFragment,
             R.id.animalsFragment,
             R.id.infoFragment,
             R.id.projectInfoFragment,
             R.id.accountFragment,
             R.id.menuSettings,
-            R.id.settings_account,
             R.id.observationsFragment,
             R.id.menuNotifications,
             R.id.addObservationFragment,
@@ -127,6 +127,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun changeToolbarItems(destinationId: Int) {
+        invalidateOptionsMenu()
+        when (destinationId) {
+            R.id.navigation_profile -> {
+                menuItemSettings.isVisible = true
+                menuItemNotifications.isVisible = false
+            }
+            R.id.cardDetailFragment -> {
+                menuItemForward.isVisible = true
+                menuItemSettings.isVisible = false
+                menuItemNotifications.isVisible = false
+            }
+            R.id.menuNotifications -> menuItemNotifications.isVisible = false
+
+            R.id.menuSettings -> {
+                menuItemSettings.isVisible = false
+                menuItemNotifications.isVisible = false
+            }
+            R.id.accountFragment -> {
+                menuItemForward.isVisible = false
+                menuItemSettings.isVisible = false
+                menuItemNotifications.isVisible = false
+            }
+            R.id.projectInfoFragment -> {
+                menuItemNotifications.isVisible = false
+            }
+            R.id.observationsFragment -> {
+                menuItemNotifications.isVisible = false
+            }
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        changeToolbarItems(destinationId = destinationId)
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     private fun setToolbar() {
         setSupportActionBar(binding.toolbar)

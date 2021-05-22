@@ -146,11 +146,11 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.status.observe(this, {
             when (it) {
                 Status.SUCCESS -> {
-                    this.showToastShort("Вы успешно зарегестрированы!")
+                    this.showToastShort(getString(R.string.success_register))
                     openNewPage(MainActivity())
                 }
                 Status.LOADING -> binding.registerProgress.visibility = View.VISIBLE
-                else -> this.showToastShort("Произошла ошибка!")
+                else -> this.showToastShort(getString(R.string.error_occurred))
             }
         })
     }

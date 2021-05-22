@@ -2,6 +2,7 @@ package kg.tabiyat.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class DeleteStatus(
     @SerializedName("status")
@@ -39,7 +40,7 @@ class DataFavorite {
     var favorites: List<Favorite>? = null
 }
 
-class Favorite {
+class Favorite : Serializable {
     @SerializedName("id")
     @Expose
     var id: Int? = null

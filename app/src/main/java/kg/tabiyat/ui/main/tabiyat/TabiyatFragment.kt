@@ -11,7 +11,7 @@ import kg.tabiyat.R
 import kg.tabiyat.base.ListModel
 import kg.tabiyat.base.OnMainCardClickListener
 import kg.tabiyat.databinding.TabiyatFragmentBinding
-import kg.tabiyat.ui.main.tabiyat.MainListAdapter
+import kg.tabiyat.ui.main.tabiyat.adapters.MainListAdapter
 import org.koin.android.ext.android.inject
 
 

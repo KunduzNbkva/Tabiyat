@@ -39,7 +39,7 @@ class ObservationsFragment : Fragment(), OnCardClickListener {
     override fun onItemClicked(model: String) {
         view?.let {
             Navigation.findNavController(it)
-                .navigate(R.id.action_observationsFragment_to_cardObservationFragment)
+                .navigate(R.id.action_observationsFragment_to_detailObservationFragment)
         }
     }
 

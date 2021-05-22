@@ -1,6 +1,8 @@
 package kg.tabiyat.data.remote
 
+import android.net.Uri
 import kg.tabiyat.data.model.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface TabiyatApi {
@@ -19,11 +21,13 @@ interface TabiyatApi {
         @Query("name") name: String
     ): UpdateUserData
 
+    @Multipart
     @POST("api/v1/customer/avatar")
     @Headers("Accept: application/json")
     suspend fun updateAvatar(
         @Header("Authorization") token: String,
-        @Query("avatar") uri: String
+        @Part avatar:MultipartBody.Part,
+       // @Query("avatar") uri: String
     ): UserExample
 
     @POST("api/v1/login")
@@ -57,7 +61,7 @@ interface TabiyatApi {
     @DELETE("api/v1/favorites/{id}")
     suspend fun deleteFavorite(
         @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Path("id") id: Int
     ): DeleteStatus
 
     @GET("api/v1/plants")

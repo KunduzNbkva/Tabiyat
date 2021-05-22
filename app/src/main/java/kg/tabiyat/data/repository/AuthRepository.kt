@@ -17,6 +17,7 @@ class AuthRepository(var api: TabiyatApi) {
         try {
             val request = api.createUser(signUpModel)
             emit(Resource.success(data = request))
+            App.prefs!!.saveAuthToken(request.data!!.customer!!.apiToken!!)
             App.prefs!!.saveUser(request.data!!.customer, "customer")
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error"))
@@ -30,7 +31,7 @@ class AuthRepository(var api: TabiyatApi) {
     fun updateUserName(name: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            val token = App.prefs!!.getUser<Customer>("customer")!!.apiToken.toString()
+            val token = App.prefs!!.getAuthToken().toString()
             val request = api.updateName(token, name)
             emit(Resource.success(data = request))
         } catch (e: Exception) {
@@ -48,6 +49,7 @@ class AuthRepository(var api: TabiyatApi) {
         try {
             val request = api.createGmailUser(type, email)
             emit(Resource.success(data = request))
+            App.prefs!!.saveAuthToken(request.data!!.customer!!.apiToken!!)
             App.prefs!!.saveUser(request.data!!.customer, "customer")
         } catch (e: Exception) {
             e.printStackTrace()
@@ -64,6 +66,7 @@ class AuthRepository(var api: TabiyatApi) {
         try {
             val request = api.loginUser(loginModel)
             emit(Resource.success(data = request))
+            App.prefs!!.saveAuthToken(request.data!!.customer!!.apiToken!!)
             App.prefs!!.saveUser(request.data!!.customer, "customer")
         } catch (e: Exception) {
             e.printStackTrace()

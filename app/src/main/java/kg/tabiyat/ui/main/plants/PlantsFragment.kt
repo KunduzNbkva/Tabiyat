@@ -75,7 +75,7 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
         }
         view?.let {
             Navigation.findNavController(it)
-                .navigate(R.id.action_plantsFragment_to_cardDetailFragment, bundle)
+                .navigate(R.id.action_plantsFragment_to_plantsDetailFragment, bundle)
         }
     }
 
