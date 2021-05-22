@@ -1,14 +1,17 @@
 package kg.tabiyat.ui.main.info
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Status
 import kg.tabiyat.data.repository.InfoRepository
+import kg.tabiyat.data.repository.PlantsRepository
+import kg.tabiyat.db.entity.PlantsEntity
 import kotlinx.coroutines.launch
 
-class InfoViewModel(private var repository: InfoRepository) : ViewModel() {
+class InfoViewModel(private var repository: InfoRepository, var plantsRepository: PlantsRepository) : ViewModel() {
     var infoList = MutableLiveData<List<Datum>>()
     private var page = 0
     private var hasNext = true
@@ -29,6 +32,10 @@ class InfoViewModel(private var repository: InfoRepository) : ViewModel() {
                 }
             }
         }
+    }
+
+    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
+        return plantsRepository.getLocalPlantsList()
     }
 
     fun resetPage() {

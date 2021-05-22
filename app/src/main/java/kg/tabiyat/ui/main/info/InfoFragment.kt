@@ -10,6 +10,7 @@ import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.InfoFragmentBinding
+import kg.tabiyat.db.entity.PlantsEntity
 import org.koin.android.ext.android.inject
 
 class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::inflate),
@@ -28,9 +29,12 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
 
     override fun observeData() {
         super.observeData()
-        viewModel.infoList.observe(viewLifecycleOwner, {
+        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
             adapter.addItems(it)
-        })
+        }
+//        viewModel.infoList.observe(viewLifecycleOwner, {
+//            adapter.addItems(it)
+//        })
     }
 
     private fun setRecycler() {
@@ -59,7 +63,7 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
         } else binding.searchCardView.visibility = View.VISIBLE
     }
 
-    override fun onItemClicked(model: Datum) {
+    override fun onItemClicked(model: PlantsEntity) {
         val bundle = Bundle()
         model.let {
             bundle.putSerializable("model", it)

@@ -1,11 +1,13 @@
 package kg.tabiyat.ui.main.plants
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Status
 import kg.tabiyat.data.repository.PlantsRepository
+import kg.tabiyat.db.entity.PlantsEntity
 import kotlinx.coroutines.launch
 
 class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewModel() {
@@ -21,6 +23,7 @@ class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewMode
                     Status.SUCCESS -> {
                         val list = it.data!!.data!!.plants!!.data!!
                         plantsList.postValue(list)
+                        plantsRepository.db.mainDao().insertPlantsList(list as List<PlantsEntity>)
                         page++
                         if (list.size < 20) hasNext = false
                     }
@@ -29,6 +32,10 @@ class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewMode
                 }
             }
         }
+    }
+
+    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
+        return plantsRepository.getLocalPlantsList()
     }
 
     fun resetPage() {

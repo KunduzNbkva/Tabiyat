@@ -7,11 +7,12 @@ import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.InfoListBinding
+import kg.tabiyat.db.entity.PlantsEntity
 
 class InfoAdapter(private val itemClickListener: OnDataClickListener) :
     RecyclerView.Adapter<InfoHolder>() {
 
-    val list = arrayListOf<Datum>()
+    val list = arrayListOf<PlantsEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoHolder {
         return InfoHolder(
@@ -33,7 +34,7 @@ class InfoAdapter(private val itemClickListener: OnDataClickListener) :
         return list.size
     }
 
-    fun addItems(items: List<Datum>) {
+    fun addItems(items: List<PlantsEntity>) {
         this.list.addAll(items)
         notifyDataSetChanged()
     }
@@ -42,7 +43,7 @@ class InfoAdapter(private val itemClickListener: OnDataClickListener) :
 class InfoHolder(binding: InfoListBinding) : RecyclerView.ViewHolder(binding.root) {
     private val textView = binding.infoTitle
     private val imageView = binding.infoImg
-    fun onBind(item: Datum, clickListener: OnDataClickListener) {
+    fun onBind(item: PlantsEntity, clickListener: OnDataClickListener) {
         textView.text = item.name.toString()
         imageView.loadImage(item.urlPick.toString())
         itemView.setOnClickListener {

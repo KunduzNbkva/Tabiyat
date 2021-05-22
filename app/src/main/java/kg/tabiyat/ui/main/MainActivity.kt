@@ -18,6 +18,7 @@ import kg.tabiyat.R
 import kg.tabiyat.databinding.ActivityMainBinding
 import kg.tabiyat.intro.IntroActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
 import kg.tabiyat.App
 import kg.tabiyat.base.setTitle
 import kotlin.properties.Delegates
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         if (!App.prefs!!.isIntroShown()) {
             startActivity(Intent(this, IntroActivity::class.java))
             finish()

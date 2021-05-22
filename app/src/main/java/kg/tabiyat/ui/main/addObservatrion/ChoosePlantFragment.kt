@@ -12,6 +12,7 @@ import kg.tabiyat.R
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.FragmentChoosePlantBinding
+import kg.tabiyat.db.entity.PlantsEntity
 import kg.tabiyat.ui.main.addObservatrion.adapter.ChoosePlantsAdapter
 import kg.tabiyat.ui.main.addObservatrion.viewModel.ChoosePlantViewModel
 import org.koin.android.ext.android.inject
@@ -57,12 +58,15 @@ class ChoosePlantFragment : Fragment(), OnDataClickListener {
     }
 
     private fun observePlants() {
-        viewModel.plantsList.observe(viewLifecycleOwner, {
+        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
             adapter.addItems(it)
-        })
+        }
+//        viewModel.plantsList.observe(viewLifecycleOwner, {
+//            adapter.addItems(it)
+//        })
     }
 
-    override fun onItemClicked(model: Datum) {
+    override fun onItemClicked(model: PlantsEntity) {
         val bundle = Bundle()
         model.let {
             bundle.putString("model_name", it.name!!.ru.toString())

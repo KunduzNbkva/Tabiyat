@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import kg.tabiyat.R
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.PlantsFragmentBinding
+import kg.tabiyat.db.entity.PlantsEntity
 import org.koin.android.ext.android.inject
 
 class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
@@ -62,16 +64,20 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
     }
 
     private fun observePlants() {
-        viewModel.plantsList.observe(viewLifecycleOwner, {
+        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), "size - ${it.size}", Toast.LENGTH_SHORT).show()
             adapter.addItems(it)
-        })
+        }
+//        viewModel.plantsList.observe(viewLifecycleOwner, {
+//            adapter.addItems(it)
+//        })
     }
 
-    override fun onItemClicked(model: Datum) {
+    override fun onItemClicked(model: PlantsEntity) {
         val bundle = Bundle()
         model.let {
-            bundle.putSerializable("model", it)
-            bundle.putString("type", "plants")
+//            bundle.putSerializable("model", it)
+//            bundle.putString("type", "plants")
         }
         view?.let {
             Navigation.findNavController(it)
