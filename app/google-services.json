@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "480871837867",
+    "firebase_url": "https://tabiyat-kenchi-default-rtdb.firebaseio.com",
+    "project_id": "tabiyat-kenchi",
+    "storage_bucket": "tabiyat-kenchi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480871837867:android:3105f8a846e125215b47ee",
+        "android_client_info": {
+          "package_name": "kg.tabiyat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480871837867-7296lleg3mnt015jkcgsaprdd52gfdvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlISxV8NK-IJWIW87AX1_EMa7FkqAoTeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480871837867-7296lleg3mnt015jkcgsaprdd52gfdvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

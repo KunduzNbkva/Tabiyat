@@ -2,6 +2,7 @@ package kg.tabiyat.base
 
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Favorite
+import kg.tabiyat.db.entity.PlantsEntity
 
 
 interface OnItemClickListener {
@@ -13,7 +14,7 @@ interface OnMainCardClickListener {
 }
 
 interface OnDataClickListener {
-    fun onItemClicked(model: Datum)
+    fun onItemClicked(model: PlantsEntity)
 }
 
 interface OnCardClickListener {

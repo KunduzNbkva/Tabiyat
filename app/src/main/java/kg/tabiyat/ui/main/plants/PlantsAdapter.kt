@@ -9,6 +9,7 @@ import kg.tabiyat.base.loadImage
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.PlantsListBinding
 import kg.tabiyat.databinding.ProgressHolderBinding
+import kg.tabiyat.db.entity.PlantsEntity
 
 class PlantsAdapter(
     private val itemClickListener: OnDataClickListener
@@ -17,7 +18,7 @@ class PlantsAdapter(
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
 
-    var list = arrayListOf<Datum>()
+    var list = arrayListOf<PlantsEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
@@ -49,7 +50,7 @@ class PlantsAdapter(
         }
     }
 
-    fun addItems(items: List<Datum>) {
+    fun addItems(items: List<PlantsEntity>) {
         this.list.addAll(items)
         notifyDataSetChanged()
     }
@@ -81,7 +82,7 @@ class PlantsAdapter(
 class PlantsHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(binding.root) {
     private val textView = binding.plantTitleList
     private val imageView = binding.plantImgList
-    fun onBind(item: Datum, clickListener: OnDataClickListener) {
+    fun onBind(item: PlantsEntity, clickListener: OnDataClickListener) {
         textView.text = item.name!!.ru
         item.urlPick.toString()
         imageView.loadImage(item.urlPick.toString())
