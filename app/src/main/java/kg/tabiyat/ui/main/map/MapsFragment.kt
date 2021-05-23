@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kg.tabiyat.data.model.MapModel
 
 
 class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickListener {
@@ -35,6 +36,8 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val bishkek = LatLng(42.8746, 74.5698)
     private val defaultLocation = bishkek
+    private var sendMapModel: MapModel? = null
+
 
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -51,7 +54,6 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek, 8f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kgtu, 8f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oshBzr, 8f))
-
         googleMap.setOnMarkerClickListener(this)
 
     }
@@ -93,7 +95,7 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
     override fun onClick(v: View?) {
         clickCounter++
         if (clickCounter % 2 == 0) {
-            binding.mapCardView.visibility = View.VISIBLE
+            binding.mapCardView.visibility = View.GONE
             binding.mapSortView.sortMap.visibility = View.GONE
         } else {
             binding.mapCardView.visibility = View.GONE
@@ -152,7 +154,7 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
             return
         }
         try {
-            if (locationPermissionGranted) {
+            if (!locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
             } else {
@@ -207,6 +209,9 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
                                     ), DEFAULT_ZOOM.toFloat()
                                 )
                             )
+                          //TODO  lastKnownLocation.distanceTo(WHAT?)
+                         //   sendMapModel = MapModel(LatLng(lastKnownLocation!!.latitude,lastKnownLocation!!.longitude))
+                            
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")

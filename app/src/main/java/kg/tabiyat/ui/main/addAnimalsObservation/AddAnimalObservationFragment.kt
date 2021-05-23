@@ -9,16 +9,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.Navigation
 import kg.tabiyat.R
 import kg.tabiyat.base.OnDeleteListener
 import kg.tabiyat.base.showToastShort
+import kg.tabiyat.data.model.MapObservationModel
 import kg.tabiyat.data.model.PostObserve
 import kg.tabiyat.databinding.FragmentAddAnimalsObservationBinding
 import kg.tabiyat.ui.main.addObservation.adapter.ImagesAdapter
@@ -58,7 +61,18 @@ class AddAnimalObservationFragment : Fragment(), OnDeleteListener {
         getDate(binding.addObsrvDate, requireContext())
         postObservation()
         createImagesRecycler()
+        setFragmentListener()
+    }
 
+    private fun setFragmentListener() {
+        setFragmentResultListener("mapData_key") { requestKey, bundle ->
+            val mapData = bundle.getSerializable("mapBundle_key") as MapObservationModel
+            Log.e(
+                "Map", "mapData's accuracy is ${mapData.accuracy}," +
+                        "latLng is ${mapData.latLng}," +
+                        "altitude is ${mapData.altitude}"
+            )
+        }
     }
 
     private fun observeViewModel() {
@@ -87,7 +101,7 @@ class AddAnimalObservationFragment : Fragment(), OnDeleteListener {
     private fun getLocationData() {
         view.let {
             Navigation.findNavController(it!!)
-                .navigate(R.id.action_addObservationFragment_to_mapsActivityCurrentPlace)
+                .navigate(R.id.action_addAnimalObsrvFragment_to_locationMapFragment)
         }
     }
 

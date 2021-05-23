@@ -9,17 +9,21 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.Navigation
 import kg.tabiyat.R
 import kg.tabiyat.base.OnDeleteListener
 import kg.tabiyat.base.showToastShort
+import kg.tabiyat.data.model.MapObservationModel
 import kg.tabiyat.databinding.AddObservationFragmentBinding
+import kg.tabiyat.ui.main.addAnimalsObservation.AddAnimalObservationFragment
 import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
 import kg.tabiyat.ui.main.addObservation.adapter.ImagesAdapter
 import org.koin.android.ext.android.inject
@@ -36,6 +40,7 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
     private var type: String = "plants"
     private var txt: String? = null
     private var abundance: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,8 +61,20 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
         getDate(binding.addObsrvDate, requireContext())
         postObservation()
         createImagesRecycler()
-
+        setFragmentListener()
     }
+
+    private fun setFragmentListener() {
+        setFragmentResultListener("mapData_key") { requestKey, bundle ->
+            val mapData = bundle.getSerializable("mapBundle_key") as MapObservationModel
+            Log.e(
+                "Map", "mapData's accuracy is ${mapData.accuracy}," +
+                        "latLng is ${mapData.latLng}," +
+                        "altitude is ${mapData.altitude}"
+            )
+        }
+    }
+
 
     private fun observeViewModel() {
         viewModel.message.observe(viewLifecycleOwner, {

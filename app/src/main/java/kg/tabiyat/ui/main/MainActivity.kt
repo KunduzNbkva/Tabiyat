@@ -3,6 +3,7 @@ package kg.tabiyat.ui.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
@@ -21,6 +22,7 @@ import kg.tabiyat.R
 import kg.tabiyat.base.setTitle
 import kg.tabiyat.databinding.ActivityMainBinding
 import kg.tabiyat.intro.IntroActivity
+import java.util.*
 import kotlin.properties.Delegates
 
 
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: BottomNavigationView
     private var isFABOpen: Boolean = false
     private var navBuilder:NavOptions.Builder? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -275,6 +278,30 @@ class MainActivity : AppCompatActivity() {
         binding.fabAnimalTxt.animate().translationY(0f)
         binding.fabPlantTxt.visibility = View.INVISIBLE
         binding.fabAnimalTxt.visibility = View.INVISIBLE
+    }
+
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        applicationContext.resources.updateConfiguration(
+            config,
+            applicationContext.resources.displayMetrics
+        )
+        App.prefs!!.saveLang(lang)
+    }
+
+    override fun onResume() {
+        loadLocaleLang()
+        super.onResume()
+    }
+
+    private fun loadLocaleLang() {
+        val language: String = App.prefs!!.lanquage!!
+        if (language != null) {
+            setLocale(language)
+        }
     }
 
 

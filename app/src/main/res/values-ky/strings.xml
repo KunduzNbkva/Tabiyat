@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Табият</string>
+    <string name="skip">Өткөрү</string>
+    <string name="welcome">Кош келиңиз!</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Кирүү же Катталуу</string>
+    <string name="action_sign_in_short">Кирүү</string>
+    <string name="invalid_username">Колдонуучунун аты жараксыз</string>
+    <string name="invalid_password">Пароль 5 белгиден көп болушу керек.</string>
+    <string name="login_failed">"Кирүү ишке ашкан жок"</string>
+    <string name="authorization">Сураныч, авторизация өтүнүз</string>
+    <string name="forget_password">Пароль унуттуңузбу?</string>
+    <string name="login">Кирүү</string>
+    <string name="facebook">Facebook</string>
+    <string name="g_mail">Gmail</string>
+    <string name="registration">Азырынча аккаунтунуз жокпу? Каттоолуу</string>
+    <string name="password">Пароль</string>
+    <string name="register_data">Маалыматтарыңызды киргизиңиз</string>
+    <string name="phone_number">Телефон номуру</string>
+    <string name="choose_language">Тил тандоо</string>
+    <string name="kg">Kg</string>
+    <string name="ru">Ru</string>
+    <string name="next">Андан ары</string>
+    <string name="get_in_acc">Аккаунтунуз барбы? Кирүү</string>
+    <string name="tabiyat">Табият</string>
+    <string name="what_is_near">Жанынызда эмне бар</string>
+    <string name="liked">Сүйүктүүлөр</string>
+    <string name="profile">Профиль</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="animals">Жаныбарлар</string>
+    <string name="actragal_example">Астрагал Шагина</string>
+    <string name="department">Бөлүм</string>
+    <string name="summary">Кыскача мазмууну</string>
+    <string name="class_dep">Класс</string>
+    <string name="family">Үй-бүлө</string>
+    <string name="genus">Уруу</string>
+    <string name="abundance">Молчулук</string>
+    <string name="totalObservation">Жалпы Байкоолор</string>
+    <string name="plants">Өсүмдүктөр</string>
+    <string name="see_or_find">Жашаган жерин көрдүңүзбү же таптыңызбы?</string>
+    <string name="add_observation">Байкоолорду кошуңуз</string>
+    <string name="vnesite_vklad">Кыргызстанда өсүмдүктөрдүн мониторингин өнүктүрүүгө салым кошуңуз.</string>
+    <string name="your_rating">Сиздин рейтинг </string>
+    <string name="rating">Рейтинг</string>
+    <string name="settings">Настройки</string>
+    <string name="notifications">Эскертмелер</string>
+    <string name="account">Аккаунт</string>
+    <string name="exit">Чыгуу</string>
+    <string name="language">Тил</string>
+    <string name="about_project">Долбоор жөнүндө</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="address">Дарек</string>
+    <string name="info_project"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel <br />
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim pr <br />
+
+aesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit <br />
+
+ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non en <br />
+
+im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</string>
+    <string name="observations">Байкоолор</string>
+    <string name="order">Тартип</string>
+    <string name="date">21 марта 2021год</string>
+    <string name="descriprion_txt">description description description description description.
+
+        Description description description description description description.
+
+        description description description description description .Description description
+
+
+        description description description description.</string>
+    <string name="author_observation">Бул байкоонун автору</string>
+    <string name="card_observation">Байкоо картасы</string>
+    <string name="rating_users">Колдонуучунун рейтинги</string>
+    <string name="time">Убакыт</string>
+    <string name="coordinates">Координаттар</string>
+    <string name="update_map">Картаны жаңыртыңыз</string>
+    <string name="comments">Комментарийле</string>
+    <string name="useful_info">Пайдалуу маалымат</string>
+    <string name="edit">Түзөтүү</string>
+    <string name="lang_names">(лат. Astragalus schanginianus, русс. Astragalus schanginianus кырг. Astragalus schanginianus)</string>
+    <string name="description">Description Description Description Description Description Description</string>
+    <string name="redbook">Кызыл китеп</string>
+    <string name="category">Категория</string>
+    <string name="biotop">Биотоп</string>
+    <string name="fenofaze">Фенофаза</string>
+    <string name="choose_plant">Өсүмдүктү тандаңыз</string>
+    <string name="date_time">Дата</string>
+    <string name="_23_00">23:00</string>
+    <string name="save">Сактоо</string>
+    <string name="add_image_observation">+ Сүрөт кошуу</string>
+    <string name="option_get_place">Жайгашкан жерди алуу</string>
+    <string name="default_info_title">Демейки жайгашкан жер</string>
+    <string name="default_info_snippet">Жайгашуу уруксаты өчүрүлгөндүктөн, эч кандай жер табылган жок.</string>
+    <string name="pick_place">Жер тандаңыз</string>
+    <string name="no_location_detected">Жайгашкан жер табылган жок. Түзмөгүңүздө жайгашкан жер күйгүзүлгөндүгүн текшериңиз</string>
+    <string name="permission_rationale">Негизги функциялар үчүн жайгашууга уруксат талап кылынат</string>
+    <string name="permission_denied_explanation">Уруксат берилген жок, бирок негизги функциялар үчүн талап кылынган.</string>
+    <string name="fav_deleted">Сүйүктүүлөрдөн алынды</string>
+    <string name="success_login">Сиз ийгиликтүү кирдиңиз!</string>
+    <string name="error_occurred">Ката кетти!</string>
+    <string name="no_acc_register">Азырынча аккаунтунуз жокпу? Каттоолуу</string>
+    <string name="success_register">Сиз ийгиликтүү катталдыңыз!</string>
+    <string name="you_did_not_choose_pick">Сиз сүрөт тандай элексиз.</string>
+    <string name="successfully">Ийгиликтүү!</string>
+    <string name="permission_already_granted">Уруксат буга чейин берилген</string>
+    <string name="grant_permission">Галереяга кирүүгө уруксат берүү.</string>
+    <string name="server_client_id">"480871837867-l2jv7cg3bles9oprt37vbjfj5s2c6iva.apps.googleusercontent.com "</string>
+    <string name="name">Аты</string>
+    <string name="seldom_abundance">Сейрек</string>
+    <string name="normal_abundance">Жакшы</string>
+    <string name="often_abundance">Көп учурда</string>
+    <string name="choose_animal">Жаныбар танда</string>
+    <string name="factor_of_worry">Тынчсыздануу фактору</string>
+    <string name="compass">Компас</string>
+    <string name="azimuth">Азимут</string>
+    <string name="distance">Расстояние</string>
+    <string name="select_picture">Сүрөт тандаңыз</string>
+    <string name="running">Качып кетти</string>
+    <string name="standing">Турат</string>
+    <string name="sleeping">Уктап жатат</string>
+    <string name="animal_observation">Жаныбарларды байкоо</string>
+    <string name="your_location">Сиздин жайгашкан жериңиз</string>
+    <string name="plants_observation">Өсүмдүктөрдү байкоо</string>
+    <string name="news">Жаңылыктар</string>
+    <string name="select">Тандаңыз</string>
+
+</resources>

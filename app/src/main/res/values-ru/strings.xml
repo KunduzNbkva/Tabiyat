@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Taбият</string>
     <string name="skip">Пропустить</string>
@@ -131,8 +132,5 @@ im praesent elementum facilisis leo, velLorem ipsum dolor sit amet, consectetur 
     <string name="plants_observation">Наблюдения растения</string>
     <string name="news">Новости</string>
     <string name="select">Выберите</string>
-    <string name="you_want_exict">Вы хотите выйти?</string>
-    <string name="you_always_can_return">Вы всегда можете вернуться</string>
-    <string name="cancel">Отмена</string>
 
 </resources>

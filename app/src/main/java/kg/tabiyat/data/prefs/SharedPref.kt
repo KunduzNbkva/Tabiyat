@@ -8,6 +8,12 @@ const val SHARED_PREFS = "settings"
 const val USER_TOKEN = "user_token"
 
 class SharedPref(val context: Context) {
+    val lanquage: String?
+        get() = sharedPref.getString("lang", " ")
+
+    fun saveLang(s: String) {
+        sharedPref.edit()?.putString("lang", s)?.apply()
+    }
 
     val sharedPref: SharedPreferences =
         context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)

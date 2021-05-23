@@ -245,9 +245,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
-        <action
-            android:id="@+id/action_addObservationFragment_to_locationMapFragment"
-            app:destination="@id/locationMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalsFragment"
@@ -277,7 +274,7 @@
         android:id="@+id/choosePlantFragment"
         android:name="kg.tabiyat.ui.main.addAnimalsObservation.ChooseAnimalFragment"
         android:label="@string/choose_plant"
-        tools:layout="@layout/fragment_choose_plant" >
+        tools:layout="@layout/fragment_choose_plant">
         <action
             android:id="@+id/action_choosePlantFragment_to_addObservationFragment"
             app:destination="@id/addObservationFragment"
@@ -294,7 +291,22 @@
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"/>
+        app:popExitAnim="@anim/slide_out_right">
+        <action
+            android:id="@+id/action_locationMapFragment_to_addObservationFragment"
+            app:destination="@id/addObservationFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_locationMapFragment_to_addAnimalObsrvFragment"
+            app:destination="@id/addAnimalObsrvFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
     <fragment
         android:id="@+id/addAnimalObsrvFragment"
@@ -312,6 +324,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_addAnimalObsrvFragment_to_locationMapFragment"
+            app:destination="@id/locationMapFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/chooseAnimalFragment"
@@ -321,11 +340,23 @@
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"/>
+        app:popExitAnim="@anim/slide_out_right">
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_addAnimalObsrvFragment"
+            app:destination="@id/addAnimalObsrvFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/newsFragment"
         android:name="kg.tabiyat.ui.main.news.NewsFragment"
         android:label="Новости"
-        tools:layout="@layout/news_fragment" />
+        tools:layout="@layout/news_fragment"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
 
 </navigation>

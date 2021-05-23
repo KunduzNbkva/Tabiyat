@@ -1,6 +1,7 @@
 package kg.tabiyat
 
 import android.app.Application
+import android.content.Context
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessaging
 import kg.tabiyat.data.prefs.SharedPref
@@ -34,6 +35,7 @@ class App : Application() {
         }
         createNotificationChannel()
     }
+
 
     private fun createNotificationChannel() {
         notificationChannelBuilder.createNotificationChannel(
