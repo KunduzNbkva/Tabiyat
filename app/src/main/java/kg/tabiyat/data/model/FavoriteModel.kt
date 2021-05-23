@@ -2,6 +2,7 @@ package kg.tabiyat.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import java.io.Serializable
 
 class DeleteStatus(
@@ -67,5 +68,6 @@ class Favorite : Serializable {
 
     @SerializedName("favoritable")
     @Expose
-    val favoritable: Datum? = null
+     val favoritable: Datum? = null
+    // val favoritable: PlantsEntity? = null
 }

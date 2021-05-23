@@ -1,12 +1,15 @@
 package kg.tabiyat.data.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import kg.tabiyat.data.model.Resource
 import kg.tabiyat.data.remote.TabiyatApi
+import kg.tabiyat.data.local.db.AppDatabase
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kotlinx.coroutines.Dispatchers
 
-class AnimalsRepository(var api: TabiyatApi) {
+class AnimalsRepository(var api: TabiyatApi,var db:AppDatabase) {
 
     suspend fun getAnimalsList(page: Int) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
@@ -21,4 +24,13 @@ class AnimalsRepository(var api: TabiyatApi) {
             )
         }
     }
+
+    fun insertAnimalsList(list: List<PlantsEntity>){
+        db.mainDao().insertPlantsList(list)
+    }
+
+    fun getLocalAnimalsList() : LiveData<List<PlantsEntity>> {
+        return db.mainDao().getLocalPlantsList()
+    }
+
 }

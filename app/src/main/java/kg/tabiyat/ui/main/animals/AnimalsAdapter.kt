@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.base.loadImage
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.PlantsListBinding
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 
 class AnimalsAdapter(
     private val itemClickListener: OnDataClickListener

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="5dp"
-    tools:context=".ui.main.addObservatrion.AddObservationFragment">
+    tools:context=".ui.main.addAnimalsObservation.AddAnimalObservationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,44 +52,6 @@
         </com.github.florent37.expansionpanel.ExpansionHeader>
 
         <com.github.florent37.expansionpanel.ExpansionHeader
-            android:id="@+id/expansion_category"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/find_back"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:padding="5dp"
-            app:expansion_headerIndicator="@id/headerIndicato"
-            app:expansion_layout="@id/expansionLayout"
-            app:expansion_toggleOnClick="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addObsrv_plant">
-            <!-- HEADER -->
-            <TextView
-                android:id="@+id/addObsrv_category_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="15dp"
-                android:text="@string/category"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-            <!-- HEADER INDICATOR -->
-            <ImageView
-                android:id="@+id/headerIndicato"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:layout_marginEnd="16dp"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
-                tools:ignore="ContentDescription" />
-        </com.github.florent37.expansionpanel.ExpansionHeader>
-
-        <com.github.florent37.expansionpanel.ExpansionHeader
             android:id="@+id/abundance_ex_list"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -104,7 +66,7 @@
             app:expansion_toggleOnClick="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expansion_category">
+            app:layout_constraintTop_toBottomOf="@id/addObsrv_plant">
             <!-- HEADER -->
             <TextView
                 android:id="@+id/addObsrv_abundance_title"
@@ -253,6 +215,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,25 +1,26 @@
 package kg.tabiyat.ui.main
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.core.content.ContextCompat
+import androidx.navigation.*
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
+import kg.tabiyat.App
 import kg.tabiyat.R
+import kg.tabiyat.base.setTitle
 import kg.tabiyat.databinding.ActivityMainBinding
 import kg.tabiyat.intro.IntroActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kg.tabiyat.App
-import kg.tabiyat.base.setTitle
 import kotlin.properties.Delegates
 
 
@@ -32,9 +33,15 @@ class MainActivity : AppCompatActivity() {
     private var destinationId by Delegates.notNull<Int>()
     private lateinit var navView: BottomNavigationView
     private var isFABOpen: Boolean = false
+    private var navBuilder:NavOptions.Builder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.dark_gray)
+
+        FirebaseApp.initializeApp(this)
         if (!App.prefs!!.isIntroShown()) {
             startActivity(Intent(this, IntroActivity::class.java))
             finish()
@@ -46,8 +53,22 @@ class MainActivity : AppCompatActivity() {
         setToolbar()
         setNavigation()
         onFabClick()
+        navBuilder = NavOptions.Builder()
+        navBuilder!!.setEnterAnim(R.anim.fade_in).setExitAnim(R.anim.slide_out_left)
+            .setPopEnterAnim(R.anim.slide_in_left).setPopExitAnim(R.anim.slide_out_right)
     }
 
+    companion object {
+        @SuppressLint("ServiceCast")
+        fun hasNetwork(context: Context): Boolean? {
+            var isConnected: Boolean? = false // Initial Value
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+            if (activeNetwork != null && activeNetwork.isConnected)
+                isConnected = true
+            return isConnected
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
@@ -102,7 +123,9 @@ class MainActivity : AppCompatActivity() {
             R.id.addObservationFragment,
             R.id.cardObservationFragment,
             R.id.choosePlantFragment,
-            R.id.locationMapFragment
+            R.id.locationMapFragment,
+            R.id.addAnimalObsrvFragment,
+            R.id.chooseAnimalFragment
         )
 
         navController.addOnDestinationChangedListener { _, destination, arguments ->
@@ -156,6 +179,12 @@ class MainActivity : AppCompatActivity() {
             R.id.observationsFragment -> {
                 menuItemNotifications.isVisible = false
             }
+            R.id.addAnimalObsrvFragment -> {
+                menuItemNotifications.isVisible = false
+            }
+            R.id.addObservationFragment -> {
+                menuItemNotifications.isVisible = false
+            }
         }
     }
 
@@ -176,10 +205,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setFabClick(it: View) {
-        it.setOnClickListener {
-            closeFABMenu()
-            navController.navigate(R.id.addObservationFragment)
+        when (it) {
+            binding.fabAnimal -> {
+                it.setOnClickListener {
+                    openAddAnimal()
+                }
+            }
+            binding.fabAnimalTxt -> {
+                it.setOnClickListener {
+                    openAddAnimal()
+                }
+            }
+            binding.fabPlant -> {
+                it.setOnClickListener {
+                    openAddPlant()
+                }
+            }
+            binding.fabPlantTxt -> {
+                it.setOnClickListener {
+                    openAddPlant()
+                }
+            }
         }
+    }
+
+    private fun openAddAnimal() {
+        closeFABMenu()
+        navController.navigate(R.id.addAnimalObsrvFragment,null,navBuilder!!.build())
+    }
+
+    private fun openAddPlant() {
+        closeFABMenu()
+        navController.navigate(R.id.addObservationFragment,null,navBuilder!!.build())
     }
 
 
@@ -187,8 +244,6 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             if (!isFABOpen) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-                setFabClick(binding.fabAnimal)
-                setFabClick(binding.fabPlant)
                 showFABMenu()
             } else {
                 closeFABMenu()
@@ -205,6 +260,10 @@ class MainActivity : AppCompatActivity() {
         binding.fabPlantTxt.visibility = View.VISIBLE
         binding.fabAnimalTxt.visibility = View.VISIBLE
         binding.frame.visibility = View.VISIBLE
+        setFabClick(binding.fabAnimal)
+        setFabClick(binding.fabPlant)
+        setFabClick(binding.fabAnimalTxt)
+        setFabClick(binding.fabPlantTxt)
     }
 
     private fun closeFABMenu() {

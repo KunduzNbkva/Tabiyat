@@ -8,17 +8,31 @@
     android:background="@color/white"
     tools:context=".ui.main.profile.ProfileFragment">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/profile_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
+    <RelativeLayout
+        android:id="@+id/profile_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        app:riv_corner_radius="50dp"
-        android:src="@drawable/acc_avatar" />
+        android:layout_marginTop="20dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/profile_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="50dp"
+            tools:src="@color/gray"  />
+
+        <ProgressBar
+            android:id="@+id/avatar_progress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/profile_name"
@@ -26,14 +40,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_img"
+        app:layout_constraintTop_toBottomOf="@id/profile_avatar"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="120dp"
         android:layout_marginStart="120dp"
         android:textSize="23sp"
         android:textColor="@color/black"
         android:textAlignment="center"
-        android:text="Асенов Усон"
+        android:text="@string/name"
         android:fontFamily="@font/avenir_regular"/>
 
     <Button

@@ -7,16 +7,32 @@
     android:background="@color/white"
     tools:context=".ui.main.profile.AccountFragment">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/account_avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        app:riv_corner_radius="60dp"
-        android:src="@drawable/acc_avatar"
+    <RelativeLayout
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/account_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:riv_corner_radius="70dp"
+            android:scaleType="centerCrop"
+            tools:src="@color/gray" />
+
+        <ProgressBar
+            android:id="@+id/avatar_progress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/account_change_avatar"
@@ -29,7 +45,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
     <TextView
         android:id="@+id/name"
@@ -39,7 +55,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:fontFamily="@font/avenir_regular"
-        android:text="Name"
+        android:text="@string/name"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/account_name"
@@ -55,11 +71,10 @@
         android:layout_marginEnd="15dp"
         android:background="@drawable/edittext_back"
         android:gravity="center_vertical"
-        android:hint="Имя"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         android:maxLines="1"
         android:padding="10dp"
-        android:text="Имя"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +88,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:fontFamily="@font/avenir_regular"
-        android:text="Email"
+        android:text="E-mail"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintTop_toBottomOf="@+id/account_name"
@@ -93,7 +108,6 @@
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="10dp"
-        android:text="user@gmail.com"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,11 +137,10 @@
         android:layout_marginEnd="15dp"
         android:background="@drawable/edittext_back"
         android:gravity="center_vertical"
-        android:hint="@string/prompt_email"
+        android:hint="@string/mobile_number"
         android:inputType="number"
         android:maxLines="1"
         android:padding="10dp"
-        android:text="0701202450"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -158,11 +171,10 @@
         android:layout_marginEnd="15dp"
         android:background="@drawable/edittext_back"
         android:gravity="center_vertical"
-        android:hint="@string/prompt_email"
+        android:hint="@string/address"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="10dp"
-        android:text="@string/address"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

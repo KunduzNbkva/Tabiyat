@@ -8,6 +8,7 @@ import kg.tabiyat.base.loadImage
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Favorite
 import kg.tabiyat.databinding.PlantsListBinding
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 
 class FavoriteAdapter(
     private val itemClickListener: OnDataClickListener

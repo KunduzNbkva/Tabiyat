@@ -1,11 +1,13 @@
-package kg.tabiyat.ui.main.addObservatrion.adapter
+package kg.tabiyat.ui.main.addObservation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.ExListBinding
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
+import kg.tabiyat.ui.main.addAnimalsObservation.adapter.ChoosePlantHolder
 
 class ChoosePlantsAdapter(
     private val itemClickListener: OnDataClickListener

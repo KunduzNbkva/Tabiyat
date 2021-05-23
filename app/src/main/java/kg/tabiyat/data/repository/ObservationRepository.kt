@@ -25,4 +25,19 @@ class ObservationRepository(var api: TabiyatApi) {
             )
         }
     }
+
+    suspend fun postAnimalObservation(postObserve: PostObserve) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            val token = "Bearer ${App.prefs!!.getAuthToken()}"
+            val request = api.postObservation("Bearer $token", postObserve)
+            emit(Resource.success(data = request))
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error"))
+            Log.e(
+                "Error",
+                "postObservation: " + Resource.error(data = null, message = e.message ?: "Error")
+            )
+        }
+    }
 }

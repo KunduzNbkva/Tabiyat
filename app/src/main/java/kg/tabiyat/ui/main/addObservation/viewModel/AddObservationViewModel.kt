@@ -1,4 +1,4 @@
-package kg.tabiyat.ui.main.addObservatrion.viewModel
+package kg.tabiyat.ui.main.addObservation.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

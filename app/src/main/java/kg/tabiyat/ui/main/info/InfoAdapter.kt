@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.base.loadImage
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.InfoListBinding
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 
 class InfoAdapter(private val itemClickListener: OnDataClickListener) :
     RecyclerView.Adapter<InfoHolder>() {

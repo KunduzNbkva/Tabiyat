@@ -1,4 +1,4 @@
-package kg.tabiyat.ui.main.addObservatrion
+package kg.tabiyat.ui.main.addObservation
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
@@ -6,38 +6,36 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import kg.tabiyat.R
+import kg.tabiyat.base.OnDeleteListener
 import kg.tabiyat.base.showToastShort
-import kg.tabiyat.data.model.PostObserve
 import kg.tabiyat.databinding.AddObservationFragmentBinding
-import kg.tabiyat.ui.main.addObservatrion.viewModel.AddObservationViewModel
-import kg.tabiyat.ui.main.addObservatrion.adapter.ImagesAdapter
+import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
+import kg.tabiyat.ui.main.addObservation.adapter.ImagesAdapter
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddObservationFragment : Fragment() {
+class AddObservationFragment : Fragment(), OnDeleteListener {
     private lateinit var binding: AddObservationFragmentBinding
     private val viewModel by inject<AddObservationViewModel>()
     private var calendar: Calendar = Calendar.getInstance()
     private lateinit var imagesAdapter: ImagesAdapter
     private var alertDialog: AlertDialog? = null
     private var type: String = "plants"
-    private val pickObsrvImage = 200
     private var txt: String? = null
-
-    var values = arrayOf<CharSequence>(" First Item ", " Second Item ", " Third Item ")
-
+    private var abundance: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,16 +67,13 @@ class AddObservationFragment : Fragment() {
 
     private fun postObservation() {
         binding.postObservation.setOnClickListener {
-            val postObserve =
-                PostObserve(type, 1, "Комментарий", "42.8746", "74.5698", imagesAdapter.getList())
-            viewModel.postObservation(postObserve)
+//            val postObserve =
+//                PostObserve(type, 1, "Комментарий", "42.8746", "74.5698", imagesAdapter.getList())
+//            viewModel.postObservation(postObserve)
         }
     }
 
     private fun setDataClick() {
-        binding.expansionCategory.setOnClickListener {
-            createAlertDialogWithRadioButtonGroup(binding.addObsrvCategoryTitle)
-        }
         binding.abundanceExList.setOnClickListener {
             createAlertDialogWithRadioButtonGroup(binding.addObsrvAbundanceTitle)
         }
@@ -96,18 +91,22 @@ class AddObservationFragment : Fragment() {
 
     private fun createAlertDialogWithRadioButtonGroup(view: TextView) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Select Your Choice")
+        builder.setTitle(getString(R.string.select))
+        val values = arrayOf<CharSequence>(
+            getString(R.string.seldom_abundance),
+            getString(R.string.normal_abundance),
+            getString(R.string.often_abundance))
 
-        builder.setSingleChoiceItems(values, -1,
-            DialogInterface.OnClickListener { _, item ->
-                when (item) {
-                    0 -> txt = values[0].toString()
-                    1 -> txt = values[1].toString()
-                    2 -> txt = values[2].toString()
-                }
-                view.text = txt
-                alertDialog!!.dismiss()
-            })
+        builder.setSingleChoiceItems(values, -1) { _, item ->
+            when (item) {
+                0 -> txt = values[0].toString()
+                1 -> txt = values[1].toString()
+                2 -> txt = values[2].toString()
+            }
+            view.text = txt
+            abundance = txt
+            alertDialog!!.dismiss()
+        }
         alertDialog = builder.create()
         alertDialog!!.show()
     }
@@ -165,23 +164,21 @@ class AddObservationFragment : Fragment() {
             intent.type = "image/*"
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             intent.action = Intent.ACTION_PICK
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), pickObsrvImage)
+            resultLauncher.launch(Intent.createChooser(intent, getString(R.string.select_picture)))
         }
     }
 
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == pickObsrvImage && resultCode == RESULT_OK && null != data) {
-            if (data.clipData != null) {
-                val mClipData = data.clipData
+    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            if (result.data!!.clipData != null) {
+                val mClipData = result.data!!.clipData
                 val cout = mClipData!!.itemCount
                 for (i in 0 until cout) {
-                    val imageurl = mClipData.getItemAt(i).uri
-                    imagesAdapter.addImage(imageurl)
+                    val imageUrl = mClipData.getItemAt(i).uri
+                    imagesAdapter.addImage(imageUrl)
                 }
             } else {
-                imagesAdapter.addImage(data.data!!)
+                imagesAdapter.addImage(result.data!!.data!!)
             }
         } else {
             requireContext().showToastShort(getString(R.string.you_did_not_choose_pick))
@@ -189,8 +186,13 @@ class AddObservationFragment : Fragment() {
     }
 
 
+
     private fun createImagesRecycler() {
-        imagesAdapter = ImagesAdapter()
+        imagesAdapter = ImagesAdapter(this)
         binding.addObsrvImages.adapter = imagesAdapter
+    }
+
+    override fun onItemClicked(position: Uri) {
+        imagesAdapter.removeImage(position)
     }
 }

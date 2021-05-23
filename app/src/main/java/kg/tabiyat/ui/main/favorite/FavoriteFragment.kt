@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.FavoriteFragmentBinding
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 import kg.tabiyat.ui.main.cardDetail.CardDetailFragment
 import kg.tabiyat.ui.main.favorite.adapter.FavoriteAdapter
 import org.koin.android.ext.android.inject

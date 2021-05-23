@@ -4,49 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.base.ProgressHolder
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.PlantsListBinding
-import kg.tabiyat.databinding.ProgressHolderBinding
 
 class PlantsAdapter(
     private val itemClickListener: OnDataClickListener
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val VIEW_TYPE_ITEM = 0
-    private val VIEW_TYPE_LOADING = 1
-
+) : RecyclerView.Adapter<PlantsHolder>() {
+    //var list = arrayListOf<PlantsEntity>()
     var list = arrayListOf<Datum>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        when (viewType) {
-            VIEW_TYPE_ITEM -> {
-                return PlantsHolder(
-                    PlantsListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-            }
-            VIEW_TYPE_LOADING -> {
-                return ProgressHolder(
-                    ProgressHolderBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-            }
-            else -> return PlantsHolder(
-                PlantsListBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantsHolder {
+        return PlantsHolder(
+            PlantsListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
-        }
+        )
     }
 
     fun addItems(items: List<Datum>) {
@@ -54,28 +29,15 @@ class PlantsAdapter(
         notifyDataSetChanged()
     }
 
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PlantsHolder, position: Int) {
         val item = list[position]
-        if (holder is PlantsHolder) {
-            holder.onBind(item, itemClickListener)
-        } else if (holder is ProgressHolder) {
-            showLoadingView(holder)
-        }
+        holder.onBind(item, itemClickListener)
     }
-
-    private fun showLoadingView(viewHolder: ProgressHolder) {
-        viewHolder.onProgress()
-    }
-
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (list[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
-    }
 }
 
 class PlantsHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -91,5 +53,4 @@ class PlantsHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(binding
     }
 }
 
-//TODO loading view holder make it or take it off
 

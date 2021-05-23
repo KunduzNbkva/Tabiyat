@@ -1,12 +1,13 @@
-package kg.tabiyat.ui.main.addObservatrion.adapter
+package kg.tabiyat.ui.main.addObservation.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kg.tabiyat.base.OnDeleteListener
 import kg.tabiyat.databinding.ListImagesBinding
 
-class ImagesAdapter : RecyclerView.Adapter<ImagesViewHolder>() {
+class ImagesAdapter(private val onClickListener: OnDeleteListener) : RecyclerView.Adapter<ImagesViewHolder>() {
 
     var list = arrayListOf<Uri>()
 
@@ -21,13 +22,18 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(list[position],onClickListener)
     }
 
     override fun getItemCount() = list.size
 
     fun addImage(item: Uri) {
         this.list.add(item)
+        notifyDataSetChanged()
+    }
+
+    fun removeImage(item: Uri) {
+        this.list.remove(item)
         notifyDataSetChanged()
     }
 
@@ -42,7 +48,10 @@ class ImagesViewHolder(binding: ListImagesBinding) : RecyclerView.ViewHolder(bin
 
     val imageView = binding.observationImg
 
-    fun onBind(s: Uri) {
+    fun onBind(s: Uri, listener: OnDeleteListener) {
         imageView.setImageURI(s)
+        itemView.setOnClickListener{
+            listener.onItemClicked(s)
+        }
     }
 }
