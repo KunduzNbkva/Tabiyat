@@ -6,13 +6,15 @@ import kg.tabiyat.auth.RegisterViewModel
 import kg.tabiyat.data.prefs.SharedPref
 import kg.tabiyat.data.remote.RetrofitClient.provideApi
 import kg.tabiyat.data.repository.*
-import kg.tabiyat.db.AppDatabase
-import kg.tabiyat.ui.main.addObservatrion.viewModel.AddObservationViewModel
-import kg.tabiyat.ui.main.addObservatrion.viewModel.ChoosePlantViewModel
+import kg.tabiyat.data.local.db.AppDatabase
+import kg.tabiyat.ui.main.addAnimalsObservation.viewModel.AddAnimalObservationViewModel
+import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
+import kg.tabiyat.ui.main.addAnimalsObservation.viewModel.ChooseAnimalViewModel
 import kg.tabiyat.ui.main.animals.AnimalsViewModel
 import kg.tabiyat.ui.main.cardDetail.CardDetailViewModel
 import kg.tabiyat.ui.main.favorite.FavoriteViewModel
 import kg.tabiyat.ui.main.info.InfoViewModel
+import kg.tabiyat.ui.main.news.NewsViewModel
 import kg.tabiyat.ui.main.plants.PlantsViewModel
 import kg.tabiyat.ui.main.profile.viewModels.AccountViewModel
 import kg.tabiyat.ui.main.profile.viewModels.ProfileViewModel
@@ -29,23 +31,25 @@ val viewModelModule = module {
     viewModel { InfoViewModel(get(), get()) }
     viewModel { CardDetailViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
-    viewModel { ChoosePlantViewModel(get()) }
+    viewModel { ChooseAnimalViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { AddObservationViewModel(get()) }
     viewModel { ProjectInfoViewModel(get()) }
     viewModel { AccountViewModel(get()) }
-
-
+    viewModel { AddAnimalObservationViewModel(get()) }
+    viewModel { NewsViewModel(get()) }
 }
 var repositoryModule = module {
     factory { AuthRepository(get()) }
     factory { PlantsRepository(get(), get()) }
-    factory { AnimalsRepository(get()) }
+    factory { AnimalsRepository(get(),get()) }
     factory { InfoRepository(get()) }
     factory { FavoriteRepository(get()) }
     factory { ProfileRepository(get()) }
     factory { ObservationRepository(get()) }
     factory { AboutRepository(get()) }
+    factory { NewsRepository(get()) }
+
 }
 var networkModule = module {
     single { provideApi() }

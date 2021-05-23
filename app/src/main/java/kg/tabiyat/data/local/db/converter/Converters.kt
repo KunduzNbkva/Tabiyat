@@ -1,18 +1,14 @@
-package kg.tabiyat.db.converter
+package kg.tabiyat.data.local.db.converter
 
 import androidx.room.TypeConverter
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kg.tabiyat.data.model.Description
 import kg.tabiyat.data.model.FavoriteModel
 import kg.tabiyat.data.model.Name
-import kg.tabiyat.db.entity.Abundance
-import kg.tabiyat.db.entity.PlantsEntity
-import java.lang.reflect.Type
+import kg.tabiyat.data.local.db.entity.Abundance
 
 
 class Converters {

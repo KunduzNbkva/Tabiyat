@@ -2,10 +2,9 @@ package kg.tabiyat
 
 import android.app.Application
 import androidx.core.app.NotificationManagerCompat
-import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import kg.tabiyat.data.prefs.SharedPref
-import kg.tabiyat.db.AppDatabase
+import kg.tabiyat.data.local.db.AppDatabase
 import kg.tabiyat.di.*
 import kg.tabiyat.notification.NotificationChannelBuilder
 import org.koin.android.ext.koin.androidContext

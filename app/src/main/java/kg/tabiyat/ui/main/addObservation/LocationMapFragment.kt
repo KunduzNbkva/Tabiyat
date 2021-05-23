@@ -1,4 +1,4 @@
-package kg.tabiyat.ui.main.addObservatrion
+package kg.tabiyat.ui.main.addObservation
 
 import android.Manifest
 import android.content.pm.PackageManager

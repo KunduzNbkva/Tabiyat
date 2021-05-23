@@ -1,4 +1,4 @@
-package kg.tabiyat.db.entity
+package kg.tabiyat.data.local.db.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 

@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.PlantsFragmentBinding
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
 class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
@@ -36,7 +36,7 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadData()
-        observePlants()
+        //observePlants()
         viewModel.resetPage()
         setRecycler()
         setProgress()
@@ -61,17 +61,17 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
 
     private fun loadData() {
         viewModel.getPlantsList()
-        Toast.makeText(requireContext(), "loadData()", Toast.LENGTH_SHORT).show()
+       // Toast.makeText(requireContext(), "loadData()", Toast.LENGTH_SHORT).show()
     }
 
-    private fun observePlants() {
-        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), "size - ${it.size}", Toast.LENGTH_SHORT).show()
-            adapter.addItems(it)
-        }
-    }
+//    private fun observePlants() {
+//        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
+//            Toast.makeText(requireContext(), "size - ${it.size}", Toast.LENGTH_SHORT).show()
+//            adapter.addItems(it)
+//        }
+//    }
 
-    override fun onItemClicked(model: PlantsEntity) {
+    override fun onItemClicked(model: Datum) {
         val bundle = Bundle()
         model.let {
             bundle.putSerializable("model", it)

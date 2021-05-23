@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import kg.tabiyat.data.model.Resource
 import kg.tabiyat.data.remote.TabiyatApi
-import kg.tabiyat.db.AppDatabase
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.AppDatabase
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kotlinx.coroutines.Dispatchers
 
 class PlantsRepository(var api: TabiyatApi, var db: AppDatabase) {

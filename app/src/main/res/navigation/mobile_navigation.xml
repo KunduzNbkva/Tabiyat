@@ -78,6 +78,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_tabiyat_to_newsFragment"
+            app:destination="@id/newsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -221,8 +228,8 @@
         tools:layout="@layout/rating_fragment" />
     <fragment
         android:id="@+id/addObservationFragment"
-        android:name="kg.tabiyat.ui.main.addObservatrion.AddObservationFragment"
-        android:label="Наблюдения растения"
+        android:name="kg.tabiyat.ui.main.addObservation.AddObservationFragment"
+        android:label="@string/plants_observation"
         tools:layout="@layout/add_observation_fragment" >
         <action
             android:id="@+id/action_addObservationFragment_to_choosePlantFragment"
@@ -245,7 +252,7 @@
     <fragment
         android:id="@+id/animalsFragment"
         android:name="kg.tabiyat.ui.main.animals.AnimalsFragment"
-        android:label="Животные" >
+        android:label="@string/animals" >
         <action
             android:id="@+id/action_animalsFragment_to_plantsDetailFragment"
             app:destination="@id/cardDetailFragment"
@@ -257,7 +264,7 @@
     <fragment
         android:id="@+id/infoFragment"
         android:name="kg.tabiyat.ui.main.info.InfoFragment"
-        android:label="Полезная информаци" >
+        android:label="@string/useful_info" >
         <action
             android:id="@+id/action_infoFragment_to_plantsDetailFragment"
             app:destination="@id/cardDetailFragment"
@@ -268,7 +275,7 @@
     </fragment>
     <fragment
         android:id="@+id/choosePlantFragment"
-        android:name="kg.tabiyat.ui.main.addObservatrion.ChoosePlantFragment"
+        android:name="kg.tabiyat.ui.main.addAnimalsObservation.ChooseAnimalFragment"
         android:label="@string/choose_plant"
         tools:layout="@layout/fragment_choose_plant" >
         <action
@@ -281,16 +288,44 @@
     </fragment>
     <fragment
         android:id="@+id/locationMapFragment"
-        android:name="kg.tabiyat.ui.main.addObservatrion.LocationMapFragment"
-        android:label="Ваше местоположение"
+        android:name="kg.tabiyat.ui.main.addObservation.LocationMapFragment"
+        android:label="@string/your_location"
         tools:layout="@layout/fragment_location_map"
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"/>
+
     <fragment
-        android:id="@+id/favoriteDetailFragment"
-        android:name="kg.tabiyat.ui.main.favoriteDetail.FavoriteDetailFragment"
-        android:label="@string/liked" />
+        android:id="@+id/addAnimalObsrvFragment"
+        android:name="kg.tabiyat.ui.main.addAnimalsObservation.AddAnimalObservationFragment"
+        android:label="@string/animal_observation"
+        tools:layout="@layout/fragment_add_animals_observation"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right">
+        <action
+            android:id="@+id/action_addAnimalObsrvFragment_to_chooseAnimalFragment"
+            app:destination="@id/chooseAnimalFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/chooseAnimalFragment"
+        android:name="kg.tabiyat.ui.main.addAnimalsObservation.ChooseAnimalFragment"
+        android:label="@string/choose_animal"
+        tools:layout="@layout/fragment_choose_animal"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="kg.tabiyat.ui.main.news.NewsFragment"
+        android:label="Новости"
+        tools:layout="@layout/news_fragment" />
 
 </navigation>

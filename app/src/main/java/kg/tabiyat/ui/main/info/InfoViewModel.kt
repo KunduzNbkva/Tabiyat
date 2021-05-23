@@ -8,7 +8,7 @@ import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Status
 import kg.tabiyat.data.repository.InfoRepository
 import kg.tabiyat.data.repository.PlantsRepository
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kotlinx.coroutines.launch
 
 class InfoViewModel(private var repository: InfoRepository, var plantsRepository: PlantsRepository) : ViewModel() {
@@ -16,7 +16,7 @@ class InfoViewModel(private var repository: InfoRepository, var plantsRepository
     private var page = 0
     private var hasNext = true
 
-    fun getAnimalsList() {
+    fun getInfoList() {
         if (!hasNext) return
         viewModelScope.launch {
             repository.getInfoList(page).observeForever {

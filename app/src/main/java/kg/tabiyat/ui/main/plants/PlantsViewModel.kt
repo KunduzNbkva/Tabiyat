@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Status
 import kg.tabiyat.data.repository.PlantsRepository
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kotlinx.coroutines.launch
 
 class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewModel() {
@@ -36,9 +36,9 @@ class PlantsViewModel(private val plantsRepository: PlantsRepository) : ViewMode
         }
     }
 
-    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
-        return plantsRepository.getLocalPlantsList()
-    }
+//    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
+//        return plantsRepository.getLocalPlantsList()
+//    }
 
     fun resetPage() {
         page = 0

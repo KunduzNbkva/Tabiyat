@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun changePage() {
         val text = ("У вас уже есть аккаунт? Войти").toSpannable()
-        text[24..29] = object : ClickableSpan() {
+        text[25..30] = object : ClickableSpan() {
             override fun onClick(view: View) {
                 openNewPage(MainActivity())
             }

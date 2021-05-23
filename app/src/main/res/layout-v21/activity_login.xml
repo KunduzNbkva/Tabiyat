@@ -119,50 +119,21 @@
         android:text="Или"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintBottom_toTopOf="@+id/gmail"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/facebook"
-        style="@style/ButtonStyle"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="40dp"
-        android:padding="2dp"
-        android:stateListAnimator="@null"
-        android:text="@string/facebook"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:backgroundTint="@color/ivory_color"
-        app:icon="@drawable/ic_fb"
-        app:iconGravity="textStart"
-        app:iconTint="#1877F2"
-        app:layout_constraintBottom_toTopOf="@+id/txt_register"
-        app:layout_constraintStart_toStartOf="parent" />
-
-<!--    <com.google.android.gms.common.SignInButton-->
-<!--        android:id="@+id/sign_in_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:icon="@drawable/ic_gmail"-->
-<!--        app:backgroundTint="@color/ivory_color"-->
-<!--        style="@style/ButtonStyle"-->
-
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/txt_register" />-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gmail"
         style="@style/ButtonStyle"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:padding="2dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginBottom="40dp"
+        android:padding="2dp"
         android:stateListAnimator="@null"
         android:text="@string/g_mail"
         android:textAllCaps="false"
@@ -171,8 +142,9 @@
         app:icon="@drawable/ic_gmail"
         app:iconGravity="textStart"
         app:iconTint="#D14836"
+        app:layout_constraintBottom_toTopOf="@+id/txt_register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txt_register" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ProgressBar
         android:id="@+id/loading_progress"

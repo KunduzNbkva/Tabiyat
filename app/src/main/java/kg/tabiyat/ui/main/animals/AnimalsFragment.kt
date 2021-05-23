@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
 import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.AnimalsFragmentBinding
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
 class AnimalsFragment() : BaseFragment<AnimalsFragmentBinding>(AnimalsFragmentBinding::inflate),
@@ -61,7 +61,7 @@ class AnimalsFragment() : BaseFragment<AnimalsFragmentBinding>(AnimalsFragmentBi
         } else binding.searchCardView.visibility = View.VISIBLE
     }
 
-    override fun onItemClicked(model: PlantsEntity) {
+    override fun onItemClicked(model: Datum) {
         val bundle = Bundle()
         model.let {
             bundle.putSerializable("model", it)

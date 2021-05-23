@@ -8,7 +8,7 @@ import kg.tabiyat.base.loadImage
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.Favorite
 import kg.tabiyat.databinding.PlantsListBinding
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 
 class FavoriteAdapter(
     private val itemClickListener: OnDataClickListener
@@ -50,7 +50,7 @@ class FavoriteViewHolder(binding: PlantsListBinding) : RecyclerView.ViewHolder(b
     private val favoriteTitle = binding.plantTitleList
     private var favoriteDep = binding.plantDepartmentList
     private val favoriteImg = binding.plantImgList
-    fun onBind(favorite: PlantsEntity, itemClickListener: OnDataClickListener) {
+    fun onBind(favorite: Datum, itemClickListener: OnDataClickListener) {
         favoriteTitle.text = favorite.name!!.ru
         favoriteDep.text = favorite.genusId.toString()
         favoriteImg.loadImage(favorite.urlPick.toString())

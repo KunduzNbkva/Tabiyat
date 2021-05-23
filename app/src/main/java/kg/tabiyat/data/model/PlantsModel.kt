@@ -2,7 +2,7 @@ package kg.tabiyat.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 import java.io.Serializable
 
 

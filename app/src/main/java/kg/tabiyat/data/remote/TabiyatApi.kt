@@ -77,4 +77,8 @@ interface TabiyatApi {
     suspend fun getAboutProject(): AboutModel
 
 
+    @GET("api/v1/news")
+    suspend fun getNewsList(@Query("page") page: Int): NewsModel
+
+
 }

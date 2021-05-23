@@ -1,11 +1,11 @@
-package kg.tabiyat.db
+package kg.tabiyat.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import kg.tabiyat.db.converter.Converters
-import kg.tabiyat.db.dao.MainDao
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.converter.Converters
+import kg.tabiyat.data.local.db.dao.MainDao
+import kg.tabiyat.data.local.db.entity.PlantsEntity
 
 @TypeConverters(Converters::class)
 @Database(

@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
 import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.InfoFragmentBinding
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
 class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::inflate),
@@ -29,12 +29,12 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
 
     override fun observeData() {
         super.observeData()
-        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
-            adapter.addItems(it)
-        }
-//        viewModel.infoList.observe(viewLifecycleOwner, {
+//        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
 //            adapter.addItems(it)
-//        })
+//        }
+        viewModel.infoList.observe(viewLifecycleOwner, {
+            adapter.addItems(it)
+        })
     }
 
     private fun setRecycler() {
@@ -53,7 +53,7 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
     }
 
     private fun loadData() {
-        viewModel.getAnimalsList()
+        viewModel.getInfoList()
     }
 
     override fun onClick(v: View?) {
@@ -63,7 +63,7 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
         } else binding.searchCardView.visibility = View.VISIBLE
     }
 
-    override fun onItemClicked(model: PlantsEntity) {
+    override fun onItemClicked(model: Datum) {
         val bundle = Bundle()
         model.let {
             bundle.putSerializable("model", it)

@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
 import kg.tabiyat.base.OnDataClickListener
-import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.FavoriteFragmentBinding
-import kg.tabiyat.db.entity.PlantsEntity
+import kg.tabiyat.data.local.db.entity.PlantsEntity
+import kg.tabiyat.data.model.Datum
 import kg.tabiyat.ui.main.cardDetail.CardDetailFragment
 import kg.tabiyat.ui.main.favorite.adapter.FavoriteAdapter
 import org.koin.android.ext.android.inject
@@ -55,7 +55,7 @@ class FavoriteFragment : Fragment(), OnDataClickListener {
     }
 
 
-    override fun onItemClicked(model: PlantsEntity) {
+    override fun onItemClicked(model: Datum) {
             val bundle = Bundle()
             bundle.putSerializable(CardDetailFragment.FAV_MODEL_KEY, model)
             bundle.putInt("favoritable_id",favoritableId!!)

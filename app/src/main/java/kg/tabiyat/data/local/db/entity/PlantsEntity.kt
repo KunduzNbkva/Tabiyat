@@ -1,10 +1,7 @@
-package kg.tabiyat.db.entity
+package kg.tabiyat.data.local.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.RoomDatabase
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import kg.tabiyat.data.model.Description
 import kg.tabiyat.data.model.Name
 import java.io.Serializable

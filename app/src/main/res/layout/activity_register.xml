@@ -46,6 +46,7 @@
         android:orientation="vertical"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/secondary_register_txt">
@@ -165,7 +166,7 @@
     <Button
         android:id="@+id/signup_btn"
         style="@style/ButtonStyle"
-        android:layout_marginTop = "10dp"
+        android:layout_marginTop ="20dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
         android:layout_width="match_parent"

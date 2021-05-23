@@ -32,9 +32,10 @@ class TabiyatFragment : Fragment(), OnMainCardClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val list = arrayListOf(
-            ListModel(R.drawable.plants, "Растения", ""),
-            ListModel(R.drawable.animals, "Животные", ""),
-            ListModel(R.drawable.info_notes, "Полезная информация", "")
+            ListModel(R.drawable.plants, getString(R.string.plants), ""),
+            ListModel(R.drawable.animals,  getString(R.string.animals), ""),
+            ListModel(R.drawable.info_notes,  getString(R.string.useful_info), ""),
+            ListModel(R.drawable.news, getString(R.string.news), "")
         )
         adapter = MainListAdapter(list, this)
         binding.mainList.layoutManager = LinearLayoutManager(requireContext())
@@ -59,6 +60,12 @@ class TabiyatFragment : Fragment(), OnMainCardClickListener {
                 view?.let {
                     Navigation.findNavController(it)
                         .navigate(R.id.action_navigation_tabiyat_to_infoFragment)
+                }
+            }
+            3 -> {
+                view?.let{
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_navigation_tabiyat_to_newsFragment)
                 }
             }
         }

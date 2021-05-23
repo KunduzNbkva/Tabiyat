@@ -14,42 +14,45 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.set
 import androidx.core.text.toSpannable
-import kg.tabiyat.base.showToastShort
-import kg.tabiyat.data.model.LoginModel
-import kg.tabiyat.data.model.Status
-import kg.tabiyat.ui.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import kg.tabiyat.R
+import kg.tabiyat.R.*
+import kg.tabiyat.base.showToastShort
+import kg.tabiyat.data.model.LoginModel
+import kg.tabiyat.data.model.Status
 import kg.tabiyat.databinding.ActivityLoginBinding
+import kg.tabiyat.ui.main.MainActivity
 import org.koin.android.ext.android.inject
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel by inject<LoginViewModel>()
     private var mGoogleSignInClient: GoogleSignInClient? = null
-    private val RC_SIGN_IN = 1
+    private var personName: String? = null
+    private var personEmail: String? = null
+    private var personId: String? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        createGmailUser()
         observeProcess()
         checkForNull()
         changePage()
-        observeUser()
         enterToApp()
-        createGmailUser()
         signInBtn()
-
     }
 
     private fun changePage() {
-        val text = (getString(R.string.no_acc_register)).toSpannable()
+        val text = (getString(string.no_acc_register)).toSpannable()
         text[23..34] = object : ClickableSpan() {
             override fun onClick(view: View) {
                 openRegisterPage()
@@ -67,13 +70,6 @@ class LoginActivity : AppCompatActivity() {
     private fun openMainPage() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
-    }
-
-
-    private fun observeUser() {
-        viewModel.user.observe(this, {
-
-        })
     }
 
     private fun enterToApp() {
@@ -124,11 +120,11 @@ class LoginActivity : AppCompatActivity() {
         viewModel.status.observe(this, {
             when (it) {
                 Status.SUCCESS -> {
-                    this.showToastShort(getString(R.string.success_login))
+                    this.showToastShort(getString(string.success_login))
                     openMainPage()
                 }
                 Status.LOADING -> binding.loadingProgress.visibility = View.VISIBLE
-                else -> this.showToastShort(getString(R.string.error_occurred))
+                else -> this.showToastShort(getString(string.error_occurred))
             }
         })
     }
@@ -136,8 +132,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
-
         if (account != null) {
+            this.showToastShort(getString(R.string.successfully))
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -145,23 +141,27 @@ class LoginActivity : AppCompatActivity() {
 
     private var loginResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            // There are no request codes
             val data: Intent? = result.data
-            val task =
+            val task: Task<GoogleSignInAccount> =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
-            } catch (e: ApiException) {
-                // The ApiException status code indicates the detailed failure reason.
-                // Please refer to the GoogleSignInStatusCodes class reference for more information.
-                Log.e("TAG", "signInResult:failed code=" + e.statusCode)
-            }
+            handleSignInResult(task)
         }
+    }
+
+    private fun handleSignInResult(task: Task<GoogleSignInAccount>) {
+        try {
+            val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
+            // Signed in successfully, show authenticated UI.
+            viewModel.createGmailUser("gmail",account.email)
+            this.showToastShort(getString(string.successfully))
+            Log.e("signIn","signInResult is success")
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("signIn", "signInResult:failed code=" + e.statusCode)
+            this.showToastShort(getString(string.error_occurred))
+        }
+
     }
 
     private fun signInBtn() {
@@ -174,28 +174,11 @@ class LoginActivity : AppCompatActivity() {
     private fun createGmailUser() {
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(string.server_client_id))
                 .requestEmail()
+                .requestProfile()
                 .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        val acct = GoogleSignIn.getLastSignedInAccount(this)
-
-        if (acct != null) {
-            val personName = acct.displayName
-            // person_name.setText(personName)
-            Log.e("Gmail", "name is ${personName}")
-            val personEmail = acct.email
-            // person_email.setText(personEmail)
-            Log.e("Gmail", "email is ${personEmail}")
-
-            val personId = acct.id
-            // person_id.setText(personId)
-            Log.e("Gmail", "id is ${personId}")
-
-            // val signUpModel = SignUpModel("gmail","")
-            viewModel.createGmailUser("gmail", personEmail.toString())
-
-        }
     }
 
 }

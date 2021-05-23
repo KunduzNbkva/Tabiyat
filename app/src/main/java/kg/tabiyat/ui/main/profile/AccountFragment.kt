@@ -22,7 +22,6 @@ import kg.tabiyat.base.loadImage
 import kg.tabiyat.base.showToastShort
 import kg.tabiyat.data.model.Customer
 import kg.tabiyat.databinding.AccountFragmentBinding
-import kg.tabiyat.ui.main.map.MapsFragment
 import kg.tabiyat.ui.main.profile.viewModels.AccountViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
