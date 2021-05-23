@@ -10,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.Navigation
-import kg.tabiyat.R
-import kg.tabiyat.databinding.FragmentMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,11 +23,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kg.tabiyat.R
+import kg.tabiyat.data.model.MapObservationModel
+import kg.tabiyat.databinding.FragmentLocationMapBinding
 
 
-class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickListener {
-    private lateinit var binding: FragmentMapsBinding
-    private var clickCounter: Int = 0
+class LocationMapFragment : Fragment() {
+    private lateinit var binding: FragmentLocationMapBinding
 
     private var locationPermissionGranted = false
     private var map: GoogleMap? = null
@@ -35,6 +37,7 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val bishkek = LatLng(42.8746, 74.5698)
     private val defaultLocation = bishkek
+    private var observationMapData: MapObservationModel? = null
 
     private var userLocation: LatLng? = null
 
@@ -46,26 +49,24 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
         getDeviceLocation()
 
         val bishkek = LatLng(42.8746, 74.5698)
-        googleMap.addMarker(MarkerOptions().position(bishkek))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek, 8f))
 
-        googleMap.setOnMarkerClickListener(this)
+
     }
 
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMapsBinding.inflate(inflater, container, false)
+        binding = FragmentLocationMapBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMap()
-        onDataClick()
-        binding.mapButtonSort.setOnClickListener(this)
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
     }
@@ -73,40 +74,14 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
 
     private fun setMap() {
         val mapFragment =
-            childFragmentManager.findFragmentById(R.id.map_location) as SupportMapFragment?
+            childFragmentManager.findFragmentById(R.id.map_add_obsrv) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
         Log.e("Map", "callback$callback")
     }
 
-    private fun onDataClick() {
-        binding.mapCardView.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_navigation_map_to_cardObservationFragment)
-        }
-    }
 
 
-    override fun onClick(v: View?) {
-        clickCounter++
-        if (clickCounter % 2 == 0) {
-            binding.mapCardView.visibility = View.VISIBLE
-            binding.mapSortView.sortMap.visibility = View.GONE
-        } else {
-            binding.mapCardView.visibility = View.GONE
-            binding.mapSortView.sortMap.visibility = View.VISIBLE
-        }
-    }
-
-    override fun onMarkerClick(marker: Marker): Boolean {
-        clickCounter++
-        if (clickCounter % 2 == 0) {
-            binding.mapCardView.visibility = View.VISIBLE
-        } else {
-            binding.mapCardView.visibility = View.GONE
-        }
-        return false
-    }
 
     // ----- location
 
@@ -149,7 +124,7 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
             return
         }
         try {
-            if (locationPermissionGranted) {
+            if (!locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
             } else {
@@ -208,6 +183,8 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
                                 lastKnownLocation!!.latitude,
                                 lastKnownLocation!!.longitude
                             )
+
+
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
@@ -225,8 +202,26 @@ class LocationMapFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarker
         }
     }
 
-
+    private fun getData(){
+        observationMapData = MapObservationModel(
+            LatLng(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude),
+            lastKnownLocation!!.altitude,
+            lastKnownLocation!!.accuracy
+        )
+        Log.e("Map", "ObservationMapData $observationMapData")
+        if (observationMapData != null) {
+            view?.let {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_accountFragment_to_navigation_profile)
+            }
+            setFragmentResult(
+                "mapData_key",
+                bundleOf("mapBundle_key" to observationMapData)
+            )
+        }
+    }
 }
+
 
 
 

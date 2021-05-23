@@ -1,7 +1,9 @@
 package kg.tabiyat.auth
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -21,7 +23,9 @@ import kg.tabiyat.data.model.Status
 import kg.tabiyat.databinding.ActivityRegisterBinding
 import kg.tabiyat.ui.main.MainActivity
 import com.google.android.material.textfield.TextInputEditText
+import kg.tabiyat.App
 import org.koin.android.ext.android.inject
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -122,15 +126,45 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun languageSwitch(): String {
+    private fun languageSwitch(){
         binding.switchView.setOnCheckedChangeListener { _, checkedId ->
-            lang = when (checkedId) {
-                R.id.ru_lang -> "ru"
-                R.id.kg_lang -> "kg"
-                else -> "ru"
+            when (checkedId) {
+                R.id.ru_lang -> {
+                    setLocale("ru")
+                    lang = "ru"
+                }
+                R.id.kg_lang -> {
+                    setLocale("ky")
+                    lang = "ky"
+                }
+                else -> lang = "ru"
+
             }
         }
-        return lang
+    }
+
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        applicationContext.resources.updateConfiguration(
+            config,
+            applicationContext.resources.displayMetrics
+        )
+        App.prefs!!.saveLang(lang)
+    }
+
+    override fun onResume() {
+        loadLocaleLang()
+        super.onResume()
+    }
+
+    private fun loadLocaleLang() {
+        val language: String = App.prefs!!.lanquage!!
+        if (language != null) {
+            setLocale(language)
+        }
     }
 
     private fun signUp() {
