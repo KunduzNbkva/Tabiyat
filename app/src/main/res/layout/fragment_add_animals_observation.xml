@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addObsrv_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="5dp"
+    tools:context=".ui.main.addAnimalsObservation.AddAnimalObservationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/addObsrv_animal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndicator"
+            app:expansion_toggleOnClick="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!-- HEADER -->
+            <!-- HEADER INDICATOR -->
+            <TextView
+                android:id="@+id/addObsrv_plant_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/choose_animal"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/headerIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/worry_ex_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndica"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addObsrv_animal">
+            <!-- HEADER -->
+            <TextView
+                android:id="@+id/addObsrv_worry_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/factor_of_worry"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <!-- HEADER INDICATOR -->
+            <ImageView
+                android:id="@+id/headerIndica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
+
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/compass_ex_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/find_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:expansion_headerIndicator="@id/headerIndic"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/worry_ex_list">
+            <!-- HEADER -->
+            <TextView
+                android:id="@+id/compass_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="15dp"
+                android:text="@string/compass"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <!-- HEADER INDICATOR -->
+            <ImageView
+                android:id="@+id/headerIndic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                tools:ignore="ContentDescription" />
+
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+
+
+        <TextView
+            android:id="@+id/time_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenir_regular"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/compass_ex_list" />
+
+        <TextView
+            android:id="@+id/addObsrv_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="210dp"
+            android:background="@drawable/edittext_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/_23_00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_txt" />
+
+        <TextView
+            android:id="@+id/date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/date_time"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/addObsrv_date"
+            app:layout_constraintStart_toStartOf="@id/addObsrv_date"
+            app:layout_constraintTop_toBottomOf="@id/compass_ex_list" />
+
+        <TextView
+            android:id="@+id/addObsrv_date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edittext_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/date"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_txt" />
+
+        <TextView
+            android:id="@+id/azimuth_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenir_regular"
+            android:text="@string/azimuth"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addObsrv_time" />
+
+        <TextView
+            android:id="@+id/addObsrv_azimuth"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="210dp"
+            android:background="@drawable/edittext_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="%"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/azimuth_txt" />
+
+        <TextView
+            android:id="@+id/distance_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/distance"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/addObsrv_date"
+            app:layout_constraintStart_toStartOf="@id/addObsrv_distance"
+            app:layout_constraintTop_toBottomOf="@id/addObsrv_distance" />
+
+        <TextView
+            android:id="@+id/addObsrv_distance"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edittext_back"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="км"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distance_txt" />
+
+        <RelativeLayout
+            android:id="@+id/addAnimaslObsrv_map_update"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addObsrv_azimuth">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mask_group"
+                app:riv_corner_radius="10dp" />
+
+            <Button
+                android:id="@+id/addObsrv_location"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/button_map_bg"
+                android:fontFamily="@font/avenir_regular"
+                android:padding="2dp"
+                android:text="@string/update_map"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/comments_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/comments"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addAnimaslObsrv_map_update" />
+
+        <EditText
+            android:id="@+id/addAnimalObsrv_comments"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/edittext_back"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comments_txt" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addAnimalObsrv_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAnimalObsrv_comments"
+            tools:listitem="@layout/list_images" />
+
+        <Button
+            android:id="@+id/addAnimalObsrv_addImg_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/button_add_img"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/add_image_observation"
+            android:textColor="@color/green_main"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAnimalObsrv_images" />
+
+        <Button
+            android:id="@+id/post_animal_observation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_btn_background"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAnimalObsrv_addImg_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
