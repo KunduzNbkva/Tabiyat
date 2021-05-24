@@ -21,8 +21,8 @@ class ChooseAnimalViewModel(private val animalsRepository: AnimalsRepository): V
                 when (it.status) {
                     Status.SUCCESS -> {
                         val list = it.data!!.data!!.plants!!.data!!
-//                        plantsList.postValue(list)
-                        animalsRepository.db.mainDao().insertPlantsList(list)
+                        animalsList.postValue(list)
+                      //  animalsRepository.db.mainDao().insertPlantsList(list)
                         page++
                         if (list.size < 20) hasNext=false
                     }

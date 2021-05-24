@@ -22,8 +22,8 @@ class InfoViewModel(private var repository: InfoRepository, var plantsRepository
             repository.getInfoList(page).observeForever {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        val list = it.data!!.data!!.plants!!.data!!
-//                        infoList.postValue(list)
+                        val list = it.data!!.data!!.plants!!.data
+                        infoList.postValue(list)
                         page++
                         if (list.size < 20) hasNext = false
                     }
@@ -34,9 +34,9 @@ class InfoViewModel(private var repository: InfoRepository, var plantsRepository
         }
     }
 
-    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
-        return plantsRepository.getLocalPlantsList()
-    }
+//    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
+//        return plantsRepository.getLocalPlantsList()
+//    }
 
     fun resetPage() {
         page = 0

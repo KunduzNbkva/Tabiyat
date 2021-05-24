@@ -1,5 +1,6 @@
 package kg.tabiyat.ui.main.addObservation
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
@@ -7,32 +8,34 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.Navigation
 import kg.tabiyat.R
-import kg.tabiyat.base.OnDeleteListener
-import kg.tabiyat.base.showToastShort
+import kg.tabiyat.base.*
+import kg.tabiyat.data.model.Datum
 import kg.tabiyat.data.model.MapObservationModel
+import kg.tabiyat.data.model.PostObserve
 import kg.tabiyat.databinding.AddObservationFragmentBinding
-import kg.tabiyat.ui.main.addAnimalsObservation.AddAnimalObservationFragment
 import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
 import kg.tabiyat.ui.main.addObservation.adapter.ImagesAdapter
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import org.koin.android.ext.android.inject
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddObservationFragment : Fragment(), OnDeleteListener {
-    private lateinit var binding: AddObservationFragmentBinding
+class AddObservationFragment : BaseFragment<AddObservationFragmentBinding>(AddObservationFragmentBinding::inflate), OnDeleteListener {
     private val viewModel by inject<AddObservationViewModel>()
     private var calendar: Calendar = Calendar.getInstance()
     private lateinit var imagesAdapter: ImagesAdapter
@@ -40,37 +43,53 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
     private var type: String = "plants"
     private var txt: String? = null
     private var abundance: String? = null
+    private var galleryPermissionGranted = false
+    private var bodyList = arrayListOf<MultipartBody.Part>()
+    private lateinit var file: File
+    private var  observationableId :Int? = null
+    private var body:MultipartBody.Part? =null
+    private var mapData:MapObservationModel? =null
+    private var abundanceId: Int? = null
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = AddObservationFragmentBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
+    override fun setUpViews() {
+        super.setUpViews()
         addImage()
         setPlantChooseClick()
-        getPlantData(binding.addObsrvPlantTitle)
         setDataClick()
         getTime(binding.addObsrvTime, requireContext())
         getDate(binding.addObsrvDate, requireContext())
         postObservation()
         createImagesRecycler()
-        setFragmentListener()
+        setMapFragmentListener()
+        setPlantFragmentListener()
+        getGalleryPermission()
     }
 
-    private fun setFragmentListener() {
+    override fun observeData() {
+        super.observeData()
+        observeViewModel()
+    }
+
+
+    private fun setMapFragmentListener() {
         setFragmentResultListener("mapData_key") { requestKey, bundle ->
-            val mapData = bundle.getSerializable("mapBundle_key") as MapObservationModel
+            mapData = bundle.getSerializable("mapBundle_key") as MapObservationModel
             Log.e(
-                "Map", "mapData's accuracy is ${mapData.accuracy}," +
-                        "latLng is ${mapData.latLng}," +
-                        "altitude is ${mapData.altitude}"
+                "Map", "mapData's accuracy is ${mapData!!.accuracy}," +
+                        "latLng is ${mapData!!.latLng}," +
+                        "altitude is ${mapData!!.altitude}"
+            )
+        }
+    }
+
+    private fun setPlantFragmentListener(){
+        setFragmentResultListener("plantData_key") { requestKey, bundle ->
+            val plantData = bundle.getSerializable("model_name") as Datum
+            observationableId = plantData.id!!
+            binding.addObsrvPlantTitle.text = plantData.name!!.ru
+            Log.e(
+                "Plant", "plantData's  is ${plantData.id},"
             )
         }
     }
@@ -84,9 +103,21 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
 
     private fun postObservation() {
         binding.postObservation.setOnClickListener {
-//            val postObserve =
-//                PostObserve(type, 1, "Комментарий", "42.8746", "74.5698", imagesAdapter.getList())
-//            viewModel.postObservation(postObserve)
+            val postObserve = PostObserve(
+                type,
+                observationableId,
+                binding.addObsrvComments.text.toString() ,
+                "42.8746",
+                "74.5698",
+//                mapData!!.altitude,
+                800.0,
+               // mapData!!.accuracy,
+                80f,
+                abundanceId,
+//                bodyList as List<MultipartBody.Part>
+            null
+            )
+            viewModel.postObservation(postObserve)
         }
     }
 
@@ -102,7 +133,7 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
     private fun getLocationData() {
         view.let {
             Navigation.findNavController(it!!)
-                .navigate(R.id.action_addObservationFragment_to_mapsActivityCurrentPlace)
+                .navigate(R.id.action_addObservationFragment_to_locationMapFragment)
         }
     }
 
@@ -116,9 +147,18 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
 
         builder.setSingleChoiceItems(values, -1) { _, item ->
             when (item) {
-                0 -> txt = values[0].toString()
-                1 -> txt = values[1].toString()
-                2 -> txt = values[2].toString()
+                0 -> {
+                    txt = values[0].toString()
+                    abundanceId = 0
+                }
+                1 -> {
+                    txt = values[1].toString()
+                    abundanceId = 0
+                }
+                2 -> {
+                    txt = values[2].toString()
+                    abundanceId = 0
+                }
             }
             view.text = txt
             abundance = txt
@@ -133,11 +173,6 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_addObservationFragment_to_choosePlantFragment)
         }
-    }
-
-    private fun getPlantData(view: TextView) {
-        val name: String = arguments?.getString("model_name") ?: getString(R.string.choose_plant)
-        view.text = name
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -177,29 +212,60 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
 
     private fun addImage() {
         binding.addObsrvAddImgBtn.setOnClickListener {
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.action = Intent.ACTION_PICK
-            resultLauncher.launch(Intent.createChooser(intent, getString(R.string.select_picture)))
+            if(!galleryPermissionGranted){
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                intent.action = Intent.ACTION_PICK
+                resultLauncher.launch(Intent.createChooser(intent, getString(R.string.select_picture)))
+            } else if(galleryPermissionGranted){
+                requireContext().showToastShort(getString(R.string.grant_permission))
+            }
         }
     }
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
+            val uriPathHelper = URIPathHelper()
             if (result.data!!.clipData != null) {
                 val mClipData = result.data!!.clipData
                 val cout = mClipData!!.itemCount
                 for (i in 0 until cout) {
                     val imageUrl = mClipData.getItemAt(i).uri
                     imagesAdapter.addImage(imageUrl)
+                    bodyList.add(getFilePath(imageUrl))
                 }
             } else {
                 imagesAdapter.addImage(result.data!!.data!!)
+//                val filePath = uriPathHelper.getPath(requireContext(), result.data!!.data!!) // create RequestBody instance from file
+//                if (filePath != null) {
+//                    file = File(filePath)
+//                }
+//                val fileBody: RequestBody =
+//                    file.asRequestBody(
+//                        requireContext().contentResolver.getType(result.data!!.data!!)?.toMediaTypeOrNull()
+//                    )
+//                body= MultipartBody.Part.createFormData("picture", file.name, fileBody)
+                bodyList.add(getFilePath(result.data!!.data!!))
             }
         } else {
             requireContext().showToastShort(getString(R.string.you_did_not_choose_pick))
         }
+    }
+
+    private fun getFilePath(uri: Uri):MultipartBody.Part{
+        val uriPathHelper = URIPathHelper()
+        imagesAdapter.addImage(uri)
+        val filePath = uriPathHelper.getPath(requireContext(), uri) // create RequestBody instance from file
+        if (filePath != null) {
+            file = File(filePath)
+        }
+        val fileBody: RequestBody =
+            file.asRequestBody(
+                requireContext().contentResolver.getType(uri)?.toMediaTypeOrNull()
+            )
+        body= MultipartBody.Part.createFormData("picture", file.name, fileBody)
+        return body!!
     }
 
 
@@ -212,4 +278,34 @@ class AddObservationFragment : Fragment(), OnDeleteListener {
     override fun onItemClicked(position: Uri) {
         imagesAdapter.removeImage(position)
     }
+
+    private fun getGalleryPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            galleryPermissionGranted = true
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                100
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            100 -> {
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    Log.e("Permission","Permission is granted")
+                } else requireContext().showToastShort(getString(R.string.grant_permission))
+            }
+        }
+    }
+
 }

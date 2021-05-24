@@ -1,46 +1,37 @@
 package kg.tabiyat.ui.main.plants
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.databinding.PlantsFragmentBinding
-import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
-class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
-    private lateinit var binding: PlantsFragmentBinding
+class PlantsFragment : BaseFragment<PlantsFragmentBinding>(PlantsFragmentBinding::inflate), OnDataClickListener, View.OnClickListener {
     private lateinit var adapter: PlantsAdapter
     private val viewModel by inject<PlantsViewModel>()
     private var clickCounter: Int = 0
     private lateinit var manager: LinearLayoutManager
     private var isLoading: Boolean = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = PlantsFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         loadData()
-        //observePlants()
         viewModel.resetPage()
         setRecycler()
         setProgress()
         binding.searchLayout.buttonSort.setOnClickListener(this)
+    }
+
+    override fun observeData() {
+        super.observeData()
+        observePlants()
     }
 
     private fun setRecycler() {
@@ -61,15 +52,18 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
 
     private fun loadData() {
         viewModel.getPlantsList()
-       // Toast.makeText(requireContext(), "loadData()", Toast.LENGTH_SHORT).show()
     }
 
-//    private fun observePlants() {
+    private fun observePlants() {
 //        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
 //            Toast.makeText(requireContext(), "size - ${it.size}", Toast.LENGTH_SHORT).show()
 //            adapter.addItems(it)
 //        }
-//    }
+        viewModel.plantsList.observe(viewLifecycleOwner, {
+            adapter.addItems(it)
+            adapter.notifyDataSetChanged()
+        })
+    }
 
     override fun onItemClicked(model: Datum) {
         val bundle = Bundle()
@@ -94,7 +88,6 @@ class PlantsFragment : Fragment(), OnDataClickListener, View.OnClickListener {
         if (!isLoading) {
             binding.plantsProgress.visibility = View.VISIBLE
         } else binding.plantsProgress.visibility = View.GONE
-
     }
 
 

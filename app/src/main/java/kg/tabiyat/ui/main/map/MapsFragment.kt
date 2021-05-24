@@ -3,14 +3,10 @@ package kg.tabiyat.ui.main.map
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import kg.tabiyat.R
 import kg.tabiyat.databinding.FragmentMapsBinding
@@ -23,13 +19,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.data.model.MapModel
 
 
-class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickListener {
-    private lateinit var binding: FragmentMapsBinding
+class MapsFragment : BaseFragment<FragmentMapsBinding>(FragmentMapsBinding::inflate), View.OnClickListener, GoogleMap.OnMarkerClickListener {
     private var clickCounter: Int = 0
-
     private var locationPermissionGranted = false
     private var map: GoogleMap? = null
     private var lastKnownLocation: Location? = null
@@ -37,9 +32,6 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
     private val bishkek = LatLng(42.8746, 74.5698)
     private val defaultLocation = bishkek
     private var sendMapModel: MapModel? = null
-
-
-
     private val callback = OnMapReadyCallback { googleMap ->
         this.map = googleMap
         // Turn on the My Location layer and the related control on the map.
@@ -58,17 +50,8 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMapsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         setMap()
         onDataClick()
         binding.mapButtonSort.setOnClickListener(this)
@@ -76,6 +59,9 @@ class MapsFragment : Fragment(), View.OnClickListener, GoogleMap.OnMarkerClickLi
             LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
+    override fun observeData() {
+        super.observeData()
+    }
 
     private fun setMap() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?

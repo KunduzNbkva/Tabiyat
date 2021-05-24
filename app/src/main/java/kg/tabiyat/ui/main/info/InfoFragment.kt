@@ -9,7 +9,6 @@ import kg.tabiyat.R
 import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.databinding.InfoFragmentBinding
-import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
@@ -29,9 +28,6 @@ class InfoFragment : BaseFragment<InfoFragmentBinding>(InfoFragmentBinding::infl
 
     override fun observeData() {
         super.observeData()
-//        viewModel.getLocalPlantsList().observe(viewLifecycleOwner){
-//            adapter.addItems(it)
-//        }
         viewModel.infoList.observe(viewLifecycleOwner, {
             adapter.addItems(it)
         })

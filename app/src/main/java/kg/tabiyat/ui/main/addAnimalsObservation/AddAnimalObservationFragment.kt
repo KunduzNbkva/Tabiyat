@@ -15,14 +15,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.Navigation
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDeleteListener
 import kg.tabiyat.base.showToastShort
 import kg.tabiyat.data.model.MapObservationModel
-import kg.tabiyat.data.model.PostObserve
 import kg.tabiyat.databinding.FragmentAddAnimalsObservationBinding
 import kg.tabiyat.ui.main.addObservation.adapter.ImagesAdapter
 import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
@@ -31,28 +30,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddAnimalObservationFragment : Fragment(), OnDeleteListener {
-    private lateinit var binding: FragmentAddAnimalsObservationBinding
+class AddAnimalObservationFragment : BaseFragment<FragmentAddAnimalsObservationBinding>(FragmentAddAnimalsObservationBinding::inflate), OnDeleteListener {
     private val viewModel by inject<AddObservationViewModel>()
     private var calendar: Calendar = Calendar.getInstance()
     private lateinit var imagesAdapter: ImagesAdapter
     private var alertDialog: AlertDialog? = null
-    private var type: String = "plants"
+    private var type: String = "animals"
     private var txt: String? = null
     private var abundance: String? = null
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAddAnimalsObservationBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
+    override fun setUpViews() {
+        super.setUpViews()
         addImage()
         setPlantChooseClick()
         getPlantData(binding.addObsrvPlantTitle)
@@ -62,6 +50,11 @@ class AddAnimalObservationFragment : Fragment(), OnDeleteListener {
         postObservation()
         createImagesRecycler()
         setFragmentListener()
+    }
+
+    override fun observeData() {
+        super.observeData()
+        observeViewModel()
     }
 
     private fun setFragmentListener() {
@@ -83,9 +76,9 @@ class AddAnimalObservationFragment : Fragment(), OnDeleteListener {
 
     private fun postObservation() {
         binding.postAnimalObservation.setOnClickListener {
-            val postObserve =
-                PostObserve(type, 1, "Комментарий", "42.8746", "74.5698", imagesAdapter.getList())
-            viewModel.postObservation(postObserve)
+//            val postObserve =
+//                PostObserve(type, 1, "Комментарий", "42.8746", "74.5698", imagesAdapter.getList())
+//            viewModel.postObservation(postObserve)
         }
     }
 

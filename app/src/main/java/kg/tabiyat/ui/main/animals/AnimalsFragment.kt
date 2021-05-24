@@ -9,7 +9,6 @@ import kg.tabiyat.R
 import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.databinding.AnimalsFragmentBinding
-import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kg.tabiyat.data.model.Datum
 import org.koin.android.ext.android.inject
 
@@ -29,9 +28,9 @@ class AnimalsFragment() : BaseFragment<AnimalsFragmentBinding>(AnimalsFragmentBi
 
     override fun observeData() {
         super.observeData()
-//        viewModel.animalsList.observe(viewLifecycleOwner, {
-//            adapter.addItems(it)
-//        })
+        viewModel.animalsList.observe(viewLifecycleOwner, {
+            adapter.addItems(it)
+        })
     }
 
     private fun setRecycler() {

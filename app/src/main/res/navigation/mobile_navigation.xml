@@ -12,7 +12,7 @@
         tools:layout="@layout/favorite_fragment">
         <action
             android:id="@+id/action_navigation_liked_to_favoriteDetailFragment"
-            app:destination="@id/cardDetailFragment"
+            app:destination="@id/cardFavDetailFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -239,7 +239,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_addObservationFragment_to_mapsActivityCurrentPlace"
+            android:id="@+id/action_addObservationFragment_to_locationMapFragment"
             app:destination="@id/locationMapFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
@@ -272,7 +272,7 @@
     </fragment>
     <fragment
         android:id="@+id/choosePlantFragment"
-        android:name="kg.tabiyat.ui.main.addAnimalsObservation.ChooseAnimalFragment"
+        android:name="kg.tabiyat.ui.main.addObservation.ChoosePlantFragment"
         android:label="@string/choose_plant"
         tools:layout="@layout/fragment_choose_plant">
         <action
@@ -357,6 +357,23 @@
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"/>
+        app:popExitAnim="@anim/slide_out_right">
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/cardFavDetailFragment"
+        android:name="kg.tabiyat.ui.main.cardFavoriteDetail.CardFavDetailFragment"
+        android:label="CardFavDetailFragment" />
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="kg.tabiyat.ui.main.news.NewsDetailFragment"
+        android:label="@string/news"
+        tools:layout="@layout/fragment_news_detail" />
 
 </navigation>

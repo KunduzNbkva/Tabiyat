@@ -2,26 +2,28 @@ package kg.tabiyat.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 
 data class NewsModel(
     @SerializedName("status")
     @Expose
     var status: String? = null,
 
-    @SerializedName("message")
+    @SerializedName("news")
     @Expose
-    var message: News? = null
+    var news: News? = null
 )
 
 
-data class News (
+data class News(
     @SerializedName("current_page")
     @Expose
     var currentPage: Int? = null,
 
     @SerializedName("data")
     @Expose
-    var data: List<Datum>? = null,
+    var data: List<NewsData>? = null,
 
     @SerializedName("first_page_url")
     @Expose
@@ -67,6 +69,36 @@ data class News (
     @Expose
     var total: Int? = null
 )
+
+data class NewsData (
+    @SerializedName("id")
+    @Expose
+    var id: Int? = null,
+
+    @SerializedName("title")
+    @Expose
+    var title: Name? = null,
+
+    @SerializedName("content")
+    @Expose
+    var content: Name? = null,
+
+    @SerializedName("image")
+    @Expose
+    var image: String? = null,
+
+    @SerializedName("published")
+    @Expose
+    var published: Int? = null,
+
+    @SerializedName("created_at")
+    @Expose
+    var createdAt: String? = null,
+
+    @SerializedName("updated_at")
+    @Expose
+    var updatedAt: String? = null
+) : Serializable
 
 
 
