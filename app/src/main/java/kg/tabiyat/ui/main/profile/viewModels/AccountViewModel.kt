@@ -21,7 +21,7 @@ class AccountViewModel(var repository: ProfileRepository) : ViewModel() {
                         status.postValue(it.status)
                         Log.e(
                             "Name",
-                            "Name updated to ${it.data!!.data!!.customer!!.fullName.toString()}"
+                            "Name updated to ${it.data!!.data!!.customer!!.fullName}"
                         )
                     }
                     Status.ERROR -> error(it.message.toString())

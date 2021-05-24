@@ -11,7 +11,7 @@ import kg.tabiyat.data.local.db.entity.PlantsEntity
 import kotlinx.coroutines.launch
 
 class ChoosePlantViewModel(private val plantsRepository: PlantsRepository): ViewModel() {
-    var plantsList = MutableLiveData<List<Datum>>()
+    var plantsList =  MutableLiveData<List<Datum>>()
     private var page = 0
     private var hasNext = true
 
@@ -21,11 +21,11 @@ class ChoosePlantViewModel(private val plantsRepository: PlantsRepository): View
             plantsRepository.getPlantsList(page).observeForever {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        val list = it.data!!.data!!.plants!!.data!!
-//                        plantsList.postValue(list)
-                        plantsRepository.db.mainDao().insertPlantsList(list)
+                        val list = it.data!!.data!!.plants!!.data
+                        plantsList.postValue(list)
                         page++
                         if (list.size < 20) hasNext=false
+                        // plantsRepository.db.mainDao().insertPlantsList(list)
                     }
                     Status.ERROR -> error(it.message.toString())
                     Status.LOADING -> null
@@ -34,9 +34,10 @@ class ChoosePlantViewModel(private val plantsRepository: PlantsRepository): View
         }
     }
 
-    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
-        return plantsRepository.getLocalPlantsList()
-    }
+
+//    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>{
+//        return plantsRepository.getLocalPlantsList()
+//    }
 
     fun resetPage() {
         page = 0

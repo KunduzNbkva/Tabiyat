@@ -1,34 +1,27 @@
 package kg.tabiyat.ui.main.notifications
 
-import android.os.Bundle
-import android.view.LayoutInflater
+
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.databinding.NotificationsFragmentBinding
 import kg.tabiyat.ui.main.notifications.adapter.NotificationsAdapter
 import org.koin.android.ext.android.inject
 
-class NotificationsFragment : Fragment() {
-    private lateinit var binding: NotificationsFragmentBinding
+class NotificationsFragment : BaseFragment<NotificationsFragmentBinding>(NotificationsFragmentBinding::inflate) {
     private lateinit var adapter: NotificationsAdapter
     private var listOfNotifications: ArrayList<String>? = null
     private val viewModel by inject<NotificationsViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = NotificationsFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         // checkForNotifications()
         setUpNotificationsRecycler()
+    }
+
+    override fun observeData() {
+        super.observeData()
     }
 
     private fun setUpNotificationsRecycler() {

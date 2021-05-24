@@ -1,30 +1,17 @@
 package kg.tabiyat.ui.main.profile
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.databinding.RatingFragmentBinding
 import kg.tabiyat.ui.main.profile.adapter.RatingAdapter
 import kg.tabiyat.ui.main.profile.viewModels.RatingViewModel
 import org.koin.android.ext.android.inject
 
-class RatingFragment : Fragment() {
-    private lateinit var binding: RatingFragmentBinding
+class RatingFragment : BaseFragment<RatingFragmentBinding>(RatingFragmentBinding::inflate){
     private val viewModel by inject<RatingViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = RatingFragmentBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         setRatingRecycler()
     }
 

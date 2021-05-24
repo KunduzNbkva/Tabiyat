@@ -128,7 +128,9 @@ class MainActivity : AppCompatActivity() {
             R.id.choosePlantFragment,
             R.id.locationMapFragment,
             R.id.addAnimalObsrvFragment,
-            R.id.chooseAnimalFragment
+            R.id.chooseAnimalFragment,
+            R.id.newsDetailFragment,
+            R.id.newsFragment
         )
 
         navController.addOnDestinationChangedListener { _, destination, arguments ->

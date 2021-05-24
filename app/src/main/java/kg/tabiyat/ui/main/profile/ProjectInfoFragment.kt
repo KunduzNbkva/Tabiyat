@@ -1,31 +1,22 @@
 package kg.tabiyat.ui.main.profile
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.databinding.ProjectInfoFragmentBinding
 import kg.tabiyat.ui.main.profile.viewModels.ProjectInfoViewModel
 import org.koin.android.ext.android.inject
 
-class ProjectInfoFragment : Fragment() {
-    private lateinit var binding: ProjectInfoFragmentBinding
+class ProjectInfoFragment : BaseFragment<ProjectInfoFragmentBinding>(ProjectInfoFragmentBinding::inflate) {
     private val viewModel by inject<ProjectInfoViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = ProjectInfoFragmentBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override fun setUpViews() {
+        super.setUpViews()
+        viewModel.getProjectInfo()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun observeData() {
+        super.observeData()
         observeProjectInfo()
-        viewModel.getProjectInfo()
     }
 
 

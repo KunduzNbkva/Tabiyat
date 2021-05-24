@@ -12,27 +12,19 @@ import com.civitasv.ioslike.dialog.DialogNormal
 import com.civitasv.ioslike.model.DialogTextStyle
 import kg.tabiyat.App
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.databinding.SettingsFragmentBinding
 import kg.tabiyat.ui.main.profile.viewModels.SettingsViewModel
 import org.koin.android.ext.android.inject
 import java.util.*
 
 
-class SettingsFragment : Fragment(), View.OnClickListener {
+class SettingsFragment : BaseFragment<SettingsFragmentBinding>(SettingsFragmentBinding::inflate), View.OnClickListener {
     private var lang: String = String()
-    private lateinit var binding: SettingsFragmentBinding
     private val viewModel by inject<SettingsViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = SettingsFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         settingsClickListener(
             binding.settingsProject,
             R.id.action_menuSettings_to_projectInfoFragment
@@ -46,42 +38,20 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         binding.settingsLangSwitch.setOnCheckedChangeListener { _, checkedId ->
           when (checkedId) {
                 R.id.ru_lang -> {
-                    setLocale("ru")
                     lang = "ru"
                 }
                 R.id.kg_lang ->{
-                    setLocale("kg")
+
                     lang = "kg"
                 }
                 else -> {
-                    setLocale("ru")
                     lang = "ru"
                 }
             }
         }
     }
 
-    private fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        requireContext().resources.updateConfiguration(
-            config,
-            requireContext().resources.displayMetrics
-        )
-        App.prefs!!.saveLang(lang)
-    }
 
-    override fun onResume() {
-        loadLocaleLang()
-        super.onResume()
-    }
-
-    private fun loadLocaleLang() {
-        val language: String = App.prefs!!.lanquage!!
-            setLocale(language)
-    }
 
     private fun settingsClickListener(textView: TextView, action: Int) {
         textView.setOnClickListener {
@@ -94,7 +64,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             .setTitle(getString(R.string.you_want_exict))
             .setContent(getString(R.string.you_always_can_return))
             .setConfirm(
-                getString(R.string.exit), { v2 ->
+                getString(R.string.exit), { _ ->
                     activity?.moveTaskToBack(true)
                     activity?.finish()
                 },

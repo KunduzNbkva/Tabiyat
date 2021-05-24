@@ -8,15 +8,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import kg.tabiyat.App
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.URIPathHelper
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.base.showToastShort
@@ -30,10 +28,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import org.koin.android.ext.android.inject
 import java.io.File
 
-
-
-class AccountFragment : Fragment() {
-    private lateinit var binding: AccountFragmentBinding
+class AccountFragment : BaseFragment<AccountFragmentBinding>(AccountFragmentBinding::inflate) {
     private val viewModel by inject<AccountViewModel>()
     private var imageUri: Uri? = null
     private lateinit var customer: Customer
@@ -42,46 +37,42 @@ class AccountFragment : Fragment() {
     private lateinit var body: MultipartBody.Part
     private var galleryPermissionGranted = false
 
-
-
     companion object {
         const val USER_KEY = "user"
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = AccountFragmentBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         customer = arguments?.getSerializable(USER_KEY) as Customer
+        getGalleryPermission()
         setDataToView()
-        observeStatus()
         changeAvatar()
         saveChangedData()
+    }
+
+    override fun observeData() {
+        super.observeData()
+        observeStatus()
     }
 
     private fun saveChangedData() {
         binding.updateAccountInfo.setOnClickListener {
             name = binding.accountName.text.toString()
-            viewModel.updateUserAvatar(body)
             viewModel.updateUserName(name)
             customer.avatar = body
             customer.fullName = name
             val bundle = Bundle()
             bundle.putSerializable("edited_customer",customer)
             Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_navigation_profile)
+            App.prefs!!.saveUser(customer,"customer")
         }
     }
+
 
     private fun observeStatus(){
         viewModel.status.observe(viewLifecycleOwner, {
             if (it != null) requireContext().showToastShort(getString(R.string.successfully))
+
         })
     }
 
@@ -101,7 +92,6 @@ class AccountFragment : Fragment() {
             binding.accountAvatar.loadImage(imageUri.toString())
             val uriPathHelper = URIPathHelper()
             val filePath = uriPathHelper.getPath(requireContext(), imageUri!!) // create RequestBody instance from file
-
             if (filePath != null) {
                 file = File(filePath)
             }
@@ -110,6 +100,8 @@ class AccountFragment : Fragment() {
                     requireContext().contentResolver.getType(imageUri!!)?.toMediaTypeOrNull()
                 )
             body= MultipartBody.Part.createFormData("picture", file.name, fileBody)
+
+            viewModel.updateUserAvatar(body)
         }
     }
 
@@ -117,7 +109,6 @@ class AccountFragment : Fragment() {
 
     private fun changeAvatar() {
         binding.accountChangeAvatar.setOnClickListener {
-            getGalleryPermission()
             if(!galleryPermissionGranted){
                 val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
                 resultLauncher.launch(gallery)

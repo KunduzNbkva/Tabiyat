@@ -1,13 +1,10 @@
 package kg.tabiyat.ui.main.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.ListModel
 import kg.tabiyat.base.OnItemClickListener
 import kg.tabiyat.base.loadImage
@@ -16,27 +13,24 @@ import kg.tabiyat.ui.main.profile.adapter.ProfileAdapter
 import kg.tabiyat.ui.main.profile.viewModels.ProfileViewModel
 import org.koin.android.ext.android.inject
 
-class ProfileFragment : Fragment(), OnItemClickListener {
-    private lateinit var binding: ProfileFragmentBinding
+class ProfileFragment : BaseFragment<ProfileFragmentBinding>(ProfileFragmentBinding::inflate), OnItemClickListener {
     private val viewModel by inject<ProfileViewModel>()
     private lateinit var bundle: Bundle
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = ProfileFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         bundle = Bundle()
-        observeUserData()
         viewModel.getUserData()
         setRecycler()
         editProfileClick()
     }
+
+    override fun observeData() {
+        super.observeData()
+        observeUserData()
+    }
+
 
     private fun observeUserData() {
         viewModel.user.observe(viewLifecycleOwner, {

@@ -15,10 +15,4 @@ interface MainDao {
     @Insert
     fun insertPlantsList(list: List<PlantsEntity>)
 
-//    @Query("SELECT * FROM animals_list")
-//    fun getLocalPlantsList() : LiveData<List<PlantsEntity>>
-//
-//    @Insert
-//    fun insertPlantsList(list: List<PlantsEntity>)
-
 }

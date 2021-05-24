@@ -3,15 +3,10 @@ package kg.tabiyat.ui.main.addObservation
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.Navigation
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -21,16 +16,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.data.model.MapObservationModel
 import kg.tabiyat.databinding.FragmentLocationMapBinding
 
 
-class LocationMapFragment : Fragment() {
-    private lateinit var binding: FragmentLocationMapBinding
-
+class LocationMapFragment : BaseFragment<FragmentLocationMapBinding>(FragmentLocationMapBinding::inflate) {
     private var locationPermissionGranted = false
     private var map: GoogleMap? = null
     private var lastKnownLocation: Location? = null
@@ -50,27 +42,14 @@ class LocationMapFragment : Fragment() {
 
         val bishkek = LatLng(42.8746, 74.5698)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bishkek, 8f))
-
-
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentLocationMapBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpViews() {
+        super.setUpViews()
         setMap()
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
     }
-
 
     private fun setMap() {
         val mapFragment =
@@ -79,9 +58,6 @@ class LocationMapFragment : Fragment() {
 
         Log.e("Map", "callback$callback")
     }
-
-
-
 
     // ----- location
 
@@ -127,6 +103,8 @@ class LocationMapFragment : Fragment() {
             if (!locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
+              //  getData()
+
             } else {
                 map?.isMyLocationEnabled = false
                 map?.uiSettings?.isMyLocationButtonEnabled = false

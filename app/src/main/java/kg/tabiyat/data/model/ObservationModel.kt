@@ -4,6 +4,8 @@ import android.net.Uri
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
+import kg.tabiyat.data.local.db.entity.Abundance
+import okhttp3.MultipartBody
 
 
 data class ObservationModel(
@@ -94,11 +96,24 @@ data class PostObserve(
     @Expose
     var longitude: String? = null,
 
-    @SerializedName("images")
+    @SerializedName("altitude")
     @Expose
-    var images: List<Uri>? = null,
+    var altitude: Double? = null,
 
     @SerializedName("uncertainty")
     @Expose
-    var uncertainty: String? = null,
+    var accuracy: Float? = null,
+
+    @SerializedName("abundance")
+    @Expose
+    var abundance: Int? = null,
+
+    @SerializedName("images")
+    @Expose
+    var images: List<MultipartBody.Part>? = null,
+
+    @SerializedName("moderated_by")
+    @Expose
+    var moderated:Int? = null
+
 )

@@ -10,8 +10,9 @@ import kg.tabiyat.data.local.db.AppDatabase
 import kg.tabiyat.ui.main.addAnimalsObservation.viewModel.AddAnimalObservationViewModel
 import kg.tabiyat.ui.main.addObservation.viewModel.AddObservationViewModel
 import kg.tabiyat.ui.main.addAnimalsObservation.viewModel.ChooseAnimalViewModel
+import kg.tabiyat.ui.main.addObservation.viewModel.ChoosePlantViewModel
 import kg.tabiyat.ui.main.animals.AnimalsViewModel
-import kg.tabiyat.ui.main.cardDetail.CardDetailViewModel
+import kg.tabiyat.ui.main.cardFavoriteDetail.CardFavDetailViewModel
 import kg.tabiyat.ui.main.favorite.FavoriteViewModel
 import kg.tabiyat.ui.main.info.InfoViewModel
 import kg.tabiyat.ui.main.news.NewsViewModel
@@ -29,9 +30,10 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { AnimalsViewModel(get()) }
     viewModel { InfoViewModel(get(), get()) }
-    viewModel { CardDetailViewModel(get()) }
+    viewModel { CardFavDetailViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
     viewModel { ChooseAnimalViewModel(get()) }
+    viewModel { ChoosePlantViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { AddObservationViewModel(get()) }
     viewModel { ProjectInfoViewModel(get()) }

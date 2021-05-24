@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.OnDataClickListener
 import kg.tabiyat.data.model.Datum
 import kg.tabiyat.databinding.FragmentChoosePlantBinding
@@ -16,29 +18,25 @@ import kg.tabiyat.ui.main.addObservation.adapter.ChoosePlantsAdapter
 import kg.tabiyat.ui.main.addObservation.viewModel.ChoosePlantViewModel
 import org.koin.android.ext.android.inject
 
-class ChoosePlantFragment : Fragment(), OnDataClickListener {
-    private lateinit var binding: FragmentChoosePlantBinding
+class ChoosePlantFragment : BaseFragment<FragmentChoosePlantBinding>(FragmentChoosePlantBinding::inflate), OnDataClickListener {
     private lateinit var adapter: ChoosePlantsAdapter
     private val viewModel by inject<ChoosePlantViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentChoosePlantBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observePlants()
+    override fun setUpViews() {
+        super.setUpViews()
         viewModel.resetPage()
         viewModel.getPlantsList()
         setRecycler()
     }
 
+    override fun observeData() {
+        super.observeData()
+        observePlants()
+    }
+
+
     private fun setRecycler() {
-        var manager = LinearLayoutManager(requireContext())
+        val manager = LinearLayoutManager(requireContext())
         binding.listPlants.layoutManager = manager
         adapter = ChoosePlantsAdapter(this)
         binding.listPlants.adapter = adapter
@@ -67,13 +65,15 @@ class ChoosePlantFragment : Fragment(), OnDataClickListener {
 
 
     override fun onItemClicked(model: Datum) {
-        val bundle = Bundle()
-        model.let {
-            bundle.putString("model_name", it.name!!.ru.toString())
-        }
+//        val bundle = Bundle()
+//        model.let {
+//            bundle.putSerializable("model_name", it)
+//        }
+        // Use the Kotlin extension in the fragment-ktx artifact
+        setFragmentResult("plantData_key", bundleOf("model_name" to model))
         view?.let {
             Navigation.findNavController(it)
-                .navigate(R.id.action_choosePlantFragment_to_addObservationFragment, bundle)
+                .navigate(R.id.action_choosePlantFragment_to_addObservationFragment)
         }
     }
 

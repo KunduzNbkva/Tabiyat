@@ -131,53 +131,54 @@ class Name(
 class Plants(
     @SerializedName("current_page")
     @Expose
-    var currentPage: Int? = null,
+    var currentPage: Int,
 
     @SerializedName("data")
     @Expose
-    var data: List<PlantsEntity>? = null,
+  //TODO  var data: List<PlantsEntity>? = null,
+    var data: List<Datum>,
 
     @SerializedName("first_page_url")
     @Expose
-    var firstPageUrl: String? = null,
+    var firstPageUrl: String,
 
     @SerializedName("from")
     @Expose
-    var from: Int? = null,
+    var from: Int,
 
     @SerializedName("last_page")
     @Expose
-    var lastPage: Int? = null,
+    var lastPage: Int,
 
     @SerializedName("last_page_url")
     @Expose
-    var lastPageUrl: String? = null,
+    var lastPageUrl: String,
 
     @SerializedName("links")
     @Expose
-    var links: List<Link>? = null,
+    var links: List<Link>,
 
     @SerializedName("next_page_url")
     @Expose
-    var nextPageUrl: String? = null,
+    var nextPageUrl: String,
 
     @SerializedName("path")
     @Expose
-    var path: String? = null,
+    var path: String,
 
     @SerializedName("per_page")
     @Expose
-    var perPage: Int? = null,
+    var perPage: Int,
 
     @SerializedName("prev_page_url")
     @Expose
-    var prevPageUrl: Any? = null,
+    var prevPageUrl: Any,
 
     @SerializedName("to")
     @Expose
-    var to: Int? = null,
+    var to: Int,
 
     @SerializedName("total")
     @Expose
-    var total: Int? = null
+    var total: Int
 )

@@ -1,6 +1,5 @@
 package kg.tabiyat.data.remote
 
-import android.net.Uri
 import kg.tabiyat.data.model.*
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -26,8 +25,7 @@ interface TabiyatApi {
     @Headers("Accept: application/json")
     suspend fun updateAvatar(
         @Header("Authorization") token: String,
-        @Part avatar:MultipartBody.Part,
-       // @Query("avatar") uri: String
+        @Part avatar: MultipartBody.Part,
     ): UserExample
 
     @POST("api/v1/login")
@@ -75,7 +73,6 @@ interface TabiyatApi {
 
     @GET("api/v1/about")
     suspend fun getAboutProject(): AboutModel
-
 
     @GET("api/v1/news")
     suspend fun getNewsList(@Query("page") page: Int): NewsModel

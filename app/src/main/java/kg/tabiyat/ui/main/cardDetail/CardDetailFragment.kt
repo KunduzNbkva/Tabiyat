@@ -3,26 +3,23 @@ package kg.tabiyat.ui.main.cardDetail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kg.tabiyat.R
+import kg.tabiyat.base.BaseFragment
 import kg.tabiyat.base.loadImage
 import kg.tabiyat.base.showToastShort
 import kg.tabiyat.data.model.Datum
-import kg.tabiyat.data.model.Favorite
 import kg.tabiyat.data.model.FavoriteModel
 import kg.tabiyat.databinding.CardDetailFragmentBinding
+import kg.tabiyat.ui.main.cardFavoriteDetail.CardFavDetailViewModel
 import org.koin.android.ext.android.inject
 
-class CardDetailFragment : Fragment(), View.OnClickListener {
-    private lateinit var binding: CardDetailFragmentBinding
-    private val viewModel by inject<CardDetailViewModel>()
+class CardDetailFragment : BaseFragment<CardDetailFragmentBinding>(CardDetailFragmentBinding::inflate), View.OnClickListener {
+    private val viewModel by inject<CardFavDetailViewModel>()
     private lateinit var buttonAddObservation: Button
     private lateinit var redBookRecycler: RecyclerView
     private lateinit var fenofazeRecycler: RecyclerView
@@ -38,24 +35,18 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         const val FAV_MODEL_KEY = "model"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = CardDetailFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-
     @SuppressLint("UseCompatLoadingForDrawables", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         redBookRecycler = view.findViewById(R.id.redBook_list)
         fenofazeRecycler = view.findViewById(R.id.fenofaze_list)
         buttonAddObservation = view.findViewById(R.id.add_observation_btn)
-        observe()
+    }
+
+    override fun setUpViews() {
+        super.setUpViews()
         getDataOfModel()
-        checkForFavorite()
+        // checkForFavorite()
         setViewData()
         openObservations()
         setList()
@@ -63,10 +54,15 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         binding.detailSaveCard.setOnClickListener { onFavoriteClick() }
     }
 
+    override fun observeData() {
+        super.observeData()
+        observe()
+    }
+
     private fun getDataOfModel() {
         model = arguments?.getSerializable("model") as Datum
         type = arguments?.getString("type").toString()
-        favoritableId = arguments?.getInt("favoritable_id")!!
+       // favoritableId = arguments?.getInt("favoritable_id")!!
     }
 
     private fun setList() {
@@ -119,10 +115,16 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
     }
 
     private fun checkForFavorite(){
-        if (viewModel.isFavorite())
-            binding.detailSaveCard.setImageResource(R.drawable.ic_save)
-        else if(!viewModel.isFavorite()) {
+//        if (viewModel.isFavorite())
+//            binding.detailSaveCard.setImageResource(R.drawable.ic_save)
+//        else if(!viewModel.isFavorite()) {
+//            binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
+//        }
+
+        if(favoritableId!=null){
             binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
+        } else{
+            binding.detailSaveCard.setImageResource(R.drawable.ic_save)
         }
     }
 
@@ -130,7 +132,7 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         clickCounter++
         if (clickCounter % 2 == 0) {
             binding.detailSaveCard.setImageResource(R.drawable.ic_saved)
-            favoriteModel= FavoriteModel(type, model.id!!)
+            favoriteModel = FavoriteModel(type, model.id!!)
             viewModel.createFavorite(favoriteModel)
         }  else if (clickCounter % 2 != 0) {
             binding.detailSaveCard.setImageResource(R.drawable.ic_save)
@@ -152,8 +154,6 @@ class CardDetailFragment : Fragment(), View.OnClickListener {
         binding.detailCardGenus.text = model.genusId.toString()
         //binding.detailCardPalatability.text = model.
         // binding.observationCount.text = model.
-
-
     }
 
 }
